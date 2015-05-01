@@ -150,7 +150,6 @@ return [
         'Barryvdh\Debugbar\ServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 
-
 	],
 
 	/*
@@ -200,7 +199,6 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 
         'Debugbar' => 'Barryvdh\Debugbar\Facade',
-
 	],
 
 ];
