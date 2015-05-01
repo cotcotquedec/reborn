@@ -1,61 +1,58 @@
-@extends('app')
+<!DOCTYPE html>
+<html lang="fr">
 
-@section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Login</div>
-				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
+<head>
+    <meta charset="utf-8">
+    <title>Alliwant</title>
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
-							</div>
-						</div>
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="remember"> Remember Me
-									</label>
-								</div>
-							</div>
-						</div>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/css/signin.css" rel="stylesheet" type="text/css">
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Login</button>
+</head>
 
-								<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-@endsection
+<body>
+<div class="account-container">
+
+    <div class="content clearfix">
+
+        <form action="#" method="post">
+
+            <h1>Alliwant</h1>
+
+            <div class="login-fields">
+
+                <p>Saisissez vos identifiants</p>
+
+                <div class="field">
+                    <label for="username">Identifiant</label>
+                    {!! Form::text('username', '' , ['placeholder' => 'Identifiant', 'class' => 'login username-field']) !!}
+                </div> <!-- /field -->
+
+                <div class="field">
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" id="password" name="password" value="" placeholder="Mot de passe" class="login password-field"/>
+                </div> <!-- /password -->
+            </div> <!-- /login-fields -->
+            <div class="login-actions">
+                <button class="button btn btn-success btn-large">Connexion</button>
+            </div> <!-- .actions -->
+        </form>
+    </div> <!-- /content -->
+</div> <!-- /account-container -->
+
+<script src="/js/jquery-1.11.2.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/signin.js"></script>
+
+</body>
+</html>

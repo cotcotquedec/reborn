@@ -146,6 +146,10 @@ return [
 		'App\Providers\RouteServiceProvider',
 
 
+        'Illuminate\View\ViewServiceProvider',
+        'Illuminate\Html\HtmlServiceProvider',
+
+
         'Barryvdh\Elfinder\ElfinderServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
@@ -199,6 +203,9 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 
         'Debugbar' => 'Barryvdh\Debugbar\Facade',
+
+        'Form'  => 'Illuminate\Html\FormFacade',
+        'HTML'  => 'Illuminate\Html\HtmlFacade',
 	],
 
 ];
