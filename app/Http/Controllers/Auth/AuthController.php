@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller {
 
-    protected $redirectPath = '/';
+    protected $redirectPath = '/home';
 
     /**
      * The Guard implementation.

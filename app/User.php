@@ -6,9 +6,9 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+class User extends Model implements AuthenticatableContract  {
 
-	use Authenticatable, CanResetPassword;
+	use Authenticatable;
 
 	/**
 	 * The database table used by the model.
@@ -16,6 +16,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var string
 	 */
 	protected $table = 'user';
+
+    protected $primaryKey = 'user_id';
 
 	/**
 	 * The attributes that are mass assignable.
