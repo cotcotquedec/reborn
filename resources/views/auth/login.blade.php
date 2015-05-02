@@ -25,7 +25,7 @@
 
     <div class="content clearfix">
 
-        <form action="#" method="post">
+        {!! Form::open() !!}
 
             <h1>Alliwant</h1>
 
@@ -33,20 +33,30 @@
 
                 <p>Saisissez vos identifiants</p>
 
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="field">
-                    <label for="username">Identifiant</label>
+                    {!! Form::label('username', 'Identifiant') !!}
                     {!! Form::text('username', '' , ['placeholder' => 'Identifiant', 'class' => 'login username-field']) !!}
                 </div> <!-- /field -->
 
                 <div class="field">
-                    <label for="password">Mot de passe:</label>
-                    <input type="password" id="password" name="password" value="" placeholder="Mot de passe" class="login password-field"/>
+                    {!! Form::label('password', 'Mot de passe') !!}
+                    {!! Form::password('password', ['placeholder' => 'Mot de passe', 'class' => 'login password-field']) !!}
                 </div> <!-- /password -->
             </div> <!-- /login-fields -->
             <div class="login-actions">
-                <button class="button btn btn-success btn-large">Connexion</button>
+                {!! Form::submit('Connexion', ['class' => 'button btn btn-success btn-large']) !!}
             </div> <!-- .actions -->
-        </form>
+        {!! Form::close() !!}
     </div> <!-- /content -->
 </div> <!-- /account-container -->
 

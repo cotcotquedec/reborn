@@ -11,9 +11,6 @@
 |
 */
 
-
-
-
 Route::get('/', 'WelcomeController@index');
 
 

@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller {
+
+    protected $redirectPath = '/';
 
     /**
      * The Guard implementation.
@@ -21,6 +24,7 @@ class AuthController extends Controller {
 	 */
 	public function __construct(Guard $auth)
 	{
+
 		$this->auth = $auth;
 
 		$this->middleware('guest', ['except' => 'getLogout']);
@@ -46,20 +50,20 @@ class AuthController extends Controller {
     public function postLogin(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email', 'password' => 'required',
+            'username' => 'required', 'password' => 'required',
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('username', 'password');
 
         if ($this->auth->attempt($credentials, $request->has('remember')))
         {
-            return redirect()->intended($this->redirectPath());
+            return redirect()->intended($this->redirectPath);
         }
 
         return redirect($this->loginPath())
-            ->withInput($request->only('email', 'remember'))
+            ->withInput($request->only('username', 'remember'))
             ->withErrors([
-                'email' => $this->getFailedLoginMessage(),
+                'username' => $this->getFailedLoginMessage(),
             ]);
     }
 
@@ -70,7 +74,7 @@ class AuthController extends Controller {
      */
     protected function getFailedLoginMessage()
     {
-        return 'These credentials do not match our records.';
+        return 'Identification incorrect';
     }
 
     /**
@@ -83,21 +87,6 @@ class AuthController extends Controller {
         $this->auth->logout();
 
         return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
-    }
-
-    /**
-     * Get the post register / login redirect path.
-     *
-     * @return string
-     */
-    public function redirectPath()
-    {
-        if (property_exists($this, 'redirectPath'))
-        {
-            return $this->redirectPath;
-        }
-
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
     }
 
     /**
