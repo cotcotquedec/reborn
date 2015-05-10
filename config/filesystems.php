@@ -14,21 +14,8 @@ return [
 	| Supported: "local", "s3", "rackspace"
 	|
 	*/
+	'default' => 'download',
 
-	'default' => 'local',
-
-	/*
-	|--------------------------------------------------------------------------
-	| Default Cloud Filesystem Disk
-	|--------------------------------------------------------------------------
-	|
-	| Many applications store files both locally and in the cloud. For this
-	| reason, you may specify a default "cloud" driver here. This driver
-	| will be bound as the Cloud disk implementation in the container.
-	|
-	*/
-
-	'cloud' => 's3',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -43,14 +30,20 @@ return [
 
 	'disks' => [
 
-		'local' => [
-			'driver' => 'local',
-			'root'   => storage_path().'/app',
-		],
-
-        'local' => [
+        'download' => [
             'driver' => 'local',
-            'root'   => storage_path().'/app',
+            'root'   => storage_path().'/download',
+        ],
+
+
+        'tvshow' => [
+            'driver' => 'local',
+            'root'   => storage_path().'/tvshow',
+        ],
+
+        'movie' => [
+            'driver' => 'local',
+            'root'   => storage_path().'/movie',
         ],
 
 	],

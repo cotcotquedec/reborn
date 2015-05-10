@@ -81,7 +81,7 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-file-o fa-fw"></i> Fichiers</a>
+                        <a href="{{ route('file-home') }}"><i class="fa fa-file-o fa-fw"></i> Fichiers</a>
                     </li>
                 </ul>
             </div>
