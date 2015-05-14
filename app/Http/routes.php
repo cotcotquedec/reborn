@@ -19,7 +19,7 @@ Route::get('/', function() {
 
 Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
 
-Route::get('file', ['as' => 'file-home', 'uses' => 'FileController@index']);
+Route::get('fichier', ['as' => 'file-home', 'uses' => 'FileController@index']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController'

@@ -29,12 +29,10 @@ return [
 	*/
 
 	'disks' => [
-
         'download' => [
             'driver' => 'local',
             'root'   => storage_path().'/download',
         ],
-
 
         'tvshow' => [
             'driver' => 'local',
@@ -46,6 +44,6 @@ return [
             'root'   => storage_path().'/movie',
         ],
 
-	],
+    ],
 
 ];

@@ -150,9 +150,9 @@ return [
         'Illuminate\Html\HtmlServiceProvider',
 
 
-        'Barryvdh\Elfinder\ElfinderServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        'Barryvdh\Elfinder\ElfinderServiceProvider',
 
 	],
 
