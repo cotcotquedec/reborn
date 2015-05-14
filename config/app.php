@@ -152,7 +152,6 @@ return [
 
         'Barryvdh\Debugbar\ServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-        'Barryvdh\Elfinder\ElfinderServiceProvider',
 
 	],
 
