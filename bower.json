@@ -1,0 +1,14 @@
+{
+  "name" : "Reborn",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt",
+    "build",
+    "demos",
+    "tests",
+    "tools"
+  ],
+  "dependencies": {
+    "jquery": ">=1.11.1"
+  }
+}
