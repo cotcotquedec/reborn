@@ -8,3 +8,4 @@ composer.lock
 *~
 /public/build
 /public/main*
+/public/fonts

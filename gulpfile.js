@@ -14,11 +14,14 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix.scripts([   '/../../components/jquery/dist/jquery.min.js',
                     '/../../components/bootstrap/dist/js/bootstrap.min.js'
-                ], 'public/main.js');
+                ], 'public/main.js')
 
-    mix.styles([   '/../../components/bootstrap/dist/css/bootstrap.min.css',
+        .styles([   '/../../components/bootstrap/dist/css/bootstrap.min.css',
+                    '/../../components/fontawesome/css/font-awesome.min.css',
                     'style.css'
-            ], 'public/main.css');
+            ], 'public/main.css')
 
-    mix.version(['main.js', 'main.css'])
+        .copy( '/../../components/fontawesome/fonts', 'public/fonts' )
+
+        .version(['main.js', 'main.css'])
 });
