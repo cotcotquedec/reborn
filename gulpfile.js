@@ -1,5 +1,7 @@
 var elixir = require('laravel-elixir');
 
+
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -12,7 +14,9 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.scripts([   '/../../components/jquery/dist/jquery.min.js',
+    mix.copy( '/../../components/fontawesome/fonts', 'public/fonts' )
+
+        .scripts([   '/../../components/jquery/dist/jquery.min.js',
                     '/../../components/bootstrap/dist/js/bootstrap.min.js'
                 ], 'public/main.js')
 
@@ -21,7 +25,8 @@ elixir(function(mix) {
                     'style.css'
             ], 'public/main.css')
 
-        .copy( '/../../components/fontawesome/fonts', 'public/fonts' )
-
         .version(['main.js', 'main.css'])
+
+
+
 });
