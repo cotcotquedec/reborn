@@ -8,18 +8,22 @@
 
 
     <table class="table">
-        <tr>
-            <th>Nom</th>
+        <tr class="row">
+            <th class="col-md-9">Nom</th>
+            <th class="col-md-3">Options</th>
         </tr>
 
-
-        @forelse($files as $file)
-            <tr>
-                <td>{{ $file }}</td>
-
+        @forelse($content as $row)
+            <tr class="row">
+                <td><i class="{{ $row['icon'] }}"></i>{{ $row['name'] }}</td>
+                <td>
+                    @foreach($row['options'] as $value => $option)
+                        <a href="{{ $option['url'] }}" class="{{ $option['class'] }}"><i class="{{ $option['icon'] }}"></i>{{ $value }}</a>
+                    @endforeach
+                </td>
             </tr>
         @empty
-            <tr>
+            <tr class="row">
                 <td>Vide</td>
             </tr>
         @endforelse

@@ -14,7 +14,7 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.copy( '/../../components/fontawesome/fonts', 'public/fonts' )
+    mix.copy( './resources/components/fontawesome/fonts', 'public/fonts' )
 
         .scripts([   '/../../components/jquery/dist/jquery.min.js',
                     '/../../components/bootstrap/dist/js/bootstrap.min.js'
@@ -26,7 +26,5 @@ elixir(function(mix) {
             ], 'public/main.css')
 
         .version(['main.js', 'main.css'])
-
-
 
 });

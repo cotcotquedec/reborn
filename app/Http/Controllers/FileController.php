@@ -12,16 +12,16 @@ class FileController extends Controller {
         $content = [];
 
         foreach (Storage::directories() as $dir) {
-
-//            $content[] = ['name' => $dir, 'icon' => ''];
-//            Storage::
-//            dd($dir);
+            $options = ['Ouvrir' => ['icon' => 'fa fa-folder-open', 'class' => 'btn btn-sm btn-primary', 'url' => '#']];
+            $content[] = ['name' => $dir, 'icon' => 'fa fa-folder', 'options' => $options];
         }
 
+        foreach (Storage::files() as $files) {
+            if ($files{0} == '.') {continue;}
+            $content[] = ['name' => $files, 'icon' => 'fa fa-file'];
+        }
 
-        $files = Storage::files();
-        $directories = Storage::directories();
-        return view('file.index', compact(['files', 'directories']));
+        return view('file.index', compact(['content']));
     }
 
 }
