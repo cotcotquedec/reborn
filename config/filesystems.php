@@ -31,8 +31,8 @@ return [
 	'disks' => [
         'download' => [
             'driver' => 'local',
-            'root'   => storage_path().'/download',
-            'url'   => env('PUBLIC_DOWNLOAD_URL', ' /files/download'),
+            'root'   => env('DOWNLOAD_ROOT', storage_path().'/download'),
+            'url'   => env('DOWNLOAD_URL', '/files/download'),
         ],
 
         'tvshow' => [
