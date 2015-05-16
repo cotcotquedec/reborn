@@ -29,20 +29,16 @@ return [
 	*/
 
 	'disks' => [
+
+        'xsendfile' => [
+            'driver' => 'local',
+            'root'   => env('XSENDFILE_ROOT'),
+        ],
+
+
         'download' => [
             'driver' => 'local',
-            'root'   => env('DOWNLOAD_ROOT', storage_path().'/download'),
-            'url'   => env('DOWNLOAD_URL', '/files/download'),
-        ],
-
-        'tvshow' => [
-            'driver' => 'local',
-            'root'   => storage_path().'/tvshow',
-        ],
-
-        'movie' => [
-            'driver' => 'local',
-            'root'   => storage_path().'/movie',
+            'root'   => env('XSENDFILE_ROOT') . DIRECTORY_SEPARATOR .  'download',
         ],
 
     ],

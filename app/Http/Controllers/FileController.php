@@ -1,7 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use Storage, Redirect;
+use Storage, Input;
+use Moinax\TvDb\Client as TheTvDB;
 
 use Illuminate\Http\Request;
 
@@ -44,12 +45,16 @@ class FileController extends Controller {
 
             $options = [];
 
+            if ( Storage::disk('xsendfile')->exists('download/' . $file)){
 
-            $icon = '';
-            if (in_array(substr($basename, strrpos($basename, '.')), ['.avi', '.mkv', '.mp4'])) {
-                 $options[] = ['title'=>'Trier', 'icon' => 'fa fa-archive', 'class' => 'btn btn-sm btn-success', 'url' => '#'];
+                if (in_array(substr($basename, strrpos($basename, '.')), ['.avi', '.mkv', '.mp4'])) {
+                    $options[] = ['title'=>'Trier', 'icon' => 'fa fa-archive', 'class' => 'btn btn-sm btn-success', 'url' => route('file-classify', base64_encode('download/' . $file))];
+                }
+
+                $options[] = ['title'=>'Télécharger', 'icon' => 'fa fa-download', 'class' => 'btn btn-sm btn-primary', 'url' => route('file-download', base64_encode('download/' . $file))];
             }
-            $options[] = ['title'=>'Télécharger', 'icon' => 'fa fa-download', 'class' => 'btn btn-sm btn-primary', 'url' => '#'];
+
+
             $options[] = ['title'=>'Supprimer', 'icon' => 'fa fa-trash-o', 'class' => 'btn btn-sm btn-danger', 'url' => sprintf('javascript:fileDelete("%s", "%s")', $basename, route('file-del', base64_encode($file)))];
             $content[] = ['name' => $basename, 'type' => 'file', 'options' => $options];
         }
@@ -91,5 +96,45 @@ class FileController extends Controller {
         }
 
         return redirect()->back();
+    }
+
+
+    /**
+     * Trier un contenu media
+     *
+     * @param $file
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function classify($file)
+    {
+
+        $file = base64_decode($file);
+
+        $storage = Storage::disk('xsendfile');
+
+        if (!$storage->exists($file)) {
+           return redirect()->back();
+        }
+
+        $info = [];
+        $info['basename'] = substr($file, strrpos($file, '/') + 1 );
+        $info['mime'] = $storage->mimeType($file);
+        $info['size'] = number_format($storage->size($file) / 1024 / 1024, 0, '.' , ' ');
+
+
+        if (Input::has('search')) {
+
+            $tvdb = new TheTvDB("http://thetvdb.com", config('services.thetvdb.apikey'));
+            $tvshow = $tvdb->getSeries(Input::get('query'), 'fr');
+
+
+            dd($tvshow);
+            dd(Input::all());
+
+        }
+
+
+
+        return view('file.classify', compact(['info']));
     }
 }

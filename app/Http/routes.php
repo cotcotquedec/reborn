@@ -22,7 +22,19 @@ Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('fichier/{dir?}', ['as' => 'file-list', 'uses' => 'FileController@index']);
 Route::get('fichier/supprimer/{file}', ['as' => 'file-del', 'uses' => 'FileController@delete']);
 Route::get('fichier/supprimer-repertoire/{dir}', ['as' => 'file-deldir', 'uses' => 'FileController@deleteDirectory']);
+Route::any('fichier/trier/{file}', ['as' => 'file-classify', 'before' => 'csrf', 'uses' => 'FileController@classify']);
 
-Route::controllers([
-	'auth' => 'Auth\AuthController'
-]);
+
+Route::get('fichier/telecharger/{file}', ['as' => 'file-download', function($file) {
+
+    $file = env('XSENDFILE_ROOT') . DIRECTORY_SEPARATOR . base64_decode($file);
+    $basename = substr($file, strrpos($file, '/') + 1 );
+
+    header("X-Sendfile: $file");
+    header("Content-Type: application/octet-stream");
+    header("Content-Disposition: attachment; filename=\"$basename\"");
+    return;
+}]);
+
+
+Route::controllers(['auth' => 'Auth\AuthController']);

@@ -32,9 +32,9 @@
         </div>
     @endif
 
-    <label for="inputEmail" class="sr-only">Email address</label>
+    <label for="username" class="sr-only">Email address</label>
     {!! Form::text('username', '' , ['placeholder' => 'Identifiant', 'class' => 'form-control', 'autofocus', 'required']) !!}
-    <label for="inputPassword" class="sr-only">Password</label>
+    <label for="password" class="sr-only">Password</label>
     {!! Form::password('password', ['placeholder' => 'Mot de passe', 'class' => 'form-control', 'required']) !!}
 
     {!! Form::submit('Connexion', ['class' => 'btn btn-lg btn-primary btn-block']) !!}

@@ -35,4 +35,6 @@ return [
 		'secret' => '',
 	],
 
+    'thetvdb' => ['apikey' => env('THETVDB_APIKEY')],
+
 ];
