@@ -32,6 +32,7 @@ return [
         'download' => [
             'driver' => 'local',
             'root'   => storage_path().'/download',
+            'url'   => env('PUBLIC_DOWNLOAD_URL', ' /files/download'),
         ],
 
         'tvshow' => [

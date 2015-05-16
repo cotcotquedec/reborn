@@ -19,7 +19,9 @@ Route::get('/', function() {
 
 Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
 
-Route::get('fichier', ['as' => 'file-home', 'uses' => 'FileController@index']);
+Route::get('fichier/{dir?}', ['as' => 'file-list', 'uses' => 'FileController@index']);
+Route::get('fichier/supprimer/{file}', ['as' => 'file-del', 'uses' => 'FileController@delete']);
+Route::get('fichier/supprimer-repertoire/{dir}', ['as' => 'file-deldir', 'uses' => 'FileController@deleteDirectory']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController'

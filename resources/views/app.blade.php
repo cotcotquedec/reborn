@@ -22,7 +22,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{{ route('file-home') }}">Fichiers</a></li>
+                <li><a href="{{ route('file-list') }}">Fichiers</a></li>
                 <li><a href="#series">Series</a></li>
                 <li><a href="#films">Films</a></li>
             </ul>
@@ -40,6 +40,13 @@
 <!-- /container -->
 
 <script src="{{ elixir('main.js') }}"></script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>
+
 @yield('js-inline')
 </body>
 </html>
