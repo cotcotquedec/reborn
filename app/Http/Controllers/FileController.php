@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use Storage, Input;
-use Moinax\TvDb\Client as TheTvDB;
+use App\Tvdb;
 
 use Illuminate\Http\Request;
 
@@ -122,19 +122,15 @@ class FileController extends Controller {
         $info['size'] = number_format($storage->size($file) / 1024 / 1024, 0, '.' , ' ');
 
 
+        $result = [];
         if (Input::has('search')) {
-
-            $tvdb = new TheTvDB("http://thetvdb.com", config('services.thetvdb.apikey'));
-            $tvshow = $tvdb->getSeries(Input::get('query'), 'fr');
+            //$result = Tvdb::getSeries(Input::get('query'));
 
 
-            dd($tvshow);
-            dd(Input::all());
-
+            $result = array ( 79349 => array ( 'name' => 'Dexter', 'id' => 79349, 'overview' => 'Brillant expert scientifique du service médico-légal de la police de Miami, Dexter Morgan est spécialisé dans l\'analyse de prélèvements sanguins. Mais voilà, Dexter cache un terrible secret : il est également tueur en série. Un serial killer pas comme les autres, avec sa propre vision de la justice.', 'banner' => 'http://thetvdb.com/banners/graphical/79349-g28.jpg', 'year' => '2006', ), 77992 => array ( 'name' => 'Le laboratoire de Dexter', 'id' => 77992, 'overview' => 'Dexter est un petit génie âgé de 8 ans possède un laboratoire ultramoderne secret derrière sa chambre et il crée de nombreuses inventions et a une soeur aînée appelé Dee Dee qui détruit tout sur son passage.', 'banner' => 'http://thetvdb.com/banners/graphical/77992-g2.jpg', 'year' => '1996', ), );
         }
 
 
-
-        return view('file.classify', compact(['info']));
+        return view('file.classify', compact(['info', 'result']));
     }
 }
