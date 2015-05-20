@@ -40,7 +40,6 @@ return [
             'driver' => 'local',
             'root'   => env('XSENDFILE_ROOT') . DIRECTORY_SEPARATOR .  'download',
         ],
-
     ],
 
 ];

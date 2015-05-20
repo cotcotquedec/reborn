@@ -13,20 +13,8 @@
         <div class="col-sm-6">
             <h2>Formulaire</h2>
 
-            {!! Form::open(['class' => 'form-horizontal', 'method' => 'GET' ]) !!}
 
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
-
+            {!! Form::open(['class' => 'form-horizontal', 'id' => 'classify-search']) !!}
             <div class="form-group">
                 {!! Form::label('type', 'Type', ['class' => 'col-sm-2 control-label']) !!}
                 <div class="col-sm-10">
@@ -64,7 +52,7 @@
     </div>
 
 
-    <div class="row">
+    <div class="row" id="classify-result">
 
             <h2>Resultats</h2>
 
@@ -105,6 +93,26 @@
 
 
 @section('js-inline')
+
+    <script>
+
+        $(function(){
+
+            $('#classify-search').submit(function(e)
+            {
+
+                $('#classify-result').load('{{ route('file-classify-tvshow',[$file]) }}', {query : $('input#query').val()});
+
+                console.log($('select#type').val());
+                console.log($('input#query').val());
+
+                e.preventDefault();
+                return false;
+            });
+
+        })
+
+    </script>
 
 
 

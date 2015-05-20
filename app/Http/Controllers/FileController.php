@@ -131,6 +131,19 @@ class FileController extends Controller {
         }
 
 
-        return view('file.classify', compact(['info', 'result']));
+        return view('file.classify', compact(['info', 'result', 'file']));
+    }
+
+
+    /**
+     * Trie d'une serie
+     *
+     */
+    public function classifyTvShow($file)
+    {
+
+
+        return $file . json_encode(Input::all());
+
     }
 }
