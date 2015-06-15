@@ -44,6 +44,10 @@
 <script>
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
+
+        $('select[placeholder]').each(function() {
+            $(this).prepend('<option value="" disabled selected>'+ $(this).attr('placeholder') +'</option>');
+        });
     })
 </script>
 

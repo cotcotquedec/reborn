@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use Storage, Input;
 use App\Tvdb;
+use Db\ThetvdbSerie;
 
 use Illuminate\Http\Request;
 
@@ -122,6 +123,11 @@ class FileController extends Controller {
         $info['size'] = number_format($storage->size($file) / 1024 / 1024, 0, '.' , ' ');
 
 
+        //Récuypération des series
+        $tvshow = ThetvdbSerie::orderBy('SeriesName')->get(['id', 'SeriesName'])->pluck( 'SeriesName','id')->all();
+
+
+
         $result = [];
         if (Input::has('search')) {
             //$result = Tvdb::getSeries(Input::get('query'));
@@ -131,19 +137,6 @@ class FileController extends Controller {
         }
 
 
-        return view('file.classify', compact(['info', 'result', 'file']));
-    }
-
-
-    /**
-     * Trie d'une serie
-     *
-     */
-    public function classifyTvShow($file)
-    {
-
-
-        return $file . json_encode(Input::all());
-
+        return view('file.classify', compact(['info', 'result', 'tvshow']));
     }
 }

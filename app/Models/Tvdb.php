@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use InvalidArgumentException;
 use Moinax\TvDb\Client;
 
 
@@ -109,4 +110,7 @@ class Tvdb {
     {
         return static::THETVDB_URL . '/' . $image;
     }
+
+
+
 }
