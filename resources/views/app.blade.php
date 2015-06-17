@@ -48,6 +48,8 @@
         $('select[placeholder]').each(function() {
             $(this).prepend('<option value="" disabled selected>'+ $(this).attr('placeholder') +'</option>');
         });
+
+        $('.colorbox-me').colorbox();
     })
 </script>
 

@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use InvalidArgumentException;
 use Moinax\TvDb\Client;
@@ -85,6 +85,23 @@ class Tvdb {
         }
 
         return $return;
+    }
+
+    /**
+     * Renvoie les episode d'une serie
+     *
+     * @param $serieId
+     * @param null $language
+     * @param $format
+     * @throws \ErrorException
+     *
+     * @return array
+     */
+    static function getSerieEpisodes($serieId)
+    {
+        $data = static::factory()->getClient()->getSerieEpisodes($serieId, static::THETVDB_LANG);
+
+        return empty($data['episodes']) ? [] : $data['episodes'];
     }
 
 

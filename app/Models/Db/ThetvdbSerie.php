@@ -13,4 +13,17 @@ class ThetvdbSerie extends Model  {
 	protected $table = 'thetvdb_serie';
     public $timestamps = false;
 
+
+    /**
+     * return a collection of episode
+     *
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * *
+     */
+    public function episodes()
+    {
+        return $this->hasMany('Db\ThetvdbEpisode', 'seriesid', 'id');
+    }
+
 }

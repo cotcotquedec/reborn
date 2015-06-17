@@ -24,22 +24,15 @@
 
             {!! Form::open(['class' => 'form-horizontal', 'method' => 'GET' ]) !!}
 
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             <div class="form-group">
                 {!! Form::label('tvshow', 'Serie', ['class' => 'col-sm-2 control-label']) !!}
 
                 <div class="col-sm-10">
                     {!! Form::select('tvshow', $tvshow , null, ['class' => 'form-control selectize-me', 'placeholder' => 'Choisir la série']) !!}
+                </div>
+
+                <div class="col-sm-12 text-right">
+                    <a href="{{ route('tvshow-import') }}" class="colorbox-me" >Vous ne trouvez pas la serie?</a>
                 </div>
             </div>
 
@@ -53,7 +46,7 @@
 
             <div class="form-group text-right">
                 <div class="col-sm-4 col-sm-offset-8">
-                    {!! Form::submit('Rechercher', ['class' => 'btn btn-lg btn-primary btn-block', 'name' => 'search']) !!}
+                    {!! Form::submit('Enregistrer', ['class' => 'btn btn-lg btn-primary btn-block', 'name' => 'search']) !!}
                 </div>
             </div>
 
@@ -114,8 +107,7 @@
             });
 
             $('#tvshow').change(function(){
-
-                console.log($(this).val());
+                $('#episode').loadSelect('{{route('tvshow-loadepisode')}}', { tvshow : $(this).val()} );
             });
 
 

@@ -44,3 +44,5 @@ body {
     padding-top: 70px;
 }
 
+#cboxClose{top:5px; right:0px;}
+#cboxLoadedContent{margin-bottom:0px;}

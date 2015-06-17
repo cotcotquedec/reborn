@@ -12,6 +12,7 @@
     "jquery": ">=1.11.1",
     "bootstrap" : ">=3.3.4",
     "fontawesome" : ">=4.3",
-    "selectize" : "v0.12.1"
+    "selectize" : "v0.12.1",
+    "jquery-colorbox" : "1.6.1"
   }
 }

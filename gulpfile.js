@@ -13,21 +13,27 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
-    mix.copy( './resources/components/fontawesome/fonts', 'public/fonts' )
+var components = '/../../components/';
 
-        .scripts([   '/../../components/jquery/dist/jquery.min.js',
-                    '/../../components/bootstrap/dist/js/bootstrap.min.js',
-                    '/../../components/selectize/dist/js/standalone/selectize.js'
+elixir(function(mix) {
+    mix .copy( './resources/components/fontawesome/fonts', 'public/fonts')
+        .copy( './resources/components/jquery-colorbox/example1/images', 'public/build/images' )
+
+
+        .scripts([  components + 'jquery/dist/jquery.min.js',
+                    components + 'bootstrap/dist/js/bootstrap.min.js',
+                    components + 'selectize/dist/js/standalone/selectize.js',
+                    components + 'jquery-colorbox/jquery.colorbox-min.js',
+                    components + 'jquery-colorbox/i18n/jquery.colorbox-fr.js',
+                    'main.js'
                 ], 'public/main.js')
 
-        .styles([   '/../../components/bootstrap/dist/css/bootstrap.min.css',
-                    '/../../components/fontawesome/css/font-awesome.min.css',
-            '/../../components/selectize/dist/css/selectize.css',
-            '/../../components/selectize/dist/css/selectize.bootstrap3.css',
+        .styles([   components + 'bootstrap/dist/css/bootstrap.min.css',
+                    components + 'fontawesome/css/font-awesome.min.css',
+                    components + 'selectize/dist/css/selectize.bootstrap3.css',
+                    components + 'jquery-colorbox/example1/colorbox.css',
                     'style.css'
             ], 'public/main.css')
 
-        .version(['main.js', 'main.css'])
-
+        .version(['main.js', 'main.css']);
 });
