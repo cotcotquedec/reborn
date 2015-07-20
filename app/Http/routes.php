@@ -16,7 +16,6 @@ Route::get('/', function() {
 });
 
 
-
 Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::get('fichier/{dir?}', ['as' => 'file-list', 'uses' => 'FileController@index']);
