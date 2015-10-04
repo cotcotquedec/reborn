@@ -24,7 +24,7 @@
         <div class="portlet">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-reorder"></i> Téléchargements
+                    <i class="fa fa-reorder"></i> Téléchargements direct
                 </div>
             </div>
             <div class="portlet-body form">
@@ -32,7 +32,7 @@
                     <?php echo csrf_field(); ?>
                     <div class="form-body">
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="direct-link">Lien direct</label>
+                            <label class="col-md-4 control-label" for="direct-link">Lien</label>
                             <div class="col-md-8">
                                 <div class="input-icon right">
                                     <input name="direct-link" type="text" class="form-control">

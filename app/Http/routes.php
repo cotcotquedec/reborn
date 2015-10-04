@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', function() {Auth::logout(); return redirect()->route('login');})->name('logout');
     Route::resource('user', 'UserController');
     Route::controller('dl', 'DownloadController');
+    Route::controller('file', 'FileController');
 
     // Development routes
     Route::group(['middleware' => 'development'], function () {

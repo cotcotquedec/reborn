@@ -132,8 +132,14 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                 </li>
                 <li class="">
-                    <a href="{{ URL::action('DownloadController@getIndex')}}">
+                    <a href="{{ URL::action('FileController@getIndex')}}">
                         <i class="icon-docs"></i>
+                        <span class="title">Fichiers</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{{ URL::action('DownloadController@getIndex')}}">
+                        <i class="icon-bar-chart"></i>
                         <span class="title">Téléchargements</span>
                     </a>
                 </li>
@@ -202,6 +208,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END PAGE LEVEL SCRIPTS -->
 
 
+@yield('js-inline')
 <script>
     jQuery(document).ready(function() {
 

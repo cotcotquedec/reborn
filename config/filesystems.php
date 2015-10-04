@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => 'download',
+    'default' => 'files',
 
     /*
     |--------------------------------------------------------------------------
@@ -35,9 +35,9 @@ return [
             'root'   => storage_path('app'),
         ],
 
-        'download' => [
+        'files' => [
             'driver' => 'local',
-            'root'   => storage_path('app') . '/downloads',
+            'root'   => storage_path('files'),
         ]
     ],
 
