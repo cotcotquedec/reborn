@@ -34,6 +34,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/select2/select2.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}"/>
+
     <!-- END PAGE LEVEL PLUGIN STYLES -->
     <!-- BEGIN THEME STYLES -->
     <link href="{{ URL::asset('assets/css/style-conquer.css') }}" rel="stylesheet" type="text/css"/>
@@ -177,7 +178,7 @@ License: You must have a valid license purchased only from themeforest(the above
     </div>
 </div>
 
-{!! \FrenchFrogs\Polliwog\Modal\Modal\Bootstrap::renderRemoteEmptyModal() !!}
+{!! \FrenchFrogs\Polliwog\Modal\Modal\Modal::renderRemoteEmptyModal() !!}
 
         <!-- END FOOTER -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
@@ -207,13 +208,12 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{ URL::asset('assets/scripts/table-ajax.js') }}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
-
-@yield('js-inline')
 <script>
     jQuery(document).ready(function() {
 
         App.init(); // initlayout and core plugins
-        TableAjax.init();
+
+
         {!! js('inline') !!}
 
         // decoration datatable
