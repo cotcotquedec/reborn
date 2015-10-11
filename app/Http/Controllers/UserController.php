@@ -18,13 +18,16 @@ class UserController extends Controller
 
     public function getIndex()
     {
-        $query = Db\User\User::query();//join('user_phoenix as p', 'user.user_id', '=', 'p.user_id');
+        $query = Db\User\User::query();
         $table = table($query)->paginate(\Input::all());
         $table->useDefaultPanel()->getPanel()->setTitle('Utilisateurs');
         $table->addText('name', 'Nom');
         $table->addText('email', 'Email');
-//        $table->addText('loggedin_at', 'Dernière connexion');
-//        $table->addButton('edit', 'Edition',  action_url(static::class,'anyEdit', ['user' => '%s']), ['user_id'])->enableRemote();
+        $table->addBoolean('is_active', 'Actif?');
+        $table->addButton('edit', 'Edition',  action_url(static::class,'anyEdit', ['user' => '%s']), ['user_id'])->enableRemote();
+        $table->enableDatatable();
+//        dd();
+
         return view('user.index', compact('table'));
     }
 

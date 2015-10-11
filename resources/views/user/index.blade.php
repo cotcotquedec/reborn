@@ -3,7 +3,15 @@
 
 
 @section('content')
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Utilisateurs</h1>
 
-Coucou les amies:
+            @include('breadcrumb')
 
-@endsection;
+
+            {!! $table !!}
+        </div>
+    </div>
+    <!-- END PAGE CONTENT-->
+@endsection

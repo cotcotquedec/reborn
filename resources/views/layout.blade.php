@@ -34,7 +34,6 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/select2/select2.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}"/>
-
     <!-- END PAGE LEVEL PLUGIN STYLES -->
     <!-- BEGIN THEME STYLES -->
     <link href="{{ URL::asset('assets/css/style-conquer.css') }}" rel="stylesheet" type="text/css"/>
@@ -199,27 +198,28 @@ License: You must have a valid license purchased only from themeforest(the above
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+<script type="text/javascript" src="{{ elixir('js/main.js') }}"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ URL::asset('assets/scripts/app.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/scripts/datatable.js') }}"></script>
-<script src="{{ URL::asset('assets/scripts/table-ajax.js') }}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
-<script>
+<script type="text/javascript">
+    <!--
+    {!! js('inline') !!}
+    //-->
+</script>
+
+<script type="text/javascript">
+    <!--
     jQuery(document).ready(function() {
-
         App.init(); // initlayout and core plugins
-
-
-        {!! js('inline') !!}
-
-        // decoration datatable
-        $('table.table > thead > tr:last-child').children().css('border-bottom', '1px solid #ddd');
-
+        {!! js('onload') !!}
+        $('body').initialize();
     });
+    //-->
 </script>
 <!-- END JAVASCRIPTS -->
 </body>
