@@ -30,6 +30,26 @@ class DownloadController extends Controller
             }
         }
 
+        // Formulaire
+        $form = new Polliwog\Form\Form\Form();
+        $form->addText('name', 'Nom');
+        $form->addLabel('email', 'Email');
+        $form->addSubmit('Enregistrer');
+        $form->enableRemote();
+        if (!$is_creation) {
+            $user = User::get($id)->toArray();
+            $form->setLegend('Utilisateur : ' . $user['name']);
+        } else {
+            $form->setLegend('Utilisateurs');
+        }
+        // enregistrement
+        if (Request::has('Enregistrer')) {
+            dd('OKI');
+            // default
+        } elseif(!$is_creation){
+            $form->populate($user);
+        }
+
 
         return view('download', compact('error', 'success'));
     }

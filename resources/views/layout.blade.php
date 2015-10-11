@@ -133,19 +133,19 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                 </li>
                 <li class="">
-                    <a href="{{ URL::action('FileController@getIndex')}}">
+                    <a href="{{ action_url('FileController')}}">
                         <i class="icon-docs"></i>
                         <span class="title">Fichiers</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="{{ URL::action('DownloadController@getIndex')}}">
+                    <a href="{{ action_url('DownloadController')}}">
                         <i class="icon-bar-chart"></i>
                         <span class="title">Téléchargements</span>
                     </a>
                 </li>
                 <li class="last ">
-                    <a href="{{ route('user.index') }}">
+                    <a href="{{ action_url('UserController') }}">
                         <i class="icon-user"></i>
                         <span class="title">Utilisateurs</span>
                     </a>
