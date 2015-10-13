@@ -3,64 +3,12 @@
 use Models\Db;
 use Auth;
 
-class User
+class User extends Business
 {
 
-    /**
-     * ID of user
-     *
-     * @var
-     */
-    protected $id;
 
-    /**
-     * Constructor
-     *
-     * @param $id
-     */
-    public function __construct($id)
-    {
-        $this->id = $id;
-    }
+    static protected $modelClass = Db\User\User::class;
 
-
-    /**
-     * factory
-     *
-     * @param $id
-     * @return \Models\Business\User
-     */
-    static public function get($id)
-    {
-        return new User($id);
-    }
-
-    /**
-     * Getter for ID
-     *
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-
-    /**
-     * return true id user exist
-     *
-     * @param $id
-     * @return bool
-     */
-    static public function exists($id)
-    {
-        try {
-            Db\User\User::findOrFail($id);
-            return true;
-        } catch(\Exception $e) {
-            return false;
-        }
-    }
 
     static public function loginWithFacebook($email, $name, $picture = false)
     {

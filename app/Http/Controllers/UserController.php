@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Models\Db;
+use Polliwogs;
+use Models\Business\User;
+use Request;
 
 class UserController extends Controller
 {
@@ -18,19 +20,7 @@ class UserController extends Controller
 
     public function getIndex()
     {
-        $query = Db\User\User::query();
-        $table = table($query)->paginate(\Input::all());
-        $table->useDefaultPanel()->getPanel()->setTitle('Utilisateurs');
-        $table->addText('name', 'Nom');
-        $table->addText('email', 'Email');
-        $table->addBoolean('is_active', 'Actif?');
-        $table->addBoolean('is_contributor', 'Contributeur?');
-        $table->addBoolean('is_admin', 'Admin?');
-        $table->addButton('edit', 'Edition',  action_url(static::class,'anyEdit', ['user' => '%s']), ['user_id'])->enableRemote();
-        $table->enableDatatable();
-
-        $table = new \Polliwog\User();
-        return view('phoenix.user.index', compact('table'));
+        $table = new Polliwogs\UserTable();
 
         return view('user.index', compact('table'));
     }
@@ -53,7 +43,10 @@ class UserController extends Controller
         $form = form()->enableRemote();
         $form->setLegend('Utilisateur : ' .$user->getModel()->name);
         $form->addLabel('email', 'Email');
-        $form->addText('name', 'Nom');
+        $form->addLabel('name', 'Nom');
+        $form->addCheckbox('is_active', 'Actif?');
+        $form->addCheckbox('is_contributor', 'Contributeur?');
+        $form->addCheckbox('is_admin', 'Admin?');
         $form->addSubmit('Enregistrer');
         // maj info
         $form->populate($user->toArray());
