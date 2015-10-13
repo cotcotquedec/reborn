@@ -56,7 +56,7 @@ $.fn.extend({
             serverSide: false, // enable/disable server side ajax loading
         };
 
-        return $(this).dataTable($.extend(options, o));
+        return $(this).on('draw.dt', function(e) {$(this).initialize();}).dataTable($.extend(options, o));
     },
 
     initialize : function() {
@@ -81,22 +81,14 @@ $.fn.extend({
 
         });
 
-        jQuery(this).find('.form-remote').each(function() {
-            jQuery(this).click(function(e) {
+        jQuery(this).find('.form-remote').ajaxForm({
 
-                e.preventDefault();
-
-                var target = jQuery(this).data('target');
-
-                jQuery(target).ajaxSubmit({
-                    success : function(html) {
-                        jQuery('.modal-content')
-                            .empty()
-                            .html(html)
-                            .initialize();
-                    }
-                });
-            });
+            success : function(html) {
+                jQuery('.modal-content')
+                    .empty()
+                    .html(html)
+                    .initialize();
+            }
         });
 
 

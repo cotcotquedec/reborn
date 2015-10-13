@@ -203,7 +203,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="{{ URL::asset('assets/scripts/app.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/scripts/app.js') }}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
 <script type="text/javascript">

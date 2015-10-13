@@ -17,7 +17,7 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => 'http://debian.lc/login-with-fb' //route('login-with_fb'),
+        'redirect' => 'http://reborn.alliwant.lc/login-with-fb' //route('login-with_fb'),
     ],
 
 ];
