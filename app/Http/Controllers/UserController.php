@@ -48,6 +48,7 @@ class UserController extends Controller
         $form->addCheckbox('is_contributor', 'Contributeur?');
         $form->addCheckbox('is_admin', 'Admin?');
         $form->addSubmit('Enregistrer');
+
         // maj info
         $form->populate($user->toArray());
         // enregistrement
