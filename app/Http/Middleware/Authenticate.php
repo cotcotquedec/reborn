@@ -46,7 +46,21 @@ class Authenticate
             // is no access
         } elseif(!$this->auth->user()->isActive()) {
             return redirect()->route('no-access');
+        } else {
+
+            /**@var \Models\Db\User $user  */
+            $user = $this->auth->user();
+
+            if($user->isContributor()) {
+                ruler()->addPermission('contributor');
+            }
+
+            if ($user->isAdmin()) {
+                ruler()->addPermission('admin');
+            }
         }
+
+
 
         return $next($request);
     }

@@ -60,6 +60,7 @@ $.fn.extend({
     },
 
     initialize : function() {
+
         console.log('initialize : ' + this.selector);
 
         jQuery(this).find('.modal-remote').each(function() {
@@ -89,6 +90,11 @@ $.fn.extend({
                     .html(html)
                     .initialize();
             }
+        });
+
+
+        jQuery(this).find("input[type=checkbox]:not(.toggle, .make-switch), input[type=radio]:not(.toggle, .star, .make-switch)").each(function() {
+            jQuery(this).uniform();
         });
 
 

@@ -34,6 +34,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/select2/select2.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-toastr/toastr.min.css')}}"/>
     <!-- END PAGE LEVEL PLUGIN STYLES -->
     <!-- BEGIN THEME STYLES -->
     <link href="{{ URL::asset('assets/css/style-conquer.css') }}" rel="stylesheet" type="text/css"/>
@@ -198,6 +199,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-toastr/toastr.min.js') }}"></script>
 <script type="text/javascript" src="{{ elixir('js/main.js') }}"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 
