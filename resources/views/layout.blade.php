@@ -178,7 +178,7 @@ License: You must have a valid license purchased only from themeforest(the above
     </div>
 </div>
 
-{!! \FrenchFrogs\Polliwog\Modal\Modal\Modal::renderRemoteEmptyModal() !!}
+{!! \FrenchFrogs\Modal\Modal\Modal::renderRemoteEmptyModal() !!}
 
         <!-- END FOOTER -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->

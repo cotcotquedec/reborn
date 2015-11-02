@@ -12,16 +12,46 @@ use Request;
 class UserController extends Controller
 {
 
+    /**
+     *
+     *
+     * @return \FrenchFrogs\Table\Table\Table
+     */
+    static function table()
+    {
+        $query = \DB::table('user');
+        $table = table()->setSource($query);
+        $table->useDefaultPanel()->getPanel()->setTitle('Utilisateurs');
+        $table->addText('name', 'Nom');
+        $table->addText('email', 'Email');
+        $table->addBoolean('is_active', 'Actif?');
+        $table->addBoolean('is_contributor', 'Contributeur?');
+        $table->addBoolean('is_admin', 'Admin?');
+        $table->addButton('edit', 'Edition',  action_url('UserController','anyEdit', ['user' => '%s']), ['user_id'])->enableRemote();
+        $table->enableDatatable();
 
+        return $table;
+    }
+
+
+    /**
+     * Main home
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function home()
     {
         return view('home');
     }
 
+    /**
+     * Liste of users
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getIndex()
     {
-        $table = new Polliwogs\UserTable();
-
+        $table = static::table();
         return view('user.index', compact('table'));
     }
 

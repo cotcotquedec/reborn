@@ -10,7 +10,7 @@
         "barryvdh/laravel-ide-helper": "^2.1",
         "guzzlehttp/guzzle": "~6.0",
         "laravel/socialite": "^2.0",
-        "frenchfrogs/framework": "^0.3.0"
+        "frenchfrogs/framework": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4"
@@ -48,5 +48,6 @@
     },
     "config": {
         "preferred-install": "dist"
-    }
+    },
+    "minimum-stability": "dev"
 }
