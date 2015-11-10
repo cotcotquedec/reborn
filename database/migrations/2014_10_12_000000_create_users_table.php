@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
         Schema::create('user', function (Blueprint $table) {
             $table->binaryUuid('user_id')->primary();
             $table->string('name');
-            $table->integer('media_id')->nullable();
+            $table->binaryUuid('media_id')->nullable();
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->boolean('is_active');
@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamp('loggedin_at')->nullable();
             $table->timestamps();
+
+            $table->foreign('media_id')->references('media_id')->on('media');
         });
     }
 

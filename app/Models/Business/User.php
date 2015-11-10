@@ -30,7 +30,7 @@ class User extends \FrenchFrogs\Business\Business
         }
 
         // Authentification
-        Auth::loginUsingId($user->user_id, true);
+        Auth::loginUsingId($model->getId('bytes'), true);
 
         return $model;
     }
@@ -58,7 +58,7 @@ class User extends \FrenchFrogs\Business\Business
                 $media = Media::create(['phoenix-' . $this->getId('string'), Media::TYPE_USER_AVATAR, $mime, $content]);
                 $user->update(['media_id' => $media->getId('bytes')]);
             } elseif (!empty($content) && md5($content) != Media::get($user->media_id)->getMd5()) {
-                $media = Media::get($phoenix->media_id)->update(null, $mime, $content);
+                $media = Media::get($user->media_id)->update(null, $mime, $content);
                 $user->update(['media_id' => $media->getId('bytes')]);
             }
 

@@ -29,7 +29,7 @@ class CreateMediaTable extends Migration
             $table->string('hash_md5');
             $table->timestamps();
 
-            $table->foreign('media_type_id', 'media_type_id')->references('media_type_id')->on('media_type')->onDelete('cascade');
+            $table->foreign('media_type_id')->references('media_type_id')->on('media_type')->onDelete('cascade');
         });
 
 
