@@ -7,10 +7,11 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-class User extends Model implements AuthenticatableContract,
-    AuthorizableContract
+class User extends Model implements AuthenticatableContract
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable;
+
+    public $incrementing = false;
 
     protected $primaryKey  = 'user_id';
 
@@ -26,7 +27,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'is_active', 'is_contributor', 'is_admin'];
+    protected $fillable = ['user_id', 'name', 'email', 'password', 'is_active', 'is_contributor', 'is_admin'];
 
     /**
      * The attributes excluded from the model's JSON form.

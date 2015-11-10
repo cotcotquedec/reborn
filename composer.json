@@ -10,7 +10,9 @@
         "barryvdh/laravel-ide-helper": "^2.1",
         "guzzlehttp/guzzle": "~6.0",
         "laravel/socialite": "^2.0",
-        "frenchfrogs/framework": "dev-master"
+        "webpatser/laravel-uuid": "2.*",
+        "frenchfrogs/framework": "dev-master#01316090f6f49261ab2036e4266da72376d0829d",
+        "frenchfrogs/media" : "dev-master#52753f5468f39aff9feb3ae0fca33bad3463c4e4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4"
