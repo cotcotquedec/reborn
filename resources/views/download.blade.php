@@ -21,31 +21,7 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <div class="portlet">
-                <div class="portlet-title">
-                    <div class="caption">
-                        <i class="fa fa-reorder"></i> Téléchargements direct
-                    </div>
-                </div>
-                <div class="portlet-body form">
-                    <form role="form" class="form-horizontal" method="POST" action="{{action('DownloadController@postDirectDownload')}}">
-                        <?php echo csrf_field(); ?>
-                        <div class="form-body">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="direct-link">Lien</label>
-                                <div class="col-md-8">
-                                    <div class="input-icon right">
-                                        <input name="direct-link" type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-actions text-right">
-                            <button type="submit" class="btn btn-info">Télécharger</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            {!! $link !!}
         </div>
 
         <div class="col-sm-6">

@@ -94,6 +94,22 @@ $.fn.extend({
             }
         });
 
+        // Activate ajax form
+        jQuery(this).find('.form-callback').ajaxForm({
+
+            beforeSubmit: function () {
+                jQuery(this).find("input[type='submit']")
+                    .attr("disabled", "disabled")
+                    .attr("value", "En cours ...");
+            },
+
+            success: function (js) {
+                console.log(js);
+                eval(js);
+            }
+        });
+
+
         jQuery(this).find('.callback-remote').each(function () {
             jQuery(this).click(function (e) {
                 jQuery.getScript(jQuery(this).attr('href'));

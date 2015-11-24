@@ -9,49 +9,18 @@ use Session, Input;
 
 class DownloadController extends Controller
 {
-
-    const FLASH_DDL_SUCCESS = 'ddl-success';
-
     /**
      *
      */
     public function getIndex()
     {
+        $link = form()->enableCallback();
+        $link->setUrl(action_url(__CLASS__, 'postDirectDownload'));
+        $link->useDefaultPanel('Téléchargement direct');
+        $link->addText('direct-link', 'Lien');
+        $link->addSubmit('Télécharger');
 
-        $error = $success = '';
-
-
-        // Direct download
-        if (Session::has(static::FLASH_DDL_SUCCESS)) {
-            if (Session::get(static::FLASH_DDL_SUCCESS)) {
-                $success  = 'Votre fichier a bien été ajouté à la file de téléchargement';
-            } else {
-                $error = 'Une erreur est survenue pendant l\'ajoue de votre téléchargement';
-            }
-        }
-
-        // Formulaire
-        $form = form();
-        $form->addText('name', 'Nom');
-        $form->addLabel('email', 'Email');
-        $form->addSubmit('Enregistrer');
-        $form->enableRemote();
-        if (!$is_creation) {
-            $user = User::get($id)->toArray();
-            $form->setLegend('Utilisateur : ' . $user['name']);
-        } else {
-            $form->setLegend('Utilisateurs');
-        }
-        // enregistrement
-        if (Request::has('Enregistrer')) {
-            dd('OKI');
-            // default
-        } elseif(!$is_creation){
-            $form->populate($user);
-        }
-
-
-        return view('download', compact('error', 'success'));
+        return view('download', compact('link'));
     }
 
 
@@ -61,22 +30,24 @@ class DownloadController extends Controller
      * Launch a download job from an url
      *
      */
-    public function postDirectDownload(Request $request)
+    public function postDirectDownload()
     {
 
         try {
-            if (!$request->has('direct-link')) {
-                throw new \Exception('Paramètre incorrect');
+
+            if (!request()->has('direct-link')) {
+                throw new \Exception('Le lien est obligatoire');
             }
 
-            $this->dispatch(new \App\Jobs\DirectDownload($request->get('direct-link')));
-            $request->session()->flash(static::FLASH_DDL_SUCCESS, true);
+            // lancement du telechargement
+            $this->dispatch(new \App\Jobs\DirectDownload(request()->get('direct-link')));
 
+            js()->success('Le téléchargement est lancé');
         } catch(\Exception $e) {
-            $request->session()->flash(static::FLASH_DDL_SUCCESS, false);
+            js()->error($e->getMessage());
         }
 
-        return redirect()->action('DownloadController@getIndex');
+        return js();
     }
 
 
@@ -101,8 +72,10 @@ class DownloadController extends Controller
             if (!\Storage::drive('torrent')->exists($name)) {
                 throw new \Exception('Erreur sur l\'upload du fichier');
             }
+
+            js()->success('Torrent envoyé');
         } catch(\Exception $e) {
-            $request->session()->flash(static::FLASH_DDL_SUCCESS, false);
+            js()->error($e->getMessage());
         }
 
         return redirect()->action('DownloadController@getIndex');
