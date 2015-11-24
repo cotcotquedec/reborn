@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Models\Acl;
 
 class Authenticate
 {
@@ -48,15 +49,15 @@ class Authenticate
             return redirect()->route('no-access');
         } else {
 
-            /**@var \Models\Db\User $user  */
+            /**@var \Models\Db\User\User $user  */
             $user = $this->auth->user();
 
             if($user->isContributor()) {
-                ruler()->addPermission('contributor');
+                ruler()->addPermission(Acl::PERMISSION_CONTRIBUTOR);
             }
 
             if ($user->isAdmin()) {
-                ruler()->addPermission('admin');
+                ruler()->addPermission(Acl::PERMISSION_ADMIN);
             }
         }
 

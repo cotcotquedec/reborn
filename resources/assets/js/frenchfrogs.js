@@ -1,4 +1,3 @@
-
 $.fn.extend({
 
     /**
@@ -11,7 +10,6 @@ $.fn.extend({
     dtt : function(o) {
 
         options = {
-            //"dom": "<'row'<'col-md-8 col-sm-12'><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-scrollable't><'row'<'col-md-8 col-sm-12'pi><'col-md-4 col-sm-12'>>", // datatable layout
             pageLength: 25, // default records per page
             lengthChange: false,
             deferRender : false,
@@ -40,32 +38,29 @@ $.fn.extend({
                 }
             },
 
-            //"orderCellsTop": true,
-            /*
-             "columnDefs": [{ // define columns sorting options(by default all columns are sortable extept the first checkbox column)
-             'orderable': false,
-             'targets': [0]
-             }],
-             */
-
+            "orderCellsTop": true,
+            order : [],
             searching : false,
-            ordering: false,
+            ordering: true,
             pagingType: "bootstrap_extended", // pagination type(bootstrap, bootstrap_full_number or bootstrap_extended)
             autoWidth: false, // disable fixed width and enable fluid table
             processing: false, // enable/disable display message box on record load
             serverSide: false, // enable/disable server side ajax loading
         };
 
-        return $(this).on('draw.dt', function(e) {$(this).initialize();}).dataTable($.extend(options, o));
+        return $(this).on('draw.dt', function(e) {$(this).initialize();})
+            .dataTable($.extend(options, o))
+            .fnFilterOnReturn()
+            .fnFilterColumns();
     },
 
     initialize : function() {
-
         console.log('initialize : ' + this.selector);
 
+        // Activate Remote modal button
         jQuery(this).find('.modal-remote').each(function() {
 
-            jQuery(this).click(function(e) {
+            jQuery(this).click(function (e) {
                 e.preventDefault();
 
                 var target = jQuery(this).data('target');
@@ -78,13 +73,20 @@ $.fn.extend({
                         jQuery(this).initialize();
                         jQuery(target).modal('show');
                     });
+                e.stopImmediatePropagation();
             });
-
         });
 
+        // Activate ajax form
         jQuery(this).find('.form-remote').ajaxForm({
 
-            success : function(html) {
+            beforeSubmit: function () {
+                jQuery(this).find("input[type='submit']")
+                    .attr("disabled", "disabled")
+                    .attr("value", "En cours ...");
+            },
+
+            success: function (html) {
                 jQuery('.modal-content')
                     .empty()
                     .html(html)
@@ -92,11 +94,61 @@ $.fn.extend({
             }
         });
 
+        jQuery(this).find('.callback-remote').each(function () {
+            jQuery(this).click(function (e) {
+                jQuery.getScript(jQuery(this).attr('href'));
+                e.preventDefault();
+                e.stopImmediatePropagation();
+            });
+        });
 
+        jQuery(this).find('.select2-remote').each(function () {
+            jQuery(this).select2({
+                minimumInputLength: jQuery(this).data('length'),
+                ajax: {
+                    url: jQuery(this).data('remote'),
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (term) {
+                        return {
+                            q: term // search term
+                        };
+                    },
+                    results: function (d) {return d;}
+                },
+
+                containerCssClass : 'form-control',
+
+                formatResult: function(i) {return i.text;},
+                formatSelection: function(i) {return i.text;},
+
+                escapeMarkup: function (markup) { return markup; },
+
+                initSelection: function (element, callback) {
+                    $.ajax(jQuery(element).data('remote') + '?id=' + jQuery(element).val() , {dataType: "json"})
+                        .done(function(data) {
+                            if (data.results[0]) {
+                                callback(data.results[0]);
+                            }
+                        });
+                },
+            });
+        });
+
+        // Activate uniform checkbox
         jQuery(this).find("input[type=checkbox]:not(.toggle, .make-switch), input[type=radio]:not(.toggle, .star, .make-switch)").each(function() {
             jQuery(this).uniform();
         });
 
+        jQuery(this).find('.date-picker').datepicker({
+            autoclose: true
+        });
+
+        jQuery(this).find('.ff-tooltip-left').tooltip({
+            placement: 'left'
+        });
+
+        jQuery(this).find('input[type=checkbox].make-switch').bootstrapSwitch();
 
         // decoration datatable
         jQuery(this).find('table.table > thead > tr:last-child').children().css('border-bottom', '1px solid #ddd');

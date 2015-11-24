@@ -31,7 +31,7 @@ class DownloadController extends Controller
         }
 
         // Formulaire
-        $form = new Polliwog\Form\Form\Form();
+        $form = form();
         $form->addText('name', 'Nom');
         $form->addLabel('email', 'Email');
         $form->addSubmit('Enregistrer');

@@ -1,7 +1,8 @@
 <?php
 return [
     'default' => [
-        'form.renderer.class' => FrenchFrogs\Polliwog\Form\Renderer\Conquer::class,
-        'form.renderer.modal.class' => FrenchFrogs\Polliwog\Form\Renderer\ConquerModal::class,
+        'form.renderer.class' => FrenchFrogs\Form\Renderer\Conquer::class,
+        'form.renderer.modal.class' => FrenchFrogs\Form\Renderer\ConquerModal::class,
+        'ruler.class' => Models\Acl::class
     ]
 ];
