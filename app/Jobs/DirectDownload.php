@@ -52,7 +52,7 @@ class DirectDownload extends Job implements SelfHandling, ShouldQueue
         while(Storage::exists('downloads/' . $dest)) {
             $dest = '_' .  $dest;
         }
-        $dest = 'download/' . $dest;
+        $dest = 'downloads/' . $dest;
 
         // move file to the final directory
         Storage::move($tmp, $dest);
