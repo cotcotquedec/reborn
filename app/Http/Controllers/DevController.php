@@ -17,15 +17,6 @@ class DevController extends Controller
 
     public function script()
     {
-//        $job = (new \App\Jobs\DirectDownload('http://wikipics.net/photos/20150125142221651988185.jpg'))->delay(10);
-
-//        Queue::push('\App\Jobs\DirectDownload','http://wikipics.net/photos/20150125142221651988185.jpg');
-
-        $this->dispatch((new \App\Jobs\DirectDownload('http://wikipics.net/photos/20150125142221651988185.jpg')));
-
-
-//        $this->dispatch($job);
-        //response();
         return 'Are you happy with your script';
     }
 

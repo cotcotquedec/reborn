@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => 'files',
+    'default' => 'local',
 
     /*
     |--------------------------------------------------------------------------
@@ -34,12 +34,9 @@ return [
             'driver' => 'local',
             'root'   => storage_path('app'),
         ],
-
         'files' => [
-            'driver' => 'local',
-            'root'   => storage_path('files'),
+            'driver' => 'files',
         ],
-
         'torrent' => [
             'driver' => 'local',
             'root'   => storage_path('torrent'),
