@@ -11,7 +11,7 @@
         "guzzlehttp/guzzle": "~6.0",
         "laravel/socialite": "^2.0",
         "webpatser/laravel-uuid": "2.*",
-        "frenchfrogs/framework": "dev-master#54b56075e80ea51f352508445538636853c546de",
+        "frenchfrogs/framework": "dev-master#c9c1fcdb7daa96cc26f07306dd480626795f5cbd",
         "frenchfrogs/media" : "dev-master#f354539f384516e59d1a0918cd921b809f150e52"
     },
     "require-dev": {
