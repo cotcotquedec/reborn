@@ -19,7 +19,7 @@ class FileController extends Controller
     public function getIndex(Request $request)
     {
         $directory = base64_decode($request->get('d', ''));
-        $directory = empty($directory) ? 'download' : $directory;
+        $directory = empty($directory) ? 'downloads' : $directory;
         $content = [];
 
         // Repertoires
