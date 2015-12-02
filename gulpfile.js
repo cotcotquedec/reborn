@@ -16,7 +16,8 @@ elixir(function(mix) {
        'jquery.form.min.js',
        'frenchfrogs.js',
        'fnFilterOnReturn.js',
-       'fnFilterColumns.js'
+       'fnFilterColumns.js',
+       'reborn.js'
        ], 'public/js/main.js');
 
  mix.version(['public/js/main.js']);

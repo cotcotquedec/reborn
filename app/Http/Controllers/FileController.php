@@ -18,10 +18,8 @@ class FileController extends Controller
      */
     public function getIndex(Request $request)
     {
-
-
         $directory = base64_decode($request->get('d', ''));
-
+        $directory = empty($directory) ? 'download' : $directory;
         $content = [];
 
         // Repertoires
@@ -29,6 +27,7 @@ class FileController extends Controller
 
             $basename = substr($dir, strlen($directory));
             if ($basename{0} == '.') {continue;}
+            if ($basename{0} == '/') {$basename = substr($basename, 1);}
 
             $options = [];
             $options[] = [
@@ -54,6 +53,7 @@ class FileController extends Controller
 
             $basename = substr($file, strlen($directory));
             if ($basename{0} == '.') {continue;}
+            if ($basename{0} == '/') {$basename = substr($basename, 1);}
 
             $options = [];
 
@@ -91,7 +91,7 @@ class FileController extends Controller
                 'title'=>'Supprimer',
                 'icon' => 'fa fa-trash-o',
                 'class' => 'btn btn-sm btn-danger',
-                'url' => sprintf('javascript:fileDelete("%s", "%s")', $basename, action('FileController@getDelete', base64_encode($file)))
+                'url' => sprintf('javascript:fileDelete("%s", "%s")', $basename, action_url(__CLASS__, 'getDelete', base64_encode($file)))
             ];
             $content[] = ['name' => $basename, 'type' => 'file', 'size' => human_size(Storage::size($file)), 'options' => $options];
         }
@@ -104,18 +104,117 @@ class FileController extends Controller
      *
      * @param $file
      */
-    public function getDownload(Request $request)
+    public function getDownload($file)
     {
-
-        $file = base64_decode($request->get('f', ''));
-
         $file = env('XSENDFILE_ROOT') . DIRECTORY_SEPARATOR . base64_decode($file);
+
         $basename = substr($file, strrpos($file, '/') + 1 );
         header("X-Sendfile: $file");
         header("Content-Type: application/octet-stream");
         header("Content-Disposition: attachment; filename=\"$basename\"");
         return;
 
+    }
+
+
+    /**
+     * Launch a download job from an url
+     *
+     * @return mixed
+     */
+    public function postDirectDownload()
+    {
+        $form = form()->enableRemote();
+        $form->setLegend('Téléchargement direct');
+        $form->addText('link', 'Lien')->addValidator('url');
+        $form->addSubmit('Télécharger');
+
+        // Traitement
+        if (request()->has('Télécharger')) {
+            $form->valid(request()->all());
+            if ($form->isValid()) {
+                $data = $form->getFilteredValues();
+                try {
+                    $this->dispatch(new \App\Jobs\DirectDownload($data['link']));
+                    js()->success()->closeRemoteModal();
+                } catch(\Exception $e) {
+                    js()->error($e->getMessage());
+                }
+            }
+        }
+
+        return response()->modal($form);
+    }
+
+    /**
+     * Upload a torrent file
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postTorrent(Request $request)
+    {
+
+        $form = form()->enableRemote();
+        $form->setLegend('Torrent');
+        $form->addFile('torrent', 'File');
+        $form->addSubmit('Uploader');
+
+
+        if (request()->has('Uploader')) {
+            $form->valid(request()->all());
+            if ($form->isValid()) {
+                $data = $form->getFilteredValues();
+                try {
+
+                    // recupération du fichier
+                    $file = $data['torrent'];
+
+                    // recuperation du nom du fichier
+                    $name = $file->getClientOriginalName();
+
+                    // on deplace le fichier
+                    $file->move(config('filesystems.disks.torrent.root'),$name);
+
+                    // on verifie que le fichier exist
+                    if (!\Storage::drive('torrent')->exists($name)) {
+                        throw new \Exception('Erreur sur l\'upload du fichier');
+                    }
+                    js()->success()->closeRemoteModal();
+                } catch(\Exception $e) {
+                    js()->error($e->getMessage());
+                }
+            }
+        }
+
+
+        return response()->modal($form);
+
+//        try {
+//
+//            // on veifie que le fichier est bien la
+//            $file  = $request->file('torrent');
+//            if (!$file->isValid()) {
+//                throw new \Exception('Erreur sur l\'upload du fichier');
+//            }
+//
+//            // recuperation du nom du fichier
+//            $name = $file->getClientOriginalName();
+//
+//            // on deplace le fichier
+//            $file->move(config('filesystems.disks.torrent.root'),$name);
+//
+//            // on verifie que le fichier exist
+//            if (!\Storage::drive('torrent')->exists($name)) {
+//                throw new \Exception('Erreur sur l\'upload du fichier');
+//            }
+//
+//            js()->success('Torrent envoyé');
+//        } catch(\Exception $e) {
+//            js()->error($e->getMessage());
+//        }
+//
+//        return redirect()->action('DownloadController@getIndex');
     }
 
 

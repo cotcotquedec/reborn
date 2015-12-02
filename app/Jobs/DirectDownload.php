@@ -33,25 +33,28 @@ class DirectDownload extends Job implements SelfHandling, ShouldQueue
     public function handle()
     {
 
-        // Temporary download file name
-        $basename = basename($this->link);
-        $tmp = 'tmp/' . $basename . '.tmp';
+        // tmp file name;
+        $tmp = $dest = basename($this->link);
+        $tmp .= '.tmp';
 
         // if file exist, we prepend _
-        while(Storage::exists($tmp)) {
+        while(Storage::exists('tmp/' . $tmp)) {
             $tmp = '_' . $tmp;
         }
+
+        $tmp = 'tmp/' . $tmp;
 
         // stream download
         $stream = fopen( $this->link, 'r');
         Storage::writeStream($tmp, $stream);
 
         // if final file already exist with the same name, we prepend filename with _
-        while(Storage::exists($basename)) {
-            $basename = '_' .  $basename;
+        while(Storage::exists('download/' . $dest)) {
+            $dest = '_' .  $dest;
         }
+        $dest = 'download/' . $dest;
 
         // move file to the final directory
-        Storage::move($tmp, $basename);
+        Storage::move($tmp, $dest);
     }
 }

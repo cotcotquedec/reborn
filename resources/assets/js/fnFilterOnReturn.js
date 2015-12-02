@@ -14,6 +14,7 @@
  *        $('.dataTable').dataTable().fnFilterOnReturn();
  *    } );
  */
+
 jQuery.fn.dataTableExt.oApi.fnFilterOnReturn = function (oSettings) {
 	var _that = this;
 

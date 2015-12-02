@@ -140,12 +140,6 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="title">Fichiers</span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="{{ action_url('DownloadController')}}">
-                        <i class="icon-bar-chart"></i>
-                        <span class="title">Téléchargements</span>
-                    </a>
-                </li>
                 <li class="last ">
                     <a href="{{ action_url('UserController') }}">
                         <i class="icon-user"></i>
@@ -209,7 +203,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script type="text/javascript" src="{{ URL::asset('assets/scripts/app.js') }}"></script>
-<!-- END PAGE LEVEL SCRIPTS -->
+<!-- END PAGE LEVEL SCRIPTS -->$
 
 <script type="text/javascript">
     <!--
