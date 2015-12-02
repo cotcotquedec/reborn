@@ -49,7 +49,7 @@ class DirectDownload extends Job implements SelfHandling, ShouldQueue
         Storage::writeStream($tmp, $stream);
 
         // if final file already exist with the same name, we prepend filename with _
-        while(Storage::exists('download/' . $dest)) {
+        while(Storage::exists('downloads/' . $dest)) {
             $dest = '_' .  $dest;
         }
         $dest = 'download/' . $dest;
