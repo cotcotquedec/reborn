@@ -29,8 +29,6 @@ class AppServiceProvider extends ServiceProvider
                     ]
                 ]);
 
-            dd($client);
-
             return new Filesystem($client);
         });
     }
