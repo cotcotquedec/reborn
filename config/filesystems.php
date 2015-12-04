@@ -36,6 +36,7 @@ return [
         ],
         'files' => [
             'driver' => 'files',
+            'root'   => storage_path('files'),
         ],
         'torrent' => [
             'driver' => 'local',
