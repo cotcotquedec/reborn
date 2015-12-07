@@ -38,7 +38,7 @@ class DirectDownload extends Job implements SelfHandling, ShouldQueue
         $tmp .= '.tmp';
 
         // if file exist, we prepend _
-        while(Storage::exists('tmp/' . $tmp)) {
+        while(Storage::disk('files')->exists('tmp/' . $tmp)) {
             $tmp = '_' . $tmp;
         }
 
@@ -46,15 +46,15 @@ class DirectDownload extends Job implements SelfHandling, ShouldQueue
 
         // stream download
         $stream = fopen( $this->link, 'r');
-        Storage::writeStream($tmp, $stream);
+        Storage::disk('files')->writeStream($tmp, $stream);
 
         // if final file already exist with the same name, we prepend filename with _
-        while(Storage::exists('downloads/' . $dest)) {
+        while(Storage::disk('files')->exists('downloads/' . $dest)) {
             $dest = '_' .  $dest;
         }
         $dest = 'downloads/' . $dest;
 
         // move file to the final directory
-        Storage::move($tmp, $dest);
+        Storage::disk('files')->move($tmp, $dest);
     }
 }
