@@ -17,37 +17,43 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-    <meta charset="utf-8"/>
-    <title>Reborn | Admin</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta content="" name="description"/>
-    <meta content="" name="author"/>
-    <meta name="MobileOptimized" content="320">
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="{{ URL::asset('http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/plugins/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/>
-    <!-- END GLOBAL MANDATORY STYLES -->
-    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/select2/select2.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-toastr/toastr.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}"/>
 
-    <!-- END PAGE LEVEL PLUGIN STYLES -->
-    <!-- BEGIN THEME STYLES -->
-    <link href="{{ URL::asset('assets/css/style-conquer.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/css/style.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/css/style-responsive.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/css/plugins.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/css/pages/tasks.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/css/themes/default.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
-    <link href="{{ URL::asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css"/>
-    <!-- END THEME STYLES -->
-    <link rel="shortcut icon" href="favicon.ico"/>
+    {!!
+    h()
+    ->charset('utf-8')
+    ->title(isset($title) ? $title : 'Reborn')
+    ->meta('viewport', 'width=device-width, initial-scale=1.0')
+    ->meta('MobileOptimized', '320')
+    ->favicon('/favicon.ico')
+    !!}
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    {!!
+        css()
+        ->enableMinify()
+        ->setTargetPath('build')
+        ->file('//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all')
+        ->file('/assets/plugins/simple-line-icons/simple-line-icons.min.css')
+        ->file('/assets/plugins/bootstrap/css/bootstrap.min.css')
+        ->file('/assets/plugins/uniform/css/uniform.default.css')
+        ->file('/assets/plugins/select2/select2.css')
+        ->file('/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')
+        ->file('/assets/plugins/bootstrap-toastr/toastr.min.css')
+        ->file('/assets/plugins/bootstrap-datepicker/css/datepicker.css')
+        ->file('/assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css')
+        ->file('/assets/plugins/bootstrap-datetimepicker/css/datetimepicker.css')
+        ->file('/assets/plugins/bootstrap-switch/css/bootstrap-switch.min.css')
+        ->file('/assets/plugins/font-awesome/css/font-awesome.min.css')
+        ->file('/assets/css/style-conquer.css')
+        ->file('/assets/css/style.css')
+        ->file('/assets/css/style-responsive.css')
+        ->file('/assets/css/plugins.css')
+        ->file('/assets/css/pages/tasks.css')
+        ->file('/assets/css/themes/default.css')
+        ->file('/assets/css/custom.css')
+    !!}
 
 </head>
 <!-- END HEAD -->
@@ -59,7 +65,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <div class="header-inner">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="{{route('home')}}" class="btn btn-lg">
+            <a href="{{route('home')}}" class="btn btn-lg" style="color:#fff;font-weight: 400">
+                <i class="fa fa-film"></i>
                 Reborn
             </a>
         </div>
@@ -177,39 +184,36 @@ License: You must have a valid license purchased only from themeforest(the above
 {!! \FrenchFrogs\Modal\Modal\Modal::renderRemoteEmptyModal() !!}
 
         <!-- END FOOTER -->
-<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-<!-- BEGIN CORE PLUGINS -->
-<script src="{{ URL::asset('assets/plugins/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/jquery-migrate-1.2.1.min.js') }}" type="text/javascript"></script>
-<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-<script src="{{ URL::asset('assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript"></script>
-<!-- END CORE PLUGINS -->
 
-<!-- BEGIN PAGE LEVEL PLUGINS -->
-<script type="text/javascript" src="{{ URL::asset('assets/plugins/select2/select2.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('assets/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-toastr/toastr.min.js') }}"></script>
-<script type="text/javascript" src="{{URL::asset('assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
-<script type="text/javascript" src="{{ elixir('js/main.js') }}"></script>
-<!-- END PAGE LEVEL PLUGINS -->
+<!-- END FOOTER -->
+{!!
+    js('mini_js')
+        ->enableMinify()
+        ->setTargetPath('build')
+        ->file('/assets/plugins/jquery-1.11.0.min.js')
+        ->file('/assets/plugins/jquery-migrate-1.2.1.min.js')
+        ->file('/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js')
+        ->file('/assets/plugins/bootstrap/js/bootstrap.min.js')
+        ->file('/assets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js')
+        ->file('/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js')
+        ->file('/assets/plugins/jquery.blockui.min.js')
+        ->file('/assets/plugins/uniform/jquery.uniform.min.js')
+        ->file('assets/plugins/select2/select2.min.js')
+        ->file('assets/plugins/datatables/media/js/jquery.dataTables.min.js')
+        ->file('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')
+        ->file('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')
+        ->file('assets/plugins/bootstrap-toastr/toastr.min.js')
+        ->file('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')
+        ->file('assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js')
+        ->file('assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js')
+        ->file('assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js')
+        ->file(elixir('js/main.js'))
+        ->file('/assets/scripts/app.js')
+!!}
 
 
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script type="text/javascript" src="{{ URL::asset('assets/scripts/app.js') }}"></script>
-<!-- END PAGE LEVEL SCRIPTS -->$
-
-<script type="text/javascript">
-    <!--
-    {!! js('inline') !!}
-    //-->
-</script>
+@yield('inline')
+{!! js('inline') !!}
 
 <script type="text/javascript">
     <!--

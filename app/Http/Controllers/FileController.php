@@ -134,6 +134,7 @@ class FileController extends Controller
             $form->valid(request()->all());
             if ($form->isValid()) {
                 $data = $form->getFilteredValues();
+
                 try {
                     $this->dispatch(new \App\Jobs\DirectDownload($data['link']));
                     js()->success()->closeRemoteModal();
