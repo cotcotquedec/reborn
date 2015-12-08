@@ -56,5 +56,8 @@ class DirectDownload extends Job implements SelfHandling, ShouldQueue
 
         // move file to the final directory
         Storage::disk('files')->move($tmp, $dest);
+
+        // change file permission
+        chmod(Storage::disk('files')->getAdapter()->applyPathPrefix($dest), 0775);
     }
 }

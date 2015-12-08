@@ -31,11 +31,11 @@ return [
     'disks' => [
 
         'local' => [
-            'driver' => 'files',
+            'driver' => 'local',
             'root'   => storage_path('app'),
         ],
         'files' => [
-            'driver' => 'files',
+            'driver' => 'local',
             'root'   => storage_path('files'),
         ],
         'torrent' => [
