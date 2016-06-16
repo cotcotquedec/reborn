@@ -30,7 +30,7 @@ return [
         'database' => [
             'driver' => 'database',
             'table'  => 'cache',
-            'connection' => 'cache',
+            'connection' => 'mysql',
         ],
     ],
 

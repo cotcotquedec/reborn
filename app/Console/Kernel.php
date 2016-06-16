@@ -20,33 +20,10 @@ class Kernel extends ConsoleKernel
         Commands\Inspire::class,
         Commands\Permission::class,
         Commands\PermissionRemove::class,
-        Commands\TwitterAccountLookup::class,
-        Commands\TwitterVerify::class,
-        //\FrenchFrogs\Scheduler\Console\Commands\SchedulerTable::class,
         Commands\Minify::class,
-        Commands\TwitterFriendshipsCreateLimitationReset::class,
-        Commands\TwitterFollow::class,
-        Commands\TwitterUnfollow::class,
         Commands\Upgrade::class,
-        Commands\AnalyticsRealtime::class,
-        Commands\TwitterPurgeLog::class,
-
-
-        Commands\FacebookPageFeed::class,
-        Commands\FacebookPageFeedMetrics::class,
-        Commands\TwitterSchedule::class,
-        Commands\GenesisCrawl::class,
-
-
-        // Mail
-        Commands\MailAnalytics::class,
-
-
-        //TMP
-        //Commands\TmpArticleThumbnail::class,
     ];
 
-    
     public function handle($input, $output = null)
     {
         return $this->handleSchedule($input, $output);

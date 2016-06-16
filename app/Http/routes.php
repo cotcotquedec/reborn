@@ -12,7 +12,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::controller('user', 'UserController');
     Route::controller('schedule', '\FrenchFrogs\Scheduler\Http\Controllers\ScheduleController');
-    Route::controller('tool', 'ToolController');
 
     // Development routes
     Route::group(['middleware' => 'development'], function () {

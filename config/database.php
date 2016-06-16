@@ -58,18 +58,6 @@ return [
             'strict'    => false,
         ],
 
-        'cache' => [
-            'driver'    => 'mysql',
-            'host'      => env('DB_CACHE_HOST', 'localhost'),
-            'database'  => env('DB_CACHE_DATABASE', 'forge'),
-            'username'  => env('DB_CACHE_USERNAME', 'forge'),
-            'password'  => env('DB_CACHE_PASSWORD', ''),
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-            'strict'    => false,
-        ],
-
     ],
 
     /*
