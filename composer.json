@@ -1,0 +1,55 @@
+{
+    "name": "jobmaker/jobmaker",
+    "description": "Plateforme jobmaker",
+    "license": "Copyright",
+    "type": "project",
+
+    "require": {
+        "php": ">=5.6",
+        "laravel/framework": "5.2.*",
+        "barryvdh/laravel-ide-helper": "^2.1",
+        "guzzlehttp/guzzle": "^6.1",
+        "bugsnag/bugsnag-laravel": "1.*",
+        "doctrine/dbal": "2.6.*@dev",
+        "webpatser/laravel-uuid": "2.*",
+        "frenchfrogs/framework": ">=1.7.2",
+        "frenchfrogs/acl": "1.*",
+        "frenchfrogs/media": "dev-master#f354539f384516e59d1a0918cd921b809f150e52",
+        "frenchfrogs/scheduler": "1.*",
+        "oyejorge/less.php": "~1.5",
+        "matthiasmullie/minify": "^1.3",
+        "maknz/slack": "^1.7",
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "Models\\": "app/Models",
+        },
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan clear-compiled",
+            "php artisan optimize"
+        ],
+        "pre-update-cmd": [
+        ],
+        "post-update-cmd": [
+            "php artisan clear-compiled",
+            "php artisan ide-helper:generate",
+            "php artisan optimize"
+        ],
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "php artisan key:generate"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "stable"
+}
