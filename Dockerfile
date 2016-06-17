@@ -29,7 +29,6 @@ RUN sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Europe\/Paris/g' /etc/php
 #APACHE
 ADD docker/jobmaker.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
-#RUN ln -s /etc/apache2/sites-available/jobmaker.conf /etc/apache2/sites-enabled/
 
 #APACHE ENV
 ENV APACHE_RUN_USER www-data
@@ -46,7 +45,7 @@ ENV APACHE_DOCUMENTROOT /var/www
 
 EXPOSE 80
 VOLUME ["/var/log/apache2"]
-#ENTRYPOINT ["/usr/sbin/apache2", "-D", "FOREGROUND"]
+ENTRYPOINT ["/usr/sbin/apache2", "-D", "FOREGROUND"]
 
 
 

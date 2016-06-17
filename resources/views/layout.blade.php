@@ -45,7 +45,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="page-logo">
             <a href="{{route('home')}}" class="btn btn-lg" style="color:#fff">
                 <i class="fa fa-fire"></i>
-                Pilipili
+                Jobmaker
             </a>
         </div>
 
@@ -117,7 +117,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN FOOTER -->
 <div class="footer">
     <div class="footer-inner">
-       2015 &copy; Pilipili.
+       2016 &copy; Jobmaker.
     </div>
     <div class="footer-tools">
         <i>{{ \Carbon\Carbon::now()->format('d/m H:i') }}</i>

@@ -7,7 +7,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8"/>
-    <title>Authentification - Pilipili</title>
+    <title>Authentification - Jobmaker</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -46,7 +46,7 @@
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN LOGIN FORM -->
-    <h3 class="form-title text-center">Bienvenue sur Pilipili</h3>
+    <h3 class="form-title text-center">Bienvenue sur Jobmaker</h3>
 
 
     git rebase --continue
@@ -58,7 +58,7 @@
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright">
-    2015 &copy; Pilipili.
+    2016 &copy; Jobmaker.
 </div>
 <!-- END COPYRIGHT -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
