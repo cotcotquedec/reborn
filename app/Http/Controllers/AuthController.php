@@ -2,47 +2,43 @@
 
 
 use App\Http\Controllers\Controller;
-use OAuth, Auth;
-use Input;
+use Carbon\Carbon;
+use FrenchFrogs\Acl\Acl;
 use Models\Business;
-use Request;
+use Illuminate\Http\Request;
+use Auth;
 
+/**
+ * Controller d'authentification
+ *
+ * Class AuthController
+ * @package App\Http\Controllers
+ */
 class AuthController extends Controller
 {
+
     /**
-     * Connect user from google API
      *
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * Page d'authentification
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
-    public function google(/*Request $request*/)
+    public function login(Request $request)
     {
-        $auth = OAuth::consumer('google');
+        $error = false;
+        $email = '';
 
-        // Response from google
-        if ($code = Input::get('code')){
+        if ($request->has('email')) {
+            $error = true;
+            $email = $request->get('email');
+            $password = $request->get('password');
 
-            //create a token (we don't need it at the time)
-            $auth->requestAccessToken($code);
-
-            $result = json_decode($auth->request('userinfo'), true);
-
-            // verify informations
-            if (empty($result['verified_email'])) {
-                throw new \Exception('Email is not verified');
+            //Authentification
+            if (Auth::attempt(['email' => $email, 'password' => $password, 'user_interface_id' => Acl::INTERFACE_DEFAULT], true)) {
+                Auth::user()->update(['loggedin_at' => Carbon::now()]);
             }
-
-            if (empty($result['hd']) || in_array($result['hd'], config('auth.google.hd')) === false) {
-                throw new \Exception('Email is not from an available domain');
-            }
-
-            \DB::transaction(function() use ($result) {
-                Business\User::loginWithGoogle($result['email'], $result['name'], $result['picture'], true);
-            });
-            
-            return redirect()->route('home');
-        } else {
-            return redirect()->away((string) $auth->getAuthorizationUri());
         }
+
+        return Auth::check() ? redirect()->route('home') : view('login', ['error' => $error, 'email' => $email]);
     }
 }

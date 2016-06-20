@@ -6,7 +6,6 @@ use Auth;
 
 class User extends \FrenchFrogs\Models\Business\User
 {
-
-    static protected $modelClass = Db\User\User::class;
+    //static protected $modelClass = Db\User\User::class;
 
 }

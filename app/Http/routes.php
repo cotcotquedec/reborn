@@ -1,17 +1,13 @@
 <?php
 
 // Public
-Route::get('/login', function() {return Auth::check() ? redirect()->route('home') : view('login');})->name('login');
-Route::get('/login-with-google', 'AuthController@google')->name('login-with-google');
+Route::any('/login', 'AuthController@login')->name('login');
 
 
 // Loggué
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'UserController@home')->name('home');
     Route::get('/logout', function() {Auth::logout(); return redirect()->route('login');})->name('logout');
-
-    Route::controller('user', 'UserController');
-    Route::controller('schedule', '\FrenchFrogs\Scheduler\Http\Controllers\ScheduleController');
 
     // Development routes
     Route::group(['middleware' => 'development'], function () {

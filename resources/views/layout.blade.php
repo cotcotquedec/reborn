@@ -45,7 +45,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="page-logo">
             <a href="{{route('home')}}" class="btn btn-lg" style="color:#fff">
                 <i class="fa fa-fire"></i>
-                Jobmaker
+                &nbsp;&nbsp;Jobmaker
             </a>
         </div>
 
@@ -58,27 +58,18 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END RESPONSIVE MENU TOGGLER -->
         <!-- BEGIN TOP NAVIGATION MENU -->
         <ul class="nav navbar-nav pull-right">
-
-            <li>
-                <button class="btn btn-primary modal-remote" href="/article/add" data-target="#modal-remote" data-method="post" style="margin-top:5px;">Sourcer</button>
-                <button class="btn btn-default modal-remote" href="{{ action_url(\App\Http\Controllers\UserController::class, 'postParameter', user('user_id'))}}" title="Paramètres" data-target="#modal-remote" data-method="post" style="margin-top:5px;">
-                    <i class="fa fa-cogs"></i>
-                </button>
-            </li>
-
             <li class="devider">
                 &nbsp;
             </li>
             <!-- BEGIN USER LOGIN DROPDOWN -->
             <li class="dropdown user">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                    <img alt="" width="29" src="{{ route('media-show', uuid('hex', user('media_id'))) }}"/>
                     <span class="username username-hide-on-mobile">{{ user('name') }} </span>
                     <i class="fa fa-angle-down"></i>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="{{ route('logout') }}"><i class="fa fa-key"></i> Log Out</a>
+                        <a href="{{ route('logout') }}"><i class="fa fa-key"></i> Déconnexion</a>
                     </li>
                 </ul>
             </li>
@@ -98,7 +89,6 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN SIDEBAR -->
     <div class="page-sidebar-wrapper">
         <div class="page-sidebar navbar-collapse collapse">
-            {!! \Models\Business\Analytics::realtime() !!}
             {!! ruler()->renderNavigation() !!}
         </div>
     </div>
@@ -119,7 +109,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <div class="footer-inner">
        2016 &copy; Jobmaker.
     </div>
-    <div class="footer-tools">
+    <div class="footer-inner footer-tools">
         <i>{{ \Carbon\Carbon::now()->format('d/m H:i') }}</i>
     </div>
 </div>
@@ -143,49 +133,6 @@ License: You must have a valid license purchased only from themeforest(the above
             jQuery('.btn').enable();
         }
     });
-
-    /**
-     *
-     * Charge les meta pour les source d'article
-     *
-     * @returns {boolean}
-     */
-    function populateSourceFromUrl() {
-        jQuery.post('/tool/read-meta', {url : $('#source_url').val()}, function(d) {
-            $('#add_source').populate(eval(d));
-        });
-
-        return false;
-    }
-
-    /**
-     *
-     * Charge le titre dans le message pour le distributor
-     *
-     * @returns {boolean}
-     */
-    function populateTitleFromUrl() {
-        jQuery.post('/tool/read-meta', {url : $('#link').val()}, function(d) {
-            data = eval(d);
-            $('#message').val(data.source_title);
-        });
-
-        return false;
-    }
-
-    /**
-     *
-     * OUvertur multiplke de page facebook dans de nouveaux onglets
-     *
-     * @param page
-     * @returns {boolean}
-     */
-    function openFacebookPages(page) {
-        $.each(page.split(','),function(i,v) {
-            window.open('http://www.facebook.fr/' + v,'_blank');
-        });
-        return false;
-    }
 
     // ONLOAD
     jQuery(document).ready(function() {

@@ -1,10 +1,15 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
+use FrenchFrogs\Laravel\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ScheduleTable extends Migration
+class CreateScheduleTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('schedule', function (Blueprint $table) {
@@ -17,7 +22,8 @@ class ScheduleTable extends Migration
             $table->timestamps();
             $table->primary('schedule_id');
         });
-        Schema::create('schedule_log', function (\FrenchFrogs\Laravel\Database\Schema\Blueprint $table) {
+
+        Schema::create('schedule_log', function (Blueprint $table) {
             $table->binaryUuid('schedule_log_id');
             $table->string('command');
             $table->text('options')->nullable();

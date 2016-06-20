@@ -45,15 +45,31 @@
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
 <div class="content">
-    <!-- BEGIN LOGIN FORM -->
-    <h3 class="form-title text-center">Bienvenue sur Jobmaker</h3>
+    <form class="login-form" method="post">
+        <h3 class="form-title text-center">Bienvenue sur Jobmaker</h3>
 
-
-    git rebase --continue
-    <div class="text-center">
-        <a href="{{ route('login-with-google') }}" class="btn btn-lg btn-primary"><i class="fa fa-google"></i> Authentification</a>
-    </div>
-    <!-- END LOGIN FORM -->
+        @if($error)
+        <div class="alert alert-danger">
+			<span>Erreur sur l'identification </span>
+        </div>
+        @endif
+        <div class="form-group">
+            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+            <label class="control-label visible-ie8 visible-ie9">Email</label>
+            <div class="input-icon">
+                <i class="fa fa-user"></i>
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" value="{{ $email }}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Password</label>
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary" style="width: 100%">Authentification</button>
+    </form>
 </div>
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
@@ -85,7 +101,7 @@
 
     jQuery(document).ready(function() {
         App.init();
-        Login.init();
+      //  Login.init();
     });
 </script>
 
