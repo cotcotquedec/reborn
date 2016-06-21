@@ -17,6 +17,7 @@ then
    git init
    git remote add origin git@github.com:FrenchFrogs/framework.git
    git fetch origin
+   git pull origin master
    git checkout -t origin/master -f
 
    echo " => Git init OK"
@@ -40,6 +41,7 @@ else
        git init
        git remote add origin git@github.com:FrenchFrogs/acl.git
        git fetch origin
+       git pull origin master
        git checkout -t origin/master -f
 
        echo " => Git init OK"
@@ -67,6 +69,7 @@ else
        git init
        git remote add origin git@github.com:FrenchFrogs/demultiplexer.git
        git fetch origin
+       git pull origin master
        git checkout -t origin/master -f
 
        echo " => Git init OK"
@@ -91,6 +94,7 @@ else
        git init
        git remote add origin git@github.com:FrenchFrogs/media.git
        git fetch origin
+       git pull origin master
        git checkout -t origin/master -f
 
        echo " => Git init OK"
@@ -117,6 +121,7 @@ else
        git init
        git remote add origin git@github.com:FrenchFrogs/scheduler.git
        git fetch origin
+       git pull origin master
        git checkout -t origin/master -f
 
        echo " => Git init OK"
@@ -142,6 +147,7 @@ else
        git init
        git remote add origin git@github.com:FrenchFrogs/tag.git
        git fetch origin
+       git pull origin master
        git checkout -t origin/master -f
 
        echo " => Git init OK"
@@ -166,6 +172,7 @@ else
        git init
        git remote add origin git@github.com:FrenchFrogs/tracker.git
        git fetch origin
+       git pull origin master
        git checkout -t origin/master -f
 
        echo " => Git init OK"
@@ -192,6 +199,35 @@ else
         git init
         git remote add origin git@github.com:FrenchFrogs/scheduler.git
         git fetch origin
+        git pull origin master
+        git checkout -t origin/master -f
+
+        echo " => Git init OK"
+    fi
+
+    git pull
+fi
+
+
+
+
+echo "----------------------------"
+echo "FrenchFrogs : Référence"
+echo "----------------------------"
+
+
+if ! [ -d  ../scheduler ]
+then
+    echo "=> Vous n'utilisez pas Référence, desolé"
+else
+    cd ../reference
+
+    if ! [ -d .git ]
+    then
+        git init
+        git remote add origin git@github.com:FrenchFrogs/reference.git
+        git fetch origin
+        git pull origin master
         git checkout -t origin/master -f
 
         echo " => Git init OK"

@@ -68,7 +68,7 @@ class CreateUserCommand extends Command
 
         // si l'utilisateur existe déjà on coupe le script
         if ($user->exists) {
-            throw new \Exception('L\'utilisateur ' . $email . ' pour l\'interface ' . $interface. ' existe déjà');
+            throw new \Exception('L\'utilisateur "' . $email . '"" pour l\'interface "' . $interface. '"" existe déjà');
         }
 
         // création de l'utilisateur
@@ -81,7 +81,8 @@ class CreateUserCommand extends Command
 
         // gestion de l'admin
         if ($this->option('admin')) {
-            //@todo ajout de tous les droits sur l'interface
+            $permission = \FrenchFrogs\Models\Db\User\Permission::where('user_interface_id', $interface)->pluck('user_permission_id');
+            User::get($user->getKey())->setPermissions($permission->toArray());
         }
     }
 }

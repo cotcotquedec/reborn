@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use FrenchFrogs\Acl\Http\Controllers\AclController;
+use Models\Acl;
 use Models\Business\User;
 
 /**
@@ -25,7 +26,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-//        $this->user_permission = User::PERMISSION_USER;
+        $this->permission = Acl::PERMISSION_USER;
     }
 
 

@@ -9,6 +9,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'UserController@home')->name('home');
     Route::get('/logout', function() {Auth::logout(); return redirect()->route('login');})->name('logout');
 
+    Route::controller('user', 'UserController');
+    Route::controller('schedule', 'ScheduleController');
+    Route::controller('reference', 'ReferenceController');
+
     // Development routes
     Route::group(['middleware' => 'development'], function () {
         Route::get('/dev-layout', 'DevController@layout')->name('dev-layout');

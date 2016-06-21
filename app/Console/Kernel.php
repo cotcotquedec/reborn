@@ -32,7 +32,9 @@ class Kernel extends ConsoleKernel
 
         // initialisation
         \FrenchFrogs\Acl\Console\AclTableCommand::class,
-        \FrenchFrogs\Scheduler\Console\ScheduleTableCommand::class
+        \FrenchFrogs\Scheduler\Console\ScheduleTableCommand::class,
+        \FrenchFrogs\Reference\Console\ReferenceTableCommand::class,
+        \FrenchFrogs\Reference\Console\ReferenceBuildCommand::class
     ];
 
     public function handle($input, $output = null)
