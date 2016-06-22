@@ -12,6 +12,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller('user', 'UserController');
     Route::controller('schedule', 'ScheduleController');
     Route::controller('reference', 'ReferenceController');
+    Route::controller('jobmaker', 'JobmakerController');
 
     // Development routes
     Route::group(['middleware' => 'development'], function () {

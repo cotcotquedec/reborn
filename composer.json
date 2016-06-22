@@ -23,7 +23,7 @@
         "frenchfrogs/acl": "1.*",
         "frenchfrogs/media": "dev-master#f354539f384516e59d1a0918cd921b809f150e52",
         "frenchfrogs/scheduler": "1.*",
-        "frenchfrogs/reference": "dev-master",
+        "frenchfrogs/reference": ">=0.1",
         "oyejorge/less.php": "~1.5",
         "matthiasmullie/minify": "^1.3",
         "maknz/slack": "^1.7",

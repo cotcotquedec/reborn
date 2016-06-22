@@ -16,19 +16,11 @@ class DevController extends Controller
 
     public function script()
     {
+        
+        dd(\Hash::check('sandrine', '$2y$13$gku3q3qfz6gc4wokcs0kcuVAR7CcW3CXgSM8yPO54D.1eexP9HfSW'));
 
-        dd(\Ref::JOB_STATUS_ACTIVE);
 
-        Reference::build();
-
-        dd('OK');
-
-        require_once app_path() . '/../vendor/frenchfrogs/reference/src/function.php';
-
-        $reference = \ref('member.status', true)->pairs();
-
-        dd($reference);
-
+//        dd(bcrypt('sandrine'));
         return 'Are you happy with your script';
     }
 }
