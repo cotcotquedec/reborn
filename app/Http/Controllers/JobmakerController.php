@@ -22,7 +22,6 @@ class JobmakerController extends Controller
      */
     static public function jobmaker()
     {
-
         $query = \query('fos_user as u',[
             'u.email',
             raw('CONCAT(firstname, " ", lastname) as fullname'),
@@ -55,9 +54,8 @@ class JobmakerController extends Controller
         $table->addDate('last_login', 'Dern. visite')->setOrder('last_login');
         $table->addDate('registred_at', 'Inscrit le')->setOrder('registred_at');
 
-        $table->setRenderer(new Csv());
-
-
+//        $table->addDatatableButtonLink('Google', 'http://www.google.fr');
+        $table->addDatatableButtonExport();
 
         return $table;
     }

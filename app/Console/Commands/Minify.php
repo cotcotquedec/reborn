@@ -82,6 +82,7 @@ class Minify extends Command
             ->file('/conquer/plugins/select2/select2.min.js')
             ->file('/conquer/plugins/datatables/media/js/jquery.dataTables.min.js')
             ->file('/conquer/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')
+
             ->file('/conquer/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')
             ->file('/conquer/plugins/bootstrap-toastr/toastr.min.js')
             ->file('/conquer/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')
@@ -94,6 +95,8 @@ class Minify extends Command
             ->file('/assets/js/frenchfrogs.js')
             ->file('/assets/js/fnFilterOnReturn.js')
             ->file('/assets/js/fnFilterColumns.js')
+            ->file('/assets/js/dataTables.buttons.min.js')
+            ->file('/assets/js/buttons.bootstrap.min.js')
             ->file('/conquer/scripts/app.js')
             ->minify();
 

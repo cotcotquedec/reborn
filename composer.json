@@ -27,7 +27,8 @@
         "oyejorge/less.php": "~1.5",
         "matthiasmullie/minify": "^1.3",
         "maknz/slack": "^1.7",
-        "gossi/php-code-generator": "dev-master"
+        "league/csv": "^8.0"
+
     },
     "autoload": {
         "classmap": [
