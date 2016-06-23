@@ -10,6 +10,15 @@ class DevController extends Controller
 
     public function layout()
     {
+        $form = \form();
+        $form->addDate('coucou', 'coucou 2');
+        $form->addDateRange('test', 'Ma date');
+        $form->addSubmit('Enregistrer');
+
+
+        if (request()->has('Enregistrer')) {
+            dd(request()->all());
+        }
         return view('dev', compact('form'));
     }
 

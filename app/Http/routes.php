@@ -16,7 +16,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Development routes
     Route::group(['middleware' => 'development'], function () {
-        Route::get('/dev-layout', 'DevController@layout')->name('dev-layout');
+        Route::any('/dev-layout', 'DevController@layout')->name('dev-layout');
         Route::get('/dev-script', 'DevController@script')->name('dev-script');
     });
 });

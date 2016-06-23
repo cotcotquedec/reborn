@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use FrenchFrogs\Table\Renderer\Csv;
+use FrenchFrogs\Table\Table\Table;
 use Models\Acl;
 
 /**
@@ -47,16 +48,12 @@ class JobmakerController extends Controller
         $table->addText('fullname', 'Nom')->setStrainerText('username');
         $table->addText('email', 'Mail')->setStrainerText('email');
         $table->addBoolean('paid', 'Payant?')->setOrder('paid')->setStrainerBoolean('paid');
-//        $table->addText('voucher', 'Promo')->setOrder('v.value')->setStrainerText('v.value');
-//        $table->addNumber('amount', 'Payé', 2)->setOrder('amount');
-//        $table->addBoolean('access_jobmaker_way', 'Accès Way?')->setOrder('access_jobmaker_way')->setStrainerBoolean('access_jobmaker_way');
-//        $table->addBoolean('access_forum', 'Accès Forum?')->setOrder('access_forum')->setStrainerBoolean('access_forum');
-        $table->addDate('last_login', 'Dern. visite')->setOrder('last_login');
+        $table->addDate('last_login', 'Dern. visite')
+            ->setWidth('250px')
+            ->setOrder('last_login')
+            ->setStrainerDateRange('last_login');
         $table->addDate('registred_at', 'Inscrit le')->setOrder('registred_at');
-
-//        $table->addDatatableButtonLink('Google', 'http://www.google.fr');
         $table->addDatatableButtonExport();
-
         return $table;
     }
 
