@@ -10,21 +10,16 @@ class DevController extends Controller
 
     public function layout()
     {
-        $form = \form();
-        $form->addDate('coucou', 'coucou 2');
-        $form->addDateRange('test', 'Ma date');
-        $form->addSubmit('Enregistrer');
-
-
-        if (request()->has('Enregistrer')) {
-            dd(request()->all());
-        }
-        return view('dev', compact('form'));
+//        date(strtotime(rand(0, )))
     }
 
 
     public function script()
     {
+
+
+//        dd(rand(0, time()));
+        dd(date('Y-m-d', rand(0, time())));
         
         dd(\Hash::check('sandrine', '$2y$13$gku3q3qfz6gc4wokcs0kcuVAR7CcW3CXgSM8yPO54D.1eexP9HfSW'));
 
