@@ -47,9 +47,5 @@ EXPOSE 80
 VOLUME ["/var/log/apache2"]
 ENTRYPOINT ["/usr/sbin/apache2", "-D", "FOREGROUND"]
 
-
-
-
-
-
-
+#docker build -t jobmaker .
+#docker run -d -P -v /var/www/jobmaker:/var/www/jobmaker jobmaker
