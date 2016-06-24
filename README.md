@@ -27,6 +27,11 @@ git clone git@github.com:cotcotquedec/jobmaker.git
 
 Suivre les instructions officelles : https://docs.docker.com/engine/installation/linux/debian/
 
+Ou alors : 
+```
+curl -fsSL https://get.docker.com/ | sh
+```
+
 ## Installer composer
 
 En root sur la machine

@@ -61,7 +61,7 @@ class Minify extends Command
             ->styleFile('/conquer/css/style-responsive.css')
             ->styleFile('/conquer/css/plugins.css')
             ->styleFile('/conquer/css/pages/tasks.css')
-            ->styleFile('/conquer/css/themes/'. env('PHOENIX_THEME', 'default') .'.css')
+            ->styleFile('/conquer/css/themes/'. env('CONQUER_THEME', 'default') .'.css')
             ->styleFile('/conquer/css/custom.css')
             ->styleFile('/assets/css/frenchfrogs.css')
             ->minify();

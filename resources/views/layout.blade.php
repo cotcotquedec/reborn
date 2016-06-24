@@ -22,7 +22,7 @@ License: You must have a valid license purchased only from themeforest(the above
     {!!
     h()
     ->charset('utf-8')
-    ->title('Pilipili' . (App::environment() != 'production' ? ' | ' . App::environment() : ''))
+    ->title('Jobmaker' . (App::environment() != 'production' ? ' | ' . App::environment() : ''))
     ->meta('viewport', 'width=device-width, initial-scale=1.0')
     ->meta('MobileOptimized', '320')
     ->favicon('/favicon.ico')
