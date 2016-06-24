@@ -79,6 +79,7 @@ class Upgrade extends Command
                 $this->call('migrate');
 
                 // Reload apache
+                /*
                 $process = new Process('sudo /etc/init.d/apache2 reload');
                 $process->run();
                 if (!$process->isSuccessful()) {
@@ -88,6 +89,7 @@ class Upgrade extends Command
                 if ($error = $process->getErrorOutput()) {
                     $this->error($error);
                 }
+                */
 
                 $this->call('cache:clear');
                 $this->call('minify');
