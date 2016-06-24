@@ -94,7 +94,7 @@ class JobmakerController extends Controller
     public function getIndex()
     {
        \ruler()->check(Acl::PERMISSION_JOBMAKER_USER);
-       return view('basic', ['title' => 'Programmateur', 'content' => static::jobmaker()]);
+       return view('basic', ['title' => 'Utilisateurs', 'content' => static::jobmaker()]);
     }
 
 
@@ -154,7 +154,5 @@ class JobmakerController extends Controller
         }
 
         return response()->modal($form);
-
-
     }
 }

@@ -236,7 +236,6 @@ $.fn.extend({
         // UNIFORM
         if (jQuery.fn.uniform != undefined) {
             jQuery(this).find("input[type=checkbox]:not(.toggle, .make-switch), input[type=radio]:not(.toggle, .star, .make-switch)").each(function () {
-                console.log(this);
                 jQuery(this).uniform();
             });
         }
@@ -367,7 +366,6 @@ $.fn.extend({
                     column : jQuery(this).data('column'),
                     value : jQuery(this).val()
                 }, function(e,f) {eval(e)});
-                console.log(this);
             }
         );
 

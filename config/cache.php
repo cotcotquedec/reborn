@@ -32,6 +32,10 @@ return [
             'table'  => 'cache',
             'connection' => 'mysql',
         ],
+        'file' => [
+            'driver' => 'file',
+            'path' => storage_path('framework/cache'),
+        ],
     ],
 
     /*
