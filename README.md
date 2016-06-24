@@ -35,13 +35,6 @@ curl -s https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 ```
 
-
-## Installation des dépendances
-Avec l'utilisateur du projet (www-data ou jobmaker etc...)
-```
-composer install
-```
-
 ## Fichier de configuration
 
 Pour un environnement local, le fichier est prêt
@@ -49,6 +42,13 @@ Pour un environnement local, le fichier est prêt
 ```
 mv .env.local .env
 ```
+
+## Installation des dépendances
+Avec l'utilisateur du projet (www-data ou jobmaker etc...)
+```
+composer install
+```
+
 
 ## Lancer la construction du docker
 
