@@ -19,7 +19,7 @@
         "bugsnag/bugsnag-laravel": "1.*",
         "doctrine/dbal": "2.6.*@dev",
         "webpatser/laravel-uuid": "2.*",
-        "frenchfrogs/framework": ">=1.7.2",
+        "frenchfrogs/framework": ">=1.8.4",
         "frenchfrogs/acl": "1.*",
         "frenchfrogs/media": "dev-master#f354539f384516e59d1a0918cd921b809f150e52",
         "frenchfrogs/scheduler": "1.*",
@@ -62,5 +62,5 @@
     "config": {
         "preferred-install": "dist"
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
