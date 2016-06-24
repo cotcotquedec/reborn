@@ -1,5 +1,4 @@
 <?php
-
 // Public
 Route::any('/login', 'AuthController@login')->name('login');
 
