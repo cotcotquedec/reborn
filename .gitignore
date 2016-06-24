@@ -1,13 +1,7 @@
 /.idea
 /vendor
-/node_modules
-Homestead.yaml
-Homestead.json
 .env
 _ide_helper.php
 composer.lock
-public/build*
 public/js*
 public/css*
-.idea
-npm-debug.log
