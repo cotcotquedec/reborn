@@ -38,6 +38,8 @@ $.fn.extend({
                 }
             },
 
+            buttons : [],
+
             orderCellsTop: true,
             order : [],
             searching : false,

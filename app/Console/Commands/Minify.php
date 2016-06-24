@@ -70,7 +70,7 @@ class Minify extends Command
 
         $this->info('Start Javascript');
         $js = \js('mini_js')
-            //->enableMinify()
+//            ->enableMinify()
             ->setTargetPath('build')
             ->file('/conquer/plugins/jquery-1.11.0.min.js')
             ->file('/conquer/plugins/jquery-migrate-1.2.1.min.js')
@@ -81,8 +81,14 @@ class Minify extends Command
             ->file('/conquer/plugins/jquery.blockui.min.js')
             ->file('/conquer/plugins/uniform/jquery.uniform.min.js')
             ->file('/conquer/plugins/select2/select2.min.js')
+            
+            // Datatable
             ->file('/conquer/plugins/datatables/media/js/jquery.dataTables.min.js')
             ->file('/conquer/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')
+            ->file('/assets/js/dataTables.buttons.min.js')
+            ->file('/assets/js/buttons.bootstrap.min.js')
+            ->file('/assets/js/fnFilterOnReturn.js')
+            ->file('/assets/js/fnFilterColumns.js')
 
             ->file('/conquer/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')
             ->file('/conquer/plugins/bootstrap-toastr/toastr.min.js')
@@ -93,13 +99,12 @@ class Minify extends Command
             ->file('/conquer/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js')
             ->file('/conquer/plugins/bootstrap-switch/js/bootstrap-switch.min.js')
             ->file('/conquer/plugins/fancybox/source/jquery.fancybox.pack.js')
+
+            // Datatable
             ->file('/assets/js/jquery.form.min.js')
             ->file('/assets/js/Chart.min.js')
             ->file('/assets/js/frenchfrogs.js')
-            ->file('/assets/js/fnFilterOnReturn.js')
-            ->file('/assets/js/fnFilterColumns.js')
-            ->file('/assets/js/dataTables.buttons.min.js')
-            ->file('/assets/js/buttons.bootstrap.min.js')
+
             ->file('/conquer/scripts/app.js')
             ->minify();
 
