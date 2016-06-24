@@ -28,7 +28,7 @@
     <link href="{{ URL::asset('assets/css/style.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/css/style-responsive.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/css/plugins.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/css/themes/default.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="{{ URL::asset('assets/css/themes/'.env('CONQUER_THEME', 'default').'.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{ URL::asset('assets/css/pages/login.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css"/>
     <!-- END THEME STYLES -->
@@ -58,14 +58,14 @@
             <label class="control-label visible-ie8 visible-ie9">Email</label>
             <div class="input-icon">
                 <i class="fa fa-user"></i>
-                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" value="{{ $email }}"/>
+                <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" value="{{ $email }}"/>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">Password</label>
             <div class="input-icon">
                 <i class="fa fa-lock"></i>
-                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>
+                <input class="form-control placeholder-no-fix" type="password" placeholder="Password" name="password"/>
             </div>
         </div>
         <button type="submit" class="btn btn-lg btn-primary" style="width: 100%">Authentification</button>

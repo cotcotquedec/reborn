@@ -28,10 +28,10 @@ class Kernel extends ConsoleKernel
         Commands\Upgrade::class,
 
 
-        Commands\CreateUserCommand::class,
-
         // initialisation
         \FrenchFrogs\Acl\Console\AclTableCommand::class,
+        \FrenchFrogs\Acl\Console\CreateUserCommand::class,
+        \FrenchFrogs\Acl\Console\ChangeUserPasswordCommand::class,
         \FrenchFrogs\Scheduler\Console\ScheduleTableCommand::class,
         \FrenchFrogs\Reference\Console\ReferenceTableCommand::class,
         \FrenchFrogs\Reference\Console\ReferenceBuildCommand::class
