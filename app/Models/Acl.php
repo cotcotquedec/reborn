@@ -18,4 +18,11 @@ class Acl extends \FrenchFrogs\Acl\Acl
     const PERMISSION_GROUP_JOBMAKER = 'jobmaker';
     const PERMISSION_JOBMAKER = 'jobmaker';
     const PERMISSION_JOBMAKER_USER = 'jobmaker.user';
+
+
+    //PARTNER
+    const PERMISSION_GROUP_PARTNER = 'partner';
+    const PERMISSION_PARTNER = 'partner';
+    const PERMISSION_PARTNER_VOUCHER = 'partner.voucher';
+
 }

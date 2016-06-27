@@ -235,3 +235,30 @@ else
 
     git pull
 fi
+
+
+
+echo "----------------------------"
+echo "FrenchFrogs : Maker"
+echo "----------------------------"
+
+
+if ! [ -d  ../maker ]
+then
+    echo "=> Vous n'utilisez pas Maker, desolé"
+else
+    cd ../maker
+
+    if ! [ -d .git ]
+    then
+        git init
+        git remote add origin git@github.com:FrenchFrogs/maker.git
+        git fetch origin
+        git pull origin master
+        git checkout -t origin/master -f
+
+        echo " => Git init OK"
+    fi
+
+    git pull
+fi

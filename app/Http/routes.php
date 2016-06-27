@@ -2,16 +2,14 @@
 // Public
 Route::any('/login', 'AuthController@login')->name('login');
 
-
 // Loggué
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'UserController@home')->name('home');
     Route::get('/logout', function() {Auth::logout(); return redirect()->route('login');})->name('logout');
 
-    Route::controller('user', 'UserController');
-    Route::controller('schedule', 'ScheduleController');
-    Route::controller('reference', 'ReferenceController');
-    Route::controller('jobmaker', 'JobmakerController');
+
+    // Ajout des routes pour les controllers
+    include_once 'controllers.php';
 
     // Development routes
     Route::group(['middleware' => 'development'], function () {
@@ -19,7 +17,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/dev-script', 'DevController@script')->name('dev-script');
     });
 });
-
 
 Route::get('/no-access', function() {
     if (!Auth::check()) {return redirect()->route('login');}

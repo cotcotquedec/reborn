@@ -17,11 +17,13 @@ class DevController extends Controller
     public function script()
     {
 
+        
 
+//        \Validator::make()
 //        dd(rand(0, time()));
         dd(date('Y-m-d', rand(0, time())));
         
-        dd(\Hash::check('sandrine', '$2y$13$gku3q3qfz6gc4wokcs0kcuVAR7CcW3CXgSM8yPO54D.1eexP9HfSW'));
+//        dd(\Hash::check('sandrine', '$2y$13$gku3q3qfz6gc4wokcs0kcuVAR7CcW3CXgSM8yPO54D.1eexP9HfSW'));
 
 
 //        dd(bcrypt('sandrine'));

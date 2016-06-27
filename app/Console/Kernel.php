@@ -34,7 +34,12 @@ class Kernel extends ConsoleKernel
         \FrenchFrogs\Acl\Console\ChangeUserPasswordCommand::class,
         \FrenchFrogs\Scheduler\Console\ScheduleTableCommand::class,
         \FrenchFrogs\Reference\Console\ReferenceTableCommand::class,
-        \FrenchFrogs\Reference\Console\ReferenceBuildCommand::class
+        \FrenchFrogs\Reference\Console\ReferenceBuildCommand::class,
+
+
+        // en dev
+        \FrenchFrogs\Maker\Console\ControllerCreateCommand::class,
+        \FrenchFrogs\Maker\Console\ControllerActionCreateCommand::class,
     ];
 
     public function handle($input, $output = null)
