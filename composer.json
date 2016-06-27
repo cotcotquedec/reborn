@@ -19,7 +19,7 @@
         "bugsnag/bugsnag-laravel": "1.*",
         "doctrine/dbal": "2.6.*@dev",
         "webpatser/laravel-uuid": "2.*",
-        "frenchfrogs/framework": ">=1.8.4",
+        "frenchfrogs/framework": ">=1.8.5",
         "frenchfrogs/acl": "1.*",
         "frenchfrogs/media": "dev-master#f354539f384516e59d1a0918cd921b809f150e52",
         "frenchfrogs/scheduler": "1.*",
@@ -28,7 +28,7 @@
         "matthiasmullie/minify": "^1.3",
         "maknz/slack": "^1.7",
         "league/csv": "^8.0",
-        "frenchfrogs/maker": "dev-master"
+        "frenchfrogs/maker": ">=0.1"
 
     },
     "autoload": {
