@@ -1,44 +1,50 @@
-<?php namespace App\Http\Controllers;
+<?php
 
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Carbon\Carbon;
-use FrenchFrogs\Acl\Acl;
-use Models\Business;
 use Illuminate\Http\Request;
-use Auth;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use Socialite, Auth;
+use Models\Business;
 
-/**
- * Controller d'authentification
- *
- * Class AuthController
- * @package App\Http\Controllers
- */
 class AuthController extends Controller
 {
 
     /**
+     * Connect user from google API
      *
-     * Page d'authentification
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function login(Request $request)
+    public function facebook()
     {
-        $error = false;
-        $email = '';
+        if (request()->has('code')) {
 
-        if ($request->has('email')) {
-            $error = true;
-            $email = $request->get('email');
-            $password = $request->get('password');
+            /** @var \Laravel\Socialite\Two\User $user */
+            $user = Socialite::driver('facebook')->user();
 
-            //Authentification
-            if (Auth::attempt(['email' => $email, 'password' => $password, 'user_interface_id' => Acl::INTERFACE_DEFAULT], true)) {
-                Auth::user()->update(['loggedin_at' => Carbon::now()]);
+
+            // verify informations
+            if (empty($user->user['verified'])) {
+                throw new \Exception('User is not verified');
             }
-        }
 
-        return Auth::check() ? redirect()->route('home') : view('login', ['error' => $error, 'email' => $email]);
+            \DB::transaction(function() use ($user) {
+                Business\User::loginWithFacebook($user->getEmail(), $user->getName(), $user->getAvatar());
+            });
+
+
+            if (!Auth::check()) {
+                throw new \Exception('An error occur during authentification');
+            }
+
+
+            return redirect()->route('home');
+
+        } else {
+            return Socialite::driver('facebook')->scopes(['email','public_profile'])->redirect();
+        }
     }
+
 }

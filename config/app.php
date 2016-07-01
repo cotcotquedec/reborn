@@ -146,11 +146,12 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FrenchFrogsServiceProvider::class,
 
+        Laravel\Socialite\SocialiteServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         FrenchFrogs\Core\FrenchFrogsServiceProvider::class,
         FrenchFrogs\Media\MediaServiceProvider::class,
-        Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
     ],
 
     /*
@@ -201,7 +202,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Uuid'      => Webpatser\Uuid\Uuid::class,
         'Slack' => Maknz\Slack\Facades\Slack::class,
-        'Bugsnag' => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

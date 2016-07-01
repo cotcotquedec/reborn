@@ -22,7 +22,7 @@ License: You must have a valid license purchased only from themeforest(the above
     {!!
     h()
     ->charset('utf-8')
-    ->title('Jobmaker' . (App::environment() != 'production' ? ' | ' . App::environment() : ''))
+    ->title('Alliwant' . (App::environment() != 'production' ? ' | ' . App::environment() : ''))
     ->meta('viewport', 'width=device-width, initial-scale=1.0')
     ->meta('MobileOptimized', '320')
     ->favicon('/favicon.ico')
@@ -45,7 +45,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="page-logo">
             <a href="{{route('home')}}" class="btn btn-lg" style="color:#fff">
                 <i class="fa fa-fire"></i>
-                &nbsp;&nbsp;Jobmaker
+                &nbsp;&nbsp;Alliwant
             </a>
         </div>
 
@@ -107,7 +107,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN FOOTER -->
 <div class="footer">
     <div class="footer-inner">
-       2016 &copy; Jobmaker.
+       2016 &copy; Alliwant.
     </div>
     <div class="footer-inner footer-tools">
         <i>{{ \Carbon\Carbon::now()->format('d/m H:i') }}</i>

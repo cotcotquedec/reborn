@@ -54,6 +54,11 @@ Avec l'utilisateur du projet (www-data ou reborn etc...)
 composer install
 ```
 
+## Gestion des droits d'accès aux fichiers
+```
+sudo chmod -R 777 storage bootstrap/cache
+```
+
 
 ## Lancer la construction du docker
 

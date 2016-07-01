@@ -13,7 +13,7 @@ class CreateDefaultInterfaceAndPermissions extends Migration
      */
     public function up()
     {
-        Acl::createDatabaseInterface(Acl::INTERFACE_DEFAULT, 'Inside');
+        Acl::createDatabaseInterface(Acl::INTERFACE_DEFAULT, 'Reborn');
     }
 
     /**

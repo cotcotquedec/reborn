@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h1>Bienvenu sur Jobmaker</h1>
+            <h1>Bienvenu sur Alliwant</h1>
 
             @include('breadcrumb')
 

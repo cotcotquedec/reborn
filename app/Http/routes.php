@@ -1,6 +1,7 @@
 <?php
 // Public
-Route::any('/login', 'AuthController@login')->name('login');
+Route::get('/login', function() {return Auth::check() ? redirect()->route('home') : view('login');})->name('login');
+Route::get('/login-with-fb', 'AuthController@facebook')->name('login-with-fb');
 
 // Loggué
 Route::group(['middleware' => 'auth'], function () {

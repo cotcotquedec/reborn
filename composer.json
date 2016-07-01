@@ -30,7 +30,6 @@
         "laravel/framework": "5.2.*",
         "barryvdh/laravel-ide-helper": "^2.1",
         "guzzlehttp/guzzle": "^6.1",
-        "bugsnag/bugsnag-laravel": "1.*",
         "doctrine/dbal": "2.6.*@dev",
         "webpatser/laravel-uuid": "2.*",
         "frenchfrogs/framework": ">=1.8.7",
@@ -48,7 +47,9 @@
         "symfony/options-resolver" : "~2|~3",
         "phootwork/file" : "~0",
         "phootwork/tokenizer" : "~0",
-        "nikic/php-parser" : "~1"
+        "nikic/php-parser" : "~1",
+        "laravel/socialite": "^2.0",
+        "barryvdh/laravel-debugbar": "^2.2"
     },
     "autoload": {
         "classmap": [
