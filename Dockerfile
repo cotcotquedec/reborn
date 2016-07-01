@@ -1,5 +1,5 @@
 FROM        debian
-MAINTAINER  Julien Houvion "julien@jobmaker.fr"
+MAINTAINER  Julien Houvion "cotcotquedec@gmail.com"
 
 # UPGRADE
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
@@ -27,7 +27,7 @@ RUN sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Europe\/Paris/g' /etc/php
 RUN sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Europe\/Paris/g' /etc/php5/apache2/php.ini
 
 #APACHE
-ADD docker/jobmaker.conf /etc/apache2/sites-available/000-default.conf
+ADD docker/apache.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
 #APACHE ENV
@@ -37,7 +37,7 @@ ENV APACHE_LOG_DIR /var/log/apache2
 ENV APACHE_PID_FILE /var/run/apache2.pid
 ENV APACHE_RUN_DIR /var/run/apache2
 ENV APACHE_LOCK_DIR /var/lock/apache2
-ENV APACHE_SERVERADMIN julien@jomaker.fr
+ENV APACHE_SERVERADMIN cotcotquedec@gmail.com
 ENV APACHE_SERVERNAME localhost
 ENV APACHE_SERVERALIAS docker.localhost
 ENV APACHE_DOCUMENTROOT /var/www
@@ -47,5 +47,5 @@ EXPOSE 80
 VOLUME ["/var/log/apache2"]
 ENTRYPOINT ["/usr/sbin/apache2", "-D", "FOREGROUND"]
 
-#docker build -t jobmaker .
-#docker run -d -P -v /var/www/jobmaker:/var/www/jobmaker jobmaker
+#docker build -t reborn .
+#docker run -d -P -v /var/www/reborn:/var/www/reborn reborn

@@ -1,4 +1,4 @@
-# Jobmaker
+# Reborn
 
 backoffice mec.
 
@@ -9,8 +9,8 @@ backoffice mec.
 
 ## Accès à Github
 Il faut évidemment au préalable que vous ayez accès au code
-La page github du projet est : https://github.com/cotcotquedec/jobmaker
-Envoyer un mail a julien@jobmaker.fr pour avoir un accès si vous pensez le mériter.
+La page github du projet est : https://github.com/cotcotquedec/reborn
+Envoyer un mail a cotcotquedec@gmail.com pour avoir un accès si vous pensez le mériter.
 
 De plus, il est préférable d'intéragir avec github en SSH
 Vous trouverez le necessaire ici : https://help.github.com/articles/generating-an-ssh-key/
@@ -20,7 +20,7 @@ Vous trouverez le necessaire ici : https://help.github.com/articles/generating-a
 On suppose que les fichiers seront dans /var/www
 
 ```
-git clone git@github.com:cotcotquedec/jobmaker.git
+git clone git@github.com:cotcotquedec/reborn.git
 ```
 
 ## Installer Docker
@@ -49,7 +49,7 @@ mv .env.local .env
 ```
 
 ## Installation des dépendances
-Avec l'utilisateur du projet (www-data ou jobmaker etc...)
+Avec l'utilisateur du projet (www-data ou reborn etc...)
 ```
 composer install
 ```
@@ -59,7 +59,7 @@ composer install
 
 A lancer en root ou avec sudo
 ```
-docker build -t jobmaker .
+docker build -t reborn .
 ```
 
 
@@ -67,11 +67,11 @@ docker build -t jobmaker .
 
 Lancer maintenant la machine (toujours en root ou avec sudo)
 ```
-docker run -d -P -v /var/www/jobmaker:/var/www/jobmaker jobmaker
+docker run -d -P -v /var/www/reborn:/var/www/reborn reborn
 ```
 
 
 Vous pouvez aussi choisir le port d'ecoute (ici 32800)
 ```
-docker run -d -p 32800:80 -v /var/www/jobmaker:/var/www/jobmaker jobmaker
+docker run -d -p 32800:80 -v /var/www/reborn:/var/www/reborn reborn
 ```
