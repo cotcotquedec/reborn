@@ -40,6 +40,7 @@ class Kernel extends ConsoleKernel
         // en dev
         \FrenchFrogs\Maker\Console\ControllerCreateCommand::class,
         \FrenchFrogs\Maker\Console\ControllerActionCreateCommand::class,
+        \FrenchFrogs\Maker\Console\ControllerTableCreateCommand::class,
         Commands\Permission::class,
     ];
 
