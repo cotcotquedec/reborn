@@ -58,6 +58,17 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END RESPONSIVE MENU TOGGLER -->
         <!-- BEGIN TOP NAVIGATION MENU -->
         <ul class="nav navbar-nav pull-right">
+
+            <li>
+                <button class="btn btn-primary modal-remote" href="{{ action_url(\App\Http\Controllers\FileController::class, 'postUpload') }}" title="Direct Download" data-target="#modal-remote" data-method="post" style="margin-top:5px;">
+                    Direct Download
+                </button>
+            </li>
+
+            <li class="devider">
+                &nbsp;
+            </li>
+
             <li class="devider">
                 &nbsp;
             </li>

@@ -45,7 +45,7 @@ mv composer.phar /usr/local/bin/composer
 Pour un environnement local, le fichier est prêt
 
 ```
-mv .env.local .env
+cp .env.local .env
 ```
 
 ## Installation des dépendances

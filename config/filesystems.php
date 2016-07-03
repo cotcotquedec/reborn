@@ -31,9 +31,12 @@ return [
     'disks' => [
 
         'local' => [
-            'driver'    => 'database'
+            'driver' => 'local',
+            'root'   => storage_path('app'),
         ],
-
+        'files' => [
+            'driver' => 'local',
+            'root'   => storage_path('files'),
+        ],
     ],
-
 ];
