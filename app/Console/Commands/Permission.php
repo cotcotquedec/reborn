@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
+use FrenchFrogs\Models\Db\User\User;
 use Illuminate\Console\Command;
-use Models\Db\User\User;
 
 class Permission extends Command
 {

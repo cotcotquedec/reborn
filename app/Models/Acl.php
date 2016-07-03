@@ -14,4 +14,10 @@ class Acl extends \FrenchFrogs\Acl\Acl
     const PERMISSION_SCHEDULE = 'admin.schedule';
     const PERMISSION_REFERENCE = 'admin.reference';
 
+
+    // FILE
+    const PERMISSION_GROUP_FILE = 'file';
+    const PERMISSION_FILE = 'file';
+    const PERMISSION_FILE_UPLOAD = 'file.upload';
+    const PERMISSION_FILE_SORT = 'file.sort';
 }

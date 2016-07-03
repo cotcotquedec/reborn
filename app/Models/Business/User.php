@@ -3,9 +3,10 @@
 
 use FrenchFrogs\Models\Db;
 use Auth;
-class User extends \FrenchFrogs\Business\Business
+class User extends \FrenchFrogs\Models\Business\User
 {
     static protected $modelClass = Db\User\User::class;
+
     static public function loginWithFacebook($email, $name, $picture = false)
     {
         // update user
