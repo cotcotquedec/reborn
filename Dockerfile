@@ -20,11 +20,11 @@ RUN echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list.d/
 	wget -O- http://www.dotdeb.org/dotdeb.gpg | apt-key add -
 
 # INSTALL PHP
-RUN apt-get update; apt-get install -y php5-cli php5 php5-mcrypt php5-curl php5-mysql
+RUN apt-get update; apt-get install -y php7.0-cli php7.0 php7.0-mcrypt php7.0-curl php7.0-mysql
 
 # Let's set the default timezone in both cli and apache configs
-RUN sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Europe\/Paris/g' /etc/php5/cli/php.ini
-RUN sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Europe\/Paris/g' /etc/php5/apache2/php.ini
+RUN sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Europe\/Paris/g' /etc/php/7.0/cli/php.ini
+RUN sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Europe\/Paris/g' /etc/php/7.0/apache2/php.ini
 
 #APACHE
 ADD docker/apache.conf /etc/apache2/sites-available/000-default.conf

@@ -1,13 +1,14 @@
 @extends('layout')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Bienvenu sur Jobmaker</h1>
 
-            @include('breadcrumb')
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Bienvenu dans Frenchfrog</h1>
+    </section>
 
-            <p class="well">Tu trouves que c'est vide? c'est normal, c'est vide!</p>
-        </div>
-    </div>
+    <!-- Main content -->
+    <section class="content">
+        <p class="well">Tu trouves que c'est vide? c'est normal, c'est vide!</p>
+    </section>
 @endsection('content')

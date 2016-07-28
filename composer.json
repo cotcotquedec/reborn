@@ -48,7 +48,8 @@
         "symfony/options-resolver" : "~2|~3",
         "phootwork/file" : "~0",
         "phootwork/tokenizer" : "~0",
-        "nikic/php-parser" : "~1"
+        "nikic/php-parser" : "~1",
+        "almasaeed2010/adminlte": "^2.3"
     },
     "autoload": {
         "classmap": [

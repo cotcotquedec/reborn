@@ -1,148 +1,119 @@
 <!DOCTYPE html>
-<!--
-Template Name: Conquer - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.2.0
-Version: 2.0
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/conquer-responsive-admin-dashboard-template/3716838?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
-<!--[if IE 8]> <html lang="fr" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="fr" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="fr" class="no-js">
-<!--<![endif]-->
-<!-- BEGIN HEAD -->
+<html>
 <head>
-
-
-    {!!
-    h()
-    ->charset('utf-8')
-    ->title('Jobmaker' . (App::environment() != 'production' ? ' | ' . App::environment() : ''))
-    ->meta('viewport', 'width=device-width, initial-scale=1.0')
-    ->meta('MobileOptimized', '320')
-    ->favicon('/favicon.ico')
-    !!}
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {!!
+   \h()
+   ->charset('utf-8')
+   ->title('FrenchFrogs' . (App::environment() != 'production' ? ' | ' . App::environment() : ''))
+   ->meta('viewport', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+   !!}
 
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    {!! Cache::get('minify.css') !!}
+    {!! Cache::get('layout.css') !!}
 
-    <link rel="shortcut icon" href="favicon.ico"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<!-- END HEAD -->
-<!-- BEGIN BODY -->
-<body class="page-header-fixed">
-<!-- BEGIN HEADER -->
-<div class="header navbar navbar-fixed-top">
-    <!-- BEGIN TOP NAVIGATION BAR -->
-    <div class="header-inner">
-        <!-- BEGIN LOGO -->
-        <div class="page-logo">
-            <a href="{{route('home')}}" class="btn btn-lg" style="color:#fff">
-                <i class="fa fa-fire"></i>
-                &nbsp;&nbsp;Jobmaker
-            </a>
-        </div>
+<!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
+<!-- the fixed layout is not compatible with sidebar-mini -->
+<body class="hold-transition skin-{{env('ADMINLTE_SKIN', 'dark')}} fixed sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
 
-        <!-- END LOGO -->
-        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-        <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <img src="{{ URL::asset('assets/img/menu-toggler.png') }}" alt=""/>
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>FF</b>Admin</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>FrenchFrog</b></span>
         </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
 
-        <!-- END RESPONSIVE MENU TOGGLER -->
-        <!-- BEGIN TOP NAVIGATION MENU -->
-        <ul class="nav navbar-nav pull-right">
-            <li class="devider">
-                &nbsp;
-            </li>
-            <!-- BEGIN USER LOGIN DROPDOWN -->
-            <li class="dropdown user">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                    <span class="username username-hide-on-mobile">{{ user('name') }} </span>
-                    <i class="fa fa-angle-down"></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="{{ route('logout') }}"><i class="fa fa-key"></i> Déconnexion</a>
+            <div class="navbar-custom-menu">
+                                <ul class="nav navbar-nav">
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{{route('media-show', uuid('hex',user('media_id'))) }}" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{ user('name') }}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
-            </li>
-            <!-- END USER LOGIN DROPDOWN -->
-        </ul>
-        <!-- END TOP NAVIGATION MENU -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="{{route('media-show', uuid('hex',user('media_id'))) }}" class="img-circle"  alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>{{ user('name') }}</p>
+                </div>
+            </div>
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li class="header">NAVIGATION</li>
+                {!! ruler()->renderNavigation() !!}
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        @yield('content')
     </div>
-    <!-- END TOP NAVIGATION BAR -->
-</div>
-<!-- END HEADER -->
-<div class="clearfix">
+    <!-- /.content-wrapper -->
 
-</div>
-
-<!-- BEGIN CONTAINER -->
-<div class="page-container">
-    <!-- BEGIN SIDEBAR -->
-    <div class="page-sidebar-wrapper">
-        <div class="page-sidebar navbar-collapse collapse">
-            {!! ruler()->renderNavigation() !!}
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> alpha
         </div>
-    </div>
-    <!-- END SIDEBAR -->
+        <strong>Frenchfrog admin</strong>
+    </footer>
 
-    <!-- BEGIN CONTENT -->
-    <div class="page-content-wrapper">
-        <div class="page-content">
-            @yield('content')
-        </div>
-    </div>
-
-    <!-- END CONTENT -->
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
 </div>
-<!-- END CONTAINER -->
-<!-- BEGIN FOOTER -->
-<div class="footer">
-    <div class="footer-inner">
-       2016 &copy; Jobmaker.
-    </div>
-    <div class="footer-inner footer-tools">
-        <i>{{ \Carbon\Carbon::now()->format('d/m H:i') }}</i>
-    </div>
-</div>
+<!-- ./wrapper -->
+{!! Cache::get('layout.js') !!}
 
-{!! \FrenchFrogs\Modal\Modal\Modal::renderRemoteEmptyModal() !!}
-{!! Cache::get('minify.js') !!}
-
-
-@yield('inline')
-{!! js('inline') !!}
-
-
-<script type="text/javascript">
-
-    jQuery( document ).ajaxSend(function(e) {
-        jQuery('.btn').disable();
-    });
-
-    jQuery( document ).ajaxStop(function() {
-        if (jQuery.active == 0) {
-            jQuery('.btn').enable();
-        }
-    });
-
-    // ONLOAD
-    jQuery(document).ready(function() {
-        App.init(); // initlayout and core plugins
-        {!! js('onload') !!}
-        $('body').initialize();
-    });
-    //-->
-</script>
-<!-- END JAVASCRIPTS -->
 </body>
-<!-- END BODY -->
 </html>

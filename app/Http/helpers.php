@@ -184,3 +184,7 @@ function extract_meta_url($url) {
 }
 
 
+function adminlte_path($path)
+{
+    return app_path('../vendor/almasaeed2010adminlte') . ($path ? DIRECTORY_SEPARATOR.$path : $path);
+}
