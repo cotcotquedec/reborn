@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1aa0a98357f772c17fdb04053b9c8607",
+    "hash": "2421b7094b9522be533125c7bd29e1b5",
     "content-hash": "6183c4cae199e70702930c660a6f2f44",
     "packages": [
         {
@@ -2086,8 +2086,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cotcotquedec/frenchfrogs/zipball/9de1f54706d6461c4502354f9e61a8a2f2463e61",
-                "reference": "9de1f54706d6461c4502354f9e61a8a2f2463e61",
+                "url": "https://api.github.com/repos/cotcotquedec/frenchfrogs/zipball/d2f90e988f65f7d65347fe88190f14db00ff02dc",
+                "reference": "d2f90e988f65f7d65347fe88190f14db00ff02dc",
                 "shasum": ""
             },
             "require": {
@@ -2136,7 +2136,7 @@
                 "source": "https://github.com/cotcotquedec/frenchfrogs/tree/master",
                 "issues": "https://github.com/cotcotquedec/frenchfrogs/issues"
             },
-            "time": "2017-05-24 11:18:40"
+            "time": "2017-05-24 11:48:29"
         },
         {
             "name": "doctrine/annotations",

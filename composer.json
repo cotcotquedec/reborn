@@ -67,6 +67,9 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta",
+            "php artisan optimize",
             "ln -sf ../vendor/almasaeed2010/adminlte public/adminlte",
             "ln -sf ../vendor/cotcotquedec/frenchfrogs/assets public/frenchfrogs"
         ]

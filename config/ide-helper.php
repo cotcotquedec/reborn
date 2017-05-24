@@ -114,4 +114,5 @@ return array(
     */
     'custom_db_types' => array(),
 
+    'include_fluent' => true,
 );
