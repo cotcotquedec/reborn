@@ -2,10 +2,7 @@
 
 namespace App\Console\Commands;
 
-use Ddeboer\Imap\Server;
-use GrahamCampbell\GitHub\Facades\GitHub;
 use Illuminate\Console\Command;
-use Models\Db\Mission\Mission;
 
 class Test extends Command
 {

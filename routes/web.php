@@ -11,6 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::any('/login', 'DefaultController@login')->name('login');
+Route::any('/login-with-fb', 'DefaultController@facebook')->name('login.facebook');
+Route::group(['middleware' => 'auth'], function () {
+// Home
+    Route::any('/', 'DefaultController@index')->name('home');
+    Route::get('/logout', 'DefaultController@logout')->name('logout');
+    \FrenchFrogs\App\Models\Route::load([
+//    'user' => Controllers\UserController::class,
+//    'schedule' => Controllers\ScheduleController::class,
+//    'reference' => Controllers\ReferenceController::class,
+    ], is_debug()
+    )->register();
+// Development routes
+    Route::group(['middleware' => 'development'], function () {
+        Route::any('/dev-layout', 'DevController@layout')->name('dev-layout');
+        Route::any('/dev-script/{test?}', 'DevController@script')->name('dev-script');
+    });
 });
+
+
+

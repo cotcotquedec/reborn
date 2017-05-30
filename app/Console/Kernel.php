@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Minify;
 use App\Console\Commands\Test;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -16,7 +17,32 @@ class Kernel extends ConsoleKernel
     protected $commands = [
 
         Test::class,
-        //
+        Minify::class,
+
+
+        //FRENCHFROGS
+        \FrenchFrogs\App\Console\AclTableCommand::class,
+        \FrenchFrogs\App\Console\CreateUserCommand::class,
+        \FrenchFrogs\App\Console\ChangeUserPasswordCommand::class,
+//        \FrenchFrogs\App\Console\ScheduleTableCommand::class,
+        \FrenchFrogs\App\Console\ReferenceTableCommand::class,
+        \FrenchFrogs\App\Console\ReferenceBuildCommand::class,
+//        \FrenchFrogs\App\Console\MailTableCommand::class,
+//        \FrenchFrogs\App\Console\MailSendCommand::class,
+        \FrenchFrogs\App\Console\MediaTableCommand::class,
+//        \FrenchFrogs\App\Console\ContentTableCommand::class,
+
+
+
+
+        // en dev
+        \FrenchFrogs\App\Console\CodeControllerCommand::class,
+        \FrenchFrogs\App\Console\CodeActionCommand::class,
+        \FrenchFrogs\App\Console\CodeMailCommand::class,
+        \FrenchFrogs\App\Console\CodePermissionCommand::class,
+        \FrenchFrogs\App\Console\CodeModelCommand::class,
+        \FrenchFrogs\App\Console\ContentBuildCommand::class,
+        \FrenchFrogs\App\Console\DevContentCommand::class,
     ];
 
     /**
