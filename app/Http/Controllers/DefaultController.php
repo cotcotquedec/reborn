@@ -19,10 +19,14 @@ class DefaultController extends Controller
     use AuthenticatesUsers;
 
 
+    /**
+     *
+     * Home d'alliwant
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-
-
         return $this->basic('COUCOU', 'Hello');
     }
 
