@@ -11,7 +11,7 @@
 |
 */
 
-Route::any('/login', 'DefaultController@login')->name('login');
+Route::any('/login', 'DefaultController@auth')->name('login');
 Route::any('/login-with-fb', 'DefaultController@facebook')->name('login.facebook');
 Route::group(['middleware' => 'auth'], function () {
 // Home

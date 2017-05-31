@@ -32,6 +32,7 @@
         <p class="login-box-msg">Sign in to start your session</p>
 
         <form method="post">
+            {{ csrf_field() }}
             <div class="form-group has-feedback">
                 <input name="email" type="email" class="form-control" placeholder="Email">
                 <span name="password" class="glyphicon glyphicon-envelope form-control-feedback"></span>

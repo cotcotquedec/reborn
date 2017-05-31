@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Db\Users\Users;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -18,11 +19,11 @@ class DefaultController extends Controller
     use AuthenticatesUsers;
 
 
-
     public function index()
     {
 
-        return 'OK';
+
+        return $this->basic('COUCOU', 'Hello');
     }
 
     /**
@@ -31,8 +32,9 @@ class DefaultController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\View\View|mixed
      */
-    public function login(Request $request)
+    public function auth(Request $request)
     {
+
         // si deja connecter on redirige
         if ($this->guard()->check()) {
             return $this->authenticated($request, $this->guard()->user());
@@ -68,21 +70,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * Attempt to log the user into the application.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return bool
-     */
-    protected function attemptLogin(Request $request)
-    {
-        return $this->guard()->attempt(
-            $this->credentials($request), $request->has('remember')
-        );
-    }
-
-
-
-    /**
      *
      * Connection a facebook
      *
@@ -98,17 +85,41 @@ class DefaultController extends Controller
             if ($facebook->user['verified']) {
 
 
-                dd($facebook);
+                $user = Users::where('facebook_id', $facebook->id)->first() ?: user();
 
+                // si uyser pas connecté
+                if (is_null($user)) {
+                    abort(401, 'Vous n\'avez pas accès a cette plateforme, merci de contacter un admin');
+                }
 
-                //@todo create user
-//
-                auth()->loginUsingId($user->getKeu(), true);
+                // mise a jour de l'id facebook
+                if ($facebook->id != $user->facebook_id) {
+                    $user->update(['facebook_id' => $facebook->id]);
+                }
+
+                // on force la deconnexion
+                auth()->logout();
+
+                // on se log
+                auth()->loginUsingId($user->getKey(), true);
             }
             return redirect(\Auth::check() ? route('home') : route('login'));
         } else {
             return \Socialite::driver('facebook')->scopes(['public_profile'])->redirect();
         }
+    }
+
+    /**
+     * Attempt to log the user into the application.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return bool
+     */
+    protected function attemptLogin(Request $request)
+    {
+        return $this->guard()->attempt(
+            $this->credentials($request), $request->has('remember')
+        );
     }
 
 

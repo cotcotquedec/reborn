@@ -33,8 +33,6 @@ class Kernel extends ConsoleKernel
 //        \FrenchFrogs\App\Console\ContentTableCommand::class,
 
 
-
-
         // en dev
         \FrenchFrogs\App\Console\CodeControllerCommand::class,
         \FrenchFrogs\App\Console\CodeActionCommand::class,
@@ -43,6 +41,7 @@ class Kernel extends ConsoleKernel
         \FrenchFrogs\App\Console\CodeModelCommand::class,
         \FrenchFrogs\App\Console\ContentBuildCommand::class,
         \FrenchFrogs\App\Console\DevContentCommand::class,
+        \FrenchFrogs\App\Console\CodeMigrationCommand::class,
     ];
 
     /**

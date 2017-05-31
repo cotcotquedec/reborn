@@ -35,8 +35,12 @@
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="{{ route('login.facebook') }}" class="btn btn-primary btn-flat"><i
+                                            class="fa fa-facebook"></i> facebook</a>
+                            </div>
                             <div class="pull-right">
-                                <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="{{ route('logout') }}" class="btn btn-danger btn-flat">Deconnexion</a>
                             </div>
                         </li>
                     </ul>
