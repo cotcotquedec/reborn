@@ -14,7 +14,7 @@ use App\Models\Db\Users\Interfaces;
 /**
  * 
  *
- * @property-read Interfaces interface
+ * @property-read Interfaces userInterface
  * @property $uuid
  * @property $interface_sid
  * @property $name
@@ -58,7 +58,7 @@ class Users extends Model
 	 *
 	 * @return BelongsTo
 	 */
-	function interface()
+	function userInterface()
 	{
 		return $this->belongsTo(Interfaces::class, "interface_sid", "sid");
 	}
