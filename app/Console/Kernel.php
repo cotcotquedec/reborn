@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\Minify;
 use App\Console\Commands\Test;
+use FrenchFrogs\App\Console\CodeReferenceCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -38,6 +39,7 @@ class Kernel extends ConsoleKernel
         \FrenchFrogs\App\Console\CodeActionCommand::class,
         \FrenchFrogs\App\Console\CodeMailCommand::class,
         \FrenchFrogs\App\Console\CodePermissionCommand::class,
+        CodeReferenceCommand::class,
         \FrenchFrogs\App\Console\CodeModelCommand::class,
         \FrenchFrogs\App\Console\ContentBuildCommand::class,
         \FrenchFrogs\App\Console\DevContentCommand::class,

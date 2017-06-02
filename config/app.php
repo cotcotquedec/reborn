@@ -186,6 +186,8 @@ return [
         Jenssegers\Agent\AgentServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
 
+        Tmdb\Laravel\TmdbServiceProvider::class,
+
     ],
 
     /*
@@ -239,7 +241,8 @@ return [
         'Date' => Jenssegers\Date\Date::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Tmdb' => Tmdb\Laravel\Facades\Tmdb::class
 
     ],
 
