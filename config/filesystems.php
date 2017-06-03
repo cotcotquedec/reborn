@@ -72,9 +72,10 @@ return [
 
 
     'directories' => [
-        'torrents' => env('DIRECTORY_TORRENTS', 'torrents'),
-        'tvshows' => env('DIRECTORY_TVSHOWS', 'Series'),
-        'movies' => env('DIRECTORY_MOVIES', 'Films'),
+        'torrents' => env('DIRECTORY_TORRENTS', 'Torrent'),
+        'downloads' => env('DIRECTORY_TORRENTS', 'Download'),
+        'tvshows' => env('DIRECTORY_TVSHOWS', 'Serie'),
+        'movies' => env('DIRECTORY_MOVIES', 'Film'),
     ]
 
 ];

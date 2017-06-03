@@ -40,7 +40,7 @@ class ScanMedia extends Command
     {
 
         // PARCOURS DE TOUS LES FICHIERS
-        collect(\Storage::disk('files')->files(config('filesystems.directories.torrents'), true))->each(function ($file) {
+        collect(\Storage::disk('files')->files(config('filesystems.directories.downloads'), true))->each(function ($file) {
 
             // MEDIA
             $this->info($file);
