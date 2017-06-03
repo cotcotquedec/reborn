@@ -42,17 +42,24 @@ class ScanMedia extends Command
         // PARCOURS DE TOUS LES FICHIERS
         collect(\Storage::disk('files')->files(config('filesystems.directories.downloads'), true))->each(function ($file) {
 
-            // MEDIA
-            $this->info($file);
-            $media = new Media($file);
 
-            if (!$media->isVideo()) {
-                return;
+            try {
+
+                // MEDIA
+                $this->info($file);
+                $media = new Media($file);
+
+                if (!$media->isVideo()) {
+                    return;
+                }
+
+
+                $db = $media->db();
+                $db->isNew() && $media->search();
+
+            } catch (\Exception $e) {
+                $this->error($e->getMessage());
             }
-
-            $db = $media->db();
-
-            $db->isNew() && $media->search();
         });
     }
 }
