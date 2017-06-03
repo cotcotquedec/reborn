@@ -20,7 +20,7 @@ RUN echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list.d/
 	wget -O- http://www.dotdeb.org/dotdeb.gpg | apt-key add -
 
 # INSTALL PHP
-RUN apt-get update; apt-get install -y php5-cli php5 php5-mcrypt php5-curl php5-mysqlnd php5-gd mysql-client
+RUN apt-get update; apt-get install -y php5-cli php5 php5-mcrypt php5-curl php5-mysqlnd php5-gd mysql-client libapache2-mod-xsendfile
 
 # Let's set the default timezone in both cli and apache configs
 RUN sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Europe\/Paris/g' /etc/php5/cli/php.ini
@@ -30,7 +30,7 @@ RUN sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Europe\/Paris/g' /etc/php
 ADD docker/apache.conf /etc/apache2/sites-available/000-default.conf
 RUN echo "umask 077" > /etc/apache2/envvars
 
-RUN a2enmod rewrite expires headers
+RUN a2enmod rewrite expires headers xsendfile
 
 #APACHE ENV
 ENV APACHE_RUN_USER www-data

@@ -15,7 +15,15 @@ Route::any('/login', 'DefaultController@auth')->name('login');
 Route::any('/login-with-fb', 'DefaultController@facebook')->name('login.facebook');
 Route::group(['middleware' => 'auth'], function () {
 // Home
-    Route::any('/', 'DefaultController@index')->name('home');
+    Route::get('/', 'DefaultController@index')->name('home');
+
+
+    // Media
+    Route::get('/files', 'MediaController@files')->name('files');
+    Route::get('/tvshows', 'MediaController@tvshows')->name('tvshows');
+    Route::post('/stock/{media}/{tmdb?}', 'MediaController@stock')->name('stock');
+    Route::get('/download/{media}', 'MediaController@download')->name('download');
+
     Route::get('/logout', 'DefaultController@logout')->name('logout');
     \FrenchFrogs\App\Models\Route::load([
 //    'user' => Controllers\UserController::class,

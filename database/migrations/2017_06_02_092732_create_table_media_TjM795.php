@@ -18,10 +18,10 @@ class CreateTableMediaTjM795 extends Migration
         Schema::create("medias", function (Blueprint $table) {
             $table->binaryUuid('uuid');
             $table->reference('status_rid');
-            $table->reference('type_rid');
+            $table->reference('type_rid')->nullable();
             $table->string('name');
-            $table->string('directory');
-            $table->string('filename');
+            $table->string('dirname');
+            $table->string('realpath');
             $table->string('file_md5', 32);
             $table->json('search_info')->nullable();
             $table->json('data')->nullable();

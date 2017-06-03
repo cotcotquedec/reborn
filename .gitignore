@@ -10,3 +10,5 @@ public/adminlte
 public/frenchfrogs
 .phpstorm.meta.php
 .php_cs.cache
+storage/files
+storage/tmdb

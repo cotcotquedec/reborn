@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Db\Medias;
 use App\Models\Db\Users\Users;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -27,8 +28,11 @@ class DefaultController extends Controller
      */
     public function index()
     {
-        return $this->basic('COUCOU', 'Hello');
+
+        $medias = Medias::where('status_rid', '!=', \Ref::MEDIA_STATUS_STORED)->get();
+        return view('files', compact('medias'));
     }
+
 
     /**
      * Entrypoint

@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\Minify;
+use App\Console\Commands\ScanMedia;
 use App\Console\Commands\Test;
 use FrenchFrogs\App\Console\CodeReferenceCommand;
 use Illuminate\Console\Scheduling\Schedule;
@@ -19,6 +20,7 @@ class Kernel extends ConsoleKernel
 
         Test::class,
         Minify::class,
+        ScanMedia::class,
 
 
         //FRENCHFROGS

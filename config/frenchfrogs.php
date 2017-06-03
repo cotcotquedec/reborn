@@ -16,5 +16,6 @@
 
         //MAKER
         'maker.renderer.class' => \FrenchFrogs\Maker\Renderer\Php::class,
+        'navigations.model.class' => \App\Models\Db\Users\Navigations::class
     ]
 ];

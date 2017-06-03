@@ -50,7 +50,7 @@ return [
 
         'files' => [
             'driver' => 'local',
-            'root' => storage_path('files'),
+            'root' => env('FILES_ROOT', storage_path('files')),
         ],
 
         'public' => [
@@ -69,5 +69,12 @@ return [
         ],
 
     ],
+
+
+    'directories' => [
+        'torrents' => env('DIRECTORY_TORRENTS', 'torrents'),
+        'tvshows' => env('DIRECTORY_TVSHOWS', 'Series'),
+        'movies' => env('DIRECTORY_MOVIES', 'Films'),
+    ]
 
 ];
