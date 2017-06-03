@@ -17,7 +17,7 @@ class MediaController extends Controller
     public function files()
     {
         $medias = Medias::where('status_rid', '!=', \Ref::MEDIA_STATUS_STORED)
-            ->where('type_rid', \Ref::MEDIA_TYPE_TVSHOW)
+//            ->where('type_rid', \Ref::MEDIA_TYPE_TVSHOW)
             ->get();
 
         return view('files', compact('medias'));
@@ -80,6 +80,11 @@ class MediaController extends Controller
     }
 
 
+    /**
+     * Download File
+     *
+     * @param $media
+     */
     public function download($media)
     {
         //VALIDATION
@@ -88,11 +93,26 @@ class MediaController extends Controller
         // MEDIA
         $media = Medias::findOrFail($request->get('__media'));
 
-
         header("X-Sendfile: $media->realpath");
         header("Content-Type: application/octet-stream");
         header("Content-Disposition: attachment; filename=\"" . basename($media->storage_path) . "\"");
         return;
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public function movies()
+    {
+
+        $medias = Medias::where('status_rid', \Ref::MEDIA_STATUS_STORED)
+            ->where('type_rid', \Ref::MEDIA_TYPE_MOVIE)
+            ->orderBy('stored_at')
+            ->get();
+
+        return view('media.movies', compact('medias'));
     }
 
 }

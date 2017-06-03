@@ -42,7 +42,7 @@
                     @foreach($medias as $media)
 
                         @if($media->isTvShow())
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <!-- Widget: user widget style 1 -->
                                 <div class="box box-primary">
 
@@ -94,6 +94,67 @@
                                                         </div>
 
 
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <hr>
+
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <!-- /.widget-user -->
+                            </div>
+                        @endif
+
+
+                        @if($media->isMovie())
+                            <div class="col-md-12">
+                                <!-- Widget: user widget style 1 -->
+                                <div class="box box-success">
+
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Film</h3>
+                                    </div>
+
+                                    <div class="box-body">
+                                        <p><strong>{{basename($media->name)}}</strong></p>
+                                        <p>
+                                            <strong><i class="fa fa-clock-o margin-r-5"></i></strong> {{$media->created_at->formatLocalized('%A %d %B %Y')}}
+                                        </p>
+
+                                        {{--<div>--}}
+                                        {{--<a class="btn btn-primary"><i class="fa fa-download"></i></a>--}}
+                                        {{--<a class="btn btn-danger"><i class="fa fa-trash"></i></a>--}}
+                                        {{--</div>--}}
+
+                                        <hr>
+
+                                        @foreach($media->search_info as $id => $info)
+                                            {{--@php(d($info))--}}
+                                            <div style="background-size: cover;background-image: url('{{$image->getUrl($info['search']['backdrop_path'], 'w780')}}')">
+                                                <div style="padding: 15px;background: rgba(255,255,255,.8);">
+
+                                                    <p>
+                                                        <a href="{{route('stock', [uuid($media->getKey())->hex, $id])}}"
+                                                           class="btn btn-primary pull-right callback-remote">
+                                                            <i class="fa fa-sign-in"></i>
+                                                        </a>
+                                                        <strong><i class="fa fa-film margin-r-5"></i>
+                                                            {{$info['movie']['title']}}</strong>
+                                                    </p>
+
+
+                                                    <div style="min-height: 135px;">
+                                                        <img src="{{$image->getUrl($info['search']['poster_path'], 'w92')}}"
+                                                             style="margin-right: 10px;" class="pull-left">
+                                                        <div>
+                                                            <p>{{$info['movie']['release_date']}}</p>
+                                                            <p class="text-muted">
+                                                                {{$info['movie']['overview']}}
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
 

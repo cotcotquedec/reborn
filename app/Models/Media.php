@@ -172,15 +172,21 @@ class Media
     public function store($tmdb)
     {
         $db = $this->db;
+        $data = $db->search_info[$tmdb];
 
         // FILM
         if ($db->isMovie()) {
-            throw new \Exception('Le stockage de film n\'est pas encore disponible');
+
+            // DESTINATION
+            $destination = sprintf('%s/%s__%d/%s',
+                config('filesystems.directories.movies'),
+                ucfirst(str_slug($data['search']['title'])),
+                $data['search']['id'],
+                basename($this->file)
+            );
 
 
         } elseif ($db->isTvShow()) {
-
-            $data = $db->search_info[$tmdb];
 
             // DESTINATION
             $destination = sprintf('%s/%s__%d/Saison_%02s/Episode_%02s__%s__%d/%s',
@@ -193,29 +199,33 @@ class Media
                 $data['episode']['data']['id'],
                 basename($this->file)
             );
-
-            // MOVE
-            if (!$this->storage->move($db->storage_path, $destination)) {
-                throw new \Exception('Ereru sur le deplacement du fichier : ' . $this->file);
-            }
-
-
-            // MAJ DB
-            $this->file = $destination;
-            $this->detectRealPath();
-            if (!$this->storage->exists($this->file)) {
-                throw new \Exception('Le fichier n\'existe pas : ' . $this->file);
-            }
-            $db->update([
-                'name' => basename($this->file),
-                'realpath' => $this->getRealpath(),
-                'storage_path' => $this->file,
-                'dirname' => dirname($this->file),
-                'data' => $data,
-                'stored_at' => Carbon::now(),
-                'status_rid' => \Ref::MEDIA_STATUS_STORED
-            ]);
         }
+
+        // SI VIDE
+        if (empty($destination)) {
+            throw new \Exception('Impossible de determiner une destionation pour le fichier : ' . $this->file);
+        }
+
+        // MOVE
+        if (!$this->storage->move($db->storage_path, $destination)) {
+            throw new \Exception('Erreur sur le deplacement du fichier : ' . $this->file);
+        }
+
+        // MAJ DB
+        $this->file = $destination;
+        $this->detectRealPath();
+        if (!$this->storage->exists($this->file)) {
+            throw new \Exception('Le fichier n\'existe pas : ' . $this->file);
+        }
+        $db->update([
+            'name' => basename($this->file),
+            'realpath' => $this->getRealpath(),
+            'storage_path' => $this->file,
+            'dirname' => dirname($this->file),
+            'data' => $data,
+            'stored_at' => Carbon::now(),
+            'status_rid' => \Ref::MEDIA_STATUS_STORED
+        ]);
 
         return $this;
     }
