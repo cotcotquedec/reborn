@@ -20,6 +20,25 @@
 
                 <div class="row">
 
+                    @if($medias->isEmpty())
+                        <section class="content">
+
+                            <div class="error-page">
+                                <h2 class="headline text-red">Cool!</h2>
+
+                                <div class="error-content">
+                                    <h3>Aucun Fichier à trier.</h3>
+
+                                    <p>
+                                        Je vais mettre ici les informations pour télécharger des fichiers, soyez patient
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- /.error-page -->
+
+                        </section>
+                    @endif
+
                     @foreach($medias as $media)
 
                         @if($media->isTvShow())
@@ -37,11 +56,10 @@
                                             <strong><i class="fa fa-clock-o margin-r-5"></i></strong> {{$media->created_at->formatLocalized('%A %d %B %Y')}}
                                         </p>
 
-                                        <div>
-                                            <a class="btn btn-primary"><i class="fa fa-download"></i></a>
-                                            <a class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                        </div>
-
+                                        {{--<div>--}}
+                                        {{--<a class="btn btn-primary"><i class="fa fa-download"></i></a>--}}
+                                        {{--<a class="btn btn-danger"><i class="fa fa-trash"></i></a>--}}
+                                        {{--</div>--}}
 
                                         <hr>
 

@@ -54,6 +54,13 @@ class ScanMedia extends Command
                 }
 
 
+                // On verifie que le fichier n'existe pas deja
+                $validator = \Validator::make([$media->md5()], ['unique:medias,file_md5']);
+                if ($validator->fails()) {
+                    $this->warn('Ce fichier existe deja');
+                    return;
+                }
+
                 $db = $media->db();
                 $db->isNew() && $media->search();
 

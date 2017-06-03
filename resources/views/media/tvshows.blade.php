@@ -23,7 +23,7 @@
 
                         @php($info = $media->data)
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <!-- Widget: user widget style 1 -->
 
                             <div class="box box-primary">

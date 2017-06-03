@@ -16,7 +16,10 @@ class MediaController extends Controller
      */
     public function files()
     {
-        $medias = Medias::where('status_rid', '!=', \Ref::MEDIA_STATUS_STORED)->get();
+        $medias = Medias::where('status_rid', '!=', \Ref::MEDIA_STATUS_STORED)
+            ->where('type_rid', \Ref::MEDIA_TYPE_TVSHOW)
+            ->get();
+
         return view('files', compact('medias'));
     }
 
