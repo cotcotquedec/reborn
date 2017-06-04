@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Db\Downloads;
 use App\Models\Db\Medias;
 use App\Models\Media;
+use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {
@@ -113,6 +115,45 @@ class MediaController extends Controller
             ->get();
 
         return view('media.movies', compact('medias'));
+    }
+
+
+    /**
+     *
+     */
+    public function direct(Request $request)
+    {
+
+        // FORMULAIRE
+        $form = form()->enableRemote();
+        $form->setLegend('Ajouter un téléchargement direct');
+        $form->addText('url', 'URL')->addLaravelValidator('url|unique:downloads,url');
+        $form->addSubmit('Télécharger');
+
+
+        // TRAITEMENT
+        if ($request->isMethod('POST')) {
+
+            $form->valid($request->all());
+
+            if ($form->isValid()) {
+                try {
+
+                    // MODEL
+                    Downloads::create([
+                        'url' => $request->get('url'),
+                        'status_rid' => \Ref::DOWNLOADS_STATUS_CREATED
+                    ]);
+
+                    js()->success()->closeRemoteModal();
+
+                } catch (\Exception $e) {
+                    js()->error($e->getMessage());
+                }
+            }
+        }
+
+        return response()->modal($form);
     }
 
 }

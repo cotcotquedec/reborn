@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/movies', 'MediaController@movies')->name('movies');
     Route::get('/stock/{media}/{tmdb?}', 'MediaController@stock')->name('stock');
     Route::get('/download/{media}', 'MediaController@download')->name('download');
+    Route::any('/direct', 'MediaController@direct')->name('direct');
 
     Route::get('/logout', 'DefaultController@logout')->name('logout');
     \FrenchFrogs\App\Models\Route::load([
