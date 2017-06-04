@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Db\Downloads;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class Download extends Command
@@ -74,7 +75,8 @@ class Download extends Command
 
                 //MAJ
                 $download->update([
-                    'status_rid' => \Ref::DOWNLOADS_STATUS_COMPLETED
+                    'status_rid' => \Ref::DOWNLOADS_STATUS_COMPLETED,
+                    'completetd_at' => Carbon::now()
                 ]);
 
             } catch (\Exception $e) {

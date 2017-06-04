@@ -75,7 +75,8 @@ class MediaController extends Controller
 
         $medias = Medias::where('status_rid', \Ref::MEDIA_STATUS_STORED)
             ->where('type_rid', \Ref::MEDIA_TYPE_TVSHOW)
-            ->orderBy('stored_at')
+            ->orderBy('stored_at', 'desc')
+            ->limit(50)
             ->get();
 
         return view('media.tvshows', compact('medias'));
@@ -111,7 +112,8 @@ class MediaController extends Controller
 
         $medias = Medias::where('status_rid', \Ref::MEDIA_STATUS_STORED)
             ->where('type_rid', \Ref::MEDIA_TYPE_MOVIE)
-            ->orderBy('stored_at')
+            ->orderBy('stored_at', 'desc')
+            ->limit(50)
             ->get();
 
         return view('media.movies', compact('medias'));
