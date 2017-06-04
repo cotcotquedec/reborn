@@ -255,17 +255,34 @@ class Media
 
             //TVSHOW
             if (preg_match('#(?<title>.+)S(?<season>\d{2})E(?<episode>\d{2}).+#', $name, $match)) {
-                $title = str_replace(['_', '.'], ' ', $match['title']);
+                $title = trim(str_replace(['_', '.'], ' ', $match['title']));
                 $season = $match['season'];
                 $episode = $match['episode'];
                 $language = 'fr-FR';
 
+                d('SERIE : ' . $title);
 
                 // TVSHOW
                 $search = \Tmdb::getSearchApi()->searchTv($title, compact('language'));
 
+                // PATCH YEAR ON SERIE NAME
+                if (!$search['total_results']) {
+                    if (preg_match('#(?<title>.+)\d{4}$#', $title, $match)) {
+                        $search = \Tmdb::getSearchApi()->searchTv(trim($match['title']), compact('language'));
+                    }
+                }
+
+
+
                 if ($search['total_results']) {
                     collect($search['results'])->each(function ($result) use ($tvshows, $season, $episode) {
+
+                        // ON essaie de recuperer les informations
+                        try {
+                            $data_episode = \Tmdb::getTvEpisodeApi()->getEpisode($result['id'], $season, $episode);
+                        } catch (\Exception $e) {
+                            return;
+                        }
 
                         // recherche
                         $data = [
@@ -275,7 +292,7 @@ class Media
                                 'ids' => \Tmdb::getTvApi()->getExternalIds($result['id']),
                             ],
                             'episode' => [
-                                'data' => \Tmdb::getTvEpisodeApi()->getEpisode($result['id'], $season, $episode),
+                                'data' => $data_episode,
                                 'ids' => \Tmdb::getTvEpisodeApi()->getExternalIds($result['id'], $season, $episode),
                             ]
                         ];
@@ -310,7 +327,6 @@ class Media
                 }
             }
         });
-
 
         // Synchro avec la base
         $db = $this->db();

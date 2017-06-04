@@ -76,7 +76,7 @@ class Download extends Command
                 //MAJ
                 $download->update([
                     'status_rid' => \Ref::DOWNLOADS_STATUS_COMPLETED,
-                    'completetd_at' => Carbon::now()
+                    'completed_at' => Carbon::now()
                 ]);
 
             } catch (\Exception $e) {
