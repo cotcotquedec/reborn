@@ -249,12 +249,13 @@ class Media
         // INIT
         $movies = collect();
         $tvshows = collect();
-        collect(explode('/', $this->file))->reverse()->each(function ($name) use ($movies, $tvshows) {
+        collect(explode('/', urldecode($this->file)))->reverse()->each(function ($name) use ($movies, $tvshows) {
 
             $match = [];
 
             //TVSHOW
-            if (preg_match('#(?<title>.+)S(?<season>\d{2})E(?<episode>\d{2}).+#', $name, $match)) {
+            if (preg_match('#(?<title>.+)S(?<season>\d{2})E(?<episode>\d{2}).+#', $name, $match)
+            || preg_match('#(?<title>.+)(?<season>\d{1,2})x(?<episode>\d{1,2}).+#', $name, $match)) {
                 $title = trim(str_replace(['_', '.'], ' ', $match['title']));
                 $season = $match['season'];
                 $episode = $match['episode'];
