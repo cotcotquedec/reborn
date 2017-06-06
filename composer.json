@@ -23,7 +23,7 @@
         "barryvdh/laravel-debugbar": "^2.2",
         "almasaeed2010/adminlte": "^2.3",
         "webpatser/laravel-uuid": "2.*",
-        "cotcotquedec/frenchfrogs": "dev-1.0-alpha#6aeec08514c1566e32d59d562e110b3fded04a99",
+        "cotcotquedec/frenchfrogs": "dev-1.0-alpha#544de1fe7cf8fb644692f4e46bfdc14487326b80",
         "roave/better-reflection": "^1.2",
         "jenssegers/date": "^3.2",
         "jenssegers/agent": "^2.3",
