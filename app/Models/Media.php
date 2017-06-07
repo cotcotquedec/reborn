@@ -195,7 +195,7 @@ class Media
 //                $data['search']['id'],
                 $data['episode']['data']['season_number'],
                 $data['episode']['data']['episode_number'],
-                ucfirst(str_slug($data['episode']['data']['name'])),
+//                ucfirst(str_slug($data['episode']['data']['name'])),
 //                $data['episode']['data']['id'],
                 basename($this->file)
             );
