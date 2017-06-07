@@ -174,8 +174,6 @@ class Media
         $db = $this->db;
         $data = $db->search_info[$tmdb];
 
-        $this->file = str_slug(urldecode($this->file));
-
         // FILM
         if ($db->isMovie()) {
 
@@ -184,7 +182,7 @@ class Media
                 config('filesystems.directories.movies'),
                 ucfirst(str_slug($data['search']['title'])),
 //                $data['search']['id'],
-                basename($this->file)
+                basename(str_slug(urldecode($this->file)))
             );
 
 
@@ -199,7 +197,7 @@ class Media
                 $data['episode']['data']['episode_number'],
 //                ucfirst(str_slug($data['episode']['data']['name'])),
 //                $data['episode']['data']['id'],
-                basename($this->file)
+                basename(str_slug(urldecode($this->file)))
             );
         }
 
