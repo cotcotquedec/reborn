@@ -38,21 +38,25 @@ class ScanMedia extends Command
      */
     public function handle()
     {
-
         // PARCOURS DE TOUS LES FICHIERS
         collect(\Storage::disk('files')->files(config('filesystems.directories.downloads'), true))->each(function ($file) {
 
-
             try {
+
+                // Triu des fichier par rapport a l'extension
+                $extension = substr($file, strrpos($file, '.') + 1);
+                if (!in_array($extension, ['mp4', 'mkv', 'avi', 'mpg', 'mpeg'])) {
+                    return;
+                }
 
                 // MEDIA
                 $this->info($file);
                 $media = new Media($file);
 
                 if (!$media->isVideo()) {
+                    $this->info('Le fichier n\'est pas reconu comme une video');
                     return;
                 }
-
 
                 // On verifie que le fichier n'existe pas deja
                 $validator = \Validator::make([$media->md5()], ['unique:medias,file_md5']);

@@ -178,10 +178,10 @@ class Media
         if ($db->isMovie()) {
 
             // DESTINATION
-            $destination = sprintf('%s/%s__%d/%s',
+            $destination = sprintf('%s/%s/%s',
                 config('filesystems.directories.movies'),
                 ucfirst(str_slug($data['search']['title'])),
-                $data['search']['id'],
+//                $data['search']['id'],
                 basename($this->file)
             );
 
@@ -189,14 +189,14 @@ class Media
         } elseif ($db->isTvShow()) {
 
             // DESTINATION
-            $destination = sprintf('%s/%s__%d/Saison_%02s/Episode_%02s__%s__%d/%s',
+            $destination = sprintf('%s/%s/Saison_%02s/Episode_%02s/%s',
                 config('filesystems.directories.tvshows'),
                 ucfirst(str_slug($data['search']['name'])),
-                $data['search']['id'],
+//                $data['search']['id'],
                 $data['episode']['data']['season_number'],
                 $data['episode']['data']['episode_number'],
                 ucfirst(str_slug($data['episode']['data']['name'])),
-                $data['episode']['data']['id'],
+//                $data['episode']['data']['id'],
                 basename($this->file)
             );
         }
@@ -361,6 +361,7 @@ class Media
     {
         return substr($this->mime(), 0, 5) === 'video';
     }
+
 
     /**
      * @return false|string
