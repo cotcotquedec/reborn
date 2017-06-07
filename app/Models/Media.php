@@ -174,6 +174,8 @@ class Media
         $db = $this->db;
         $data = $db->search_info[$tmdb];
 
+        $this->file = str_slug(urldecode($this->file));
+
         // FILM
         if ($db->isMovie()) {
 
@@ -217,6 +219,7 @@ class Media
         if (!$this->storage->exists($this->file)) {
             throw new \Exception('Le fichier n\'existe pas : ' . $this->file);
         }
+
         $db->update([
             'name' => basename($this->file),
             'realpath' => $this->getRealpath(),
