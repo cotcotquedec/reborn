@@ -182,7 +182,7 @@ class Media
                 config('filesystems.directories.movies'),
                 ucfirst(str_slug($data['search']['title'])),
 //                $data['search']['id'],
-                basename(str_slug(urldecode($this->file)))
+                str_slug(urldecode(basename($this->file)))
             );
 
 
@@ -197,7 +197,7 @@ class Media
                 $data['episode']['data']['episode_number'],
 //                ucfirst(str_slug($data['episode']['data']['name'])),
 //                $data['episode']['data']['id'],
-                basename(str_slug(urldecode($this->file)))
+                str_slug(urldecode(basename($this->file)))
             );
         }
 
