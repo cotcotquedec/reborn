@@ -116,7 +116,7 @@ class MediaController extends Controller
                                 $movies[$row['id']] = $title;
                             }
 
-                            $form->addSelect('movie_id', 'Film', $movies);
+                            $form->addSelect('movie_id', 'Film', $movies)->setPlaceholder();
                         }
                     } else {
 
