@@ -135,8 +135,6 @@ class MediaController extends Controller
                             $model->store($movie);
                         });
 
-
-
                         js()->success()->closeRemoteModal();
                     }
 
