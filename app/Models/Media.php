@@ -191,7 +191,7 @@ class Media
             // DESTINATION
             $destination = sprintf('%s/%s/Saison_%02s/Episode_%02s/%s',
                 config('filesystems.directories.tvshows'),
-                ucfirst(str_slug($data['tvshow']['name'])),
+                ucfirst(str_slug($data['tvshow']['data']['name'])),
 //                $data['search']['id'],
                 $data['episode']['data']['season_number'],
                 $data['episode']['data']['episode_number'],
