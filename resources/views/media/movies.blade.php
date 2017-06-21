@@ -28,11 +28,11 @@
                             <div class="box box-success">
 
                                 <div class="box-body"
-                                     style="background-size: cover;background-image: url('{{$image->getUrl($info['search']['backdrop_path'], 'w780')}}')">
+                                     style="background-size: cover;background-image: url('{{$image->getUrl($info['movie']['backdrop_path'], 'w780')}}')">
 
                                     <div style="padding: 5px 15px;background: rgba(255,255,255,.9);">
                                         <div style="min-height: 135px;">
-                                            <img src="{{$image->getUrl($info['search']['poster_path'], 'w92')}}"
+                                            <img src="{{$image->getUrl($info['movie']['poster_path'], 'w92')}}"
                                                  style="margin-right: 10px;" class="pull-left">
 
                                             <div>

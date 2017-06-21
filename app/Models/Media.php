@@ -180,7 +180,7 @@ class Media
             // DESTINATION
             $destination = sprintf('%s/%s/%s',
                 config('filesystems.directories.movies'),
-                ucfirst(str_slug($data['search']['title'])),
+                ucfirst(str_slug($data['movie']['title'])),
 //                $data['search']['id'],
                 urldecode(basename($this->file))
             );
@@ -191,7 +191,7 @@ class Media
             // DESTINATION
             $destination = sprintf('%s/%s/Saison_%02s/Episode_%02s/%s',
                 config('filesystems.directories.tvshows'),
-                ucfirst(str_slug($data['search']['name'])),
+                ucfirst(str_slug($data['tvshow']['name'])),
 //                $data['search']['id'],
                 $data['episode']['data']['season_number'],
                 $data['episode']['data']['episode_number'],
@@ -203,7 +203,7 @@ class Media
 
         // SI VIDE
         if (empty($destination)) {
-            throw new \Exception('Impossible de determiner une destionation pour le fichier : ' . $this->file);
+            throw new \Exception('Impossible de determiner une destination pour le fichier : ' . $this->file);
         }
 
         // MOVE

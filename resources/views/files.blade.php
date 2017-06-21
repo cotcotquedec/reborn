@@ -18,31 +18,33 @@
             <!-- Main content -->
             <section class="content">
 
+                @if($medias->isEmpty())
+                    <section class="content">
+
+                        <div class="error-page">
+                            <h2 class="headline text-red">Cool!</h2>
+
+                            <div class="error-content">
+                                <h3>Aucun Fichier à trier.</h3>
+
+                                <p>
+                                    Je vais mettre ici les informations pour télécharger des fichiers, soyez patient
+                                </p>
+                            </div>
+                        </div>
+                        <!-- /.error-page -->
+
+                    </section>
+                @endif
+
+                <h3>Tri Automatique</h3>
+
                 <div class="row">
 
-                    @if($medias->isEmpty())
-                        <section class="content">
-
-                            <div class="error-page">
-                                <h2 class="headline text-red">Cool!</h2>
-
-                                <div class="error-content">
-                                    <h3>Aucun Fichier à trier.</h3>
-
-                                    <p>
-                                        Je vais mettre ici les informations pour télécharger des fichiers, soyez patient
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- /.error-page -->
-
-                        </section>
-                    @endif
-
-                    @foreach($medias as $media)
+                    @forelse($medias->where('status_rid', \Ref::MEDIA_STATUS_SCAN) as $media)
 
                         @if($media->isTvShow())
-                            <div class="col-md-12">
+                            <div class="col-sm-12 col-md-6">
                                 <!-- Widget: user widget style 1 -->
                                 <div class="box box-primary">
 
@@ -110,7 +112,7 @@
 
 
                         @if($media->isMovie())
-                            <div class="col-md-12">
+                            <div class="col-sm-12 col-md-6">
                                 <!-- Widget: user widget style 1 -->
                                 <div class="box box-success">
 
@@ -168,9 +170,77 @@
                                 <!-- /.widget-user -->
                             </div>
                         @endif
-                    @endforeach
+                    @empty
+
+                        <div class="col-sm-12 col-md-6">
+                            <!-- Widget: user widget style 1 -->
+                            <div class="box box-warning">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Aucun Fichier à trier.</h3>
+                                </div>
+
+                                <div class="box-body">
+                                    <p>
+                                        Je vais mettre ici les informations pour télécharger des fichiers, soyez patient
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    @endforelse
                 </div>
 
+
+                <h3>Tri Manuel</h3>
+
+                <div class="row">
+                    @forelse($medias->where('status_rid', \Ref::MEDIA_STATUS_NEW) as $media)
+
+                        <div class="col-sm-12 col-md-6">
+                            <!-- Widget: user widget style 1 -->
+                            <div class="box box-default">
+
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Tri Manuel</h3>
+                                </div>
+
+                                <div class="box-body">
+                                    <p><strong>{{basename($media->name)}}</strong></p>
+                                    <p>
+                                        <strong><i class="fa fa-clock-o margin-r-5"></i></strong> {{$media->created_at->formatLocalized('%A %d %B %Y')}}
+                                    </p>
+
+                                    <div class="text-right">
+                                        {{--<a class="btn btn-primary">Série</a>--}}
+                                        <a href="{{route('stock.movie', uuid($media->getKey())->hex)}}"
+                                           data-method="GET" class="btn btn-success modal-remote"
+                                           data-target="#modal-remote">
+                                            Film
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.widget-user -->
+                        </div>
+                    @empty
+
+                        <div class="col-sm-12 col-md-6">
+                            <!-- Widget: user widget style 1 -->
+                            <div class="box box-warning">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Aucun Fichier à trier.</h3>
+                                </div>
+
+                                <div class="box-body">
+                                    <p>
+                                        Je vais mettre ici les informations pour télécharger des fichiers, soyez patient
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    @endforelse
+                </div>
             </section>
         </div>
     </div>
