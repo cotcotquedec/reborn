@@ -49,34 +49,40 @@ class MigrateOldMovie extends Migration
                     return;
                 }
 
-                transaction(function () use ($media, $row) {
+                try {
 
-                    $db = $media->db();
 
-                    // STOCKAGE
-                    $movie = $row->reference_id;
-                    $infos = \Tmdb::getMoviesApi()->getMovie($movie);
+                    transaction(function () use ($media, $row) {
 
-                    // Synchro avec la base
-                    $db->search_info = [$movie => ['movie' => $infos]];
-                    $db->type_rid = \Ref::MEDIA_TYPE_MOVIE;
-                    $db->status_rid = \Ref::MEDIA_STATUS_SCAN;
-                    $db->save();
+                        $db = $media->db();
 
-                    $media = Media::fromDb($db);
+                        // STOCKAGE
+                        $movie = $row->reference_id;
+                        $infos = \Tmdb::getMoviesApi()->getMovie($movie);
 
-                    $db->update([
-                        'data' => $db->search_info[$movie],
-                        'stored_at' => $row->insert,
-                        'status_rid' => \Ref::MEDIA_STATUS_STORED
-                    ]);
+                        // Synchro avec la base
+                        $db->search_info = [$movie => ['movie' => $infos]];
+                        $db->type_rid = \Ref::MEDIA_TYPE_MOVIE;
+                        $db->status_rid = \Ref::MEDIA_STATUS_SCAN;
+                        $db->save();
 
-                    \DB::table('elfinder_path_reference')
-                        ->where('path_id', $row->path_id)
-                        ->update([
-                            'reference_column' => 'done'
+                        $media = Media::fromDb($db);
+
+                        $db->update([
+                            'data' => $db->search_info[$movie],
+                            'stored_at' => $row->insert,
+                            'status_rid' => \Ref::MEDIA_STATUS_STORED
                         ]);
-                });
+
+                        \DB::table('elfinder_path_reference')
+                            ->where('path_id', $row->path_id)
+                            ->update([
+                                'reference_column' => 'done'
+                            ]);
+                    });
+                } catch (\Exception $e) {
+                    d($e->getMessage());
+                }
             });
         });
     }
