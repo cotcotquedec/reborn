@@ -64,7 +64,8 @@ class Minify extends Command
             ->styleFile('/adminlte/dist/css/AdminLTE.min.css')
             ->styleFile('/frenchfrogs/plugins/toastr/toastr.min.css')
             ->styleFile('/frenchfrogs/plugins/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css')
-            ->styleFile('/frenchfrogs/dist/css/frenchfrogs.css');
+            ->styleFile('/frenchfrogs/dist/css/frenchfrogs.css')
+            ->styleFile('/main.css');
 
         is_debug() || $css->enableMinify();
         Cache::forever(__FUNCTION__ . '.css', $css->minify());
