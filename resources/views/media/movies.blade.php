@@ -49,7 +49,7 @@
                                                         <strong><i class="fa fa-clock-o margin-r-5"></i></strong> {{$media->created_at->formatLocalized('%A %d %B %Y')}}
                                                     </p>
                                                     <p>{{$info['movie']['release_date']}}</p>
-                                                    <p class="text-muted">
+                                                    <p class="">
                                                         {{$info['movie']['overview']}}
                                                     </p>
                                                 </div>
