@@ -38,6 +38,7 @@ class ScanMedia extends Command
      */
     public function handle()
     {
+
         // PARCOURS DE TOUS LES FICHIERS
         collect(\Storage::disk('files')->files(config('filesystems.directories.downloads'), true))->each(function ($file) {
 
@@ -58,8 +59,9 @@ class ScanMedia extends Command
                     return;
                 }
 
+
                 // On verifie que le fichier n'existe pas deja
-                $validator = \Validator::make([$media->md5()], ['unique:medias,file_md5']);
+                $validator = \Validator::make([$media->md5(), $media->getRealpath()], ['unique:medias,file_md5', 'unique:medias,realpath']);
                 if ($validator->fails()) {
                     $this->warn('Ce fichier existe deja');
                     return;
