@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/files', 'MediaController@files')->name('files');
     Route::get('/tvshows', 'MediaController@tvshows')->name('tvshows');
     Route::get('/movies', 'MediaController@movies')->name('movies');
-    Route::any('/stock/movie/{media}','MediaController@stockMovie')->name('stock.movie');
+    Route::any('/stock/movie/{media}', 'MediaController@stockMovie')->name('stock.movie');
     Route::get('/stock/{media}/{tmdb?}', 'MediaController@stock')->name('stock');
     Route::get('/download/{media}', 'MediaController@download')->name('download');
     Route::any('/direct', 'MediaController@direct')->name('direct');
@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 //    'user' => Controllers\UserController::class,
 //    'schedule' => Controllers\ScheduleController::class,
 //    'reference' => Controllers\ReferenceController::class,
+        'task' => \App\Http\Controllers\TaskController::class
     ], is_debug()
     )->register();
 // Development routes
@@ -41,5 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
+
+require_once frenchfrogs_path('/App/Http/routes.php');
 
 
