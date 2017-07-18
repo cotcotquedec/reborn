@@ -210,6 +210,8 @@ class MediaController extends Controller
             ->limit(50)
             ->get();
 
+
+//        dd($medias->first()->data['movie']['imdb_id']);
         return view('media.movies', compact('medias'));
     }
 

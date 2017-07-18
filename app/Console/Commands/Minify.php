@@ -91,7 +91,8 @@ class Minify extends Command
             ->file('/frenchfrogs/dist/js/fnFilterOnReturn.js')
             ->file('/frenchfrogs/dist/js/fnFilterColumns.js')
             ->file('/adminlte/dist/js/app.min.js')
-            ->file('/frenchfrogs/dist/js/frenchfrogs.js');
+            ->file('/frenchfrogs/dist/js/frenchfrogs.js')
+            ->file('/main.js');
 
         is_debug() || $js->enableMinify();
         Cache::forever(__FUNCTION__ . '.js', $js->minify());
