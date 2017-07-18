@@ -173,6 +173,8 @@ class MediaController extends Controller
             ->limit(50)
             ->get();
 
+//        dd($medias->first()->data);
+
         return view('media.tvshows', compact('medias'));
     }
 

@@ -35,8 +35,6 @@
                                             <div>
 
                                                 <div class="row">
-
-
                                                     <div class="box-summary col-sm-12">
                                                         <img src="{{$image->getUrl($info['movie']['poster_path'], 'w154')}}"
                                                              class="pull-left">
