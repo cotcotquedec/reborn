@@ -23,7 +23,7 @@
 
                         @php($info = $media->data)
 
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-md-6 col-lg-4" id="{{uuid($media->getKey())->hex}}">
                                 <!-- Widget: user widget style 1 -->
 
                                 <div class="box box-primary box-movie">
@@ -36,6 +36,13 @@
 
                                                         <img src="{{$image->getUrl($info['search']['poster_path'], 'w154')}}"
                                                              style="margin-right: 10px;" class="pull-left">
+
+                                                        <a href="{{route('media.delete', [uuid($media->getKey())->hex])}}"
+                                                           class="btn btn-danger btn-sm pull-right modal-remote"
+                                                           data-method="GET"
+                                                           data-target="#modal-remote">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
 
                                                         <a href="{{route('download', [uuid($media->getKey())->hex])}}"
                                                            class="btn btn-primary btn-sm pull-right">
