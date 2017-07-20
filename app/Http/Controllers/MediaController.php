@@ -180,6 +180,49 @@ class MediaController extends Controller
 
 
     /**
+     * Supression d'un media
+     *
+     * @param $media
+     * @return \FrenchFrogs\Container\Javascript
+     */
+    public function delete($media)
+    {
+        //VALIDATION
+        $this->validate($request = $this->request(), ['__media' => 'required|exists:medias,uuid']);
+
+        // MEDIA
+        $media = Medias::findOrFail($request->get('__media'));
+
+        // MODAL
+        $modal = \modal(null, 'Etes vous sûr de vouloir supprimer : <b>' . $media->name . '</b>');
+        $button = (new \FrenchFrogs\Form\Element\Button('yes', 'Supprimer !'))
+            ->setOptionAsDanger()
+            ->enableCallback('get')
+            ->addAttribute('href', action_url(static::class, __FUNCTION__, func_get_args(), ['delete' => true]));
+        $modal->appendAction($button);
+
+        // TRAITEMENT
+        if ($request->has('delete')) {
+            try {
+
+                if (!\Storage::disk('files')->exists($media->storage_path)) {
+                    $media->delete();
+                } else {
+                    Media::fromDb($media)->delete();
+                }
+
+                \js()->success()->closeRemoteModal()->appendJs('#' . $request->get('media'), 'detach');
+            } catch (\Exception $e) {
+                \js()->error($e->getMessage());
+            }
+            return js();
+        }
+
+        return response()->modal($modal);
+    }
+
+
+    /**
      * Download File
      *
      * @param $media

@@ -26,3 +26,7 @@
     overflow: hidden;
     white-space: nowrap;
 }
+
+.box-movie .box-body .box-summary a.btn.pull-right {
+    margin-left: 5px;
+}

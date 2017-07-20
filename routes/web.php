@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/movies', 'MediaController@movies')->name('movies');
     Route::any('/stock/movie/{media}', 'MediaController@stockMovie')->name('stock.movie');
     Route::get('/stock/{media}/{tmdb?}', 'MediaController@stock')->name('stock');
+    Route::get('/delete/{media}', 'MediaController@delete')->name('media.delete');
     Route::get('/download/{media}', 'MediaController@download')->name('download');
     Route::any('/direct', 'MediaController@direct')->name('direct');
 

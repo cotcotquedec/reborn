@@ -52,6 +52,28 @@ class Media
         }
     }
 
+
+    /**
+     * Suppresion d'un media
+     *
+     * @return $this
+     */
+    public function delete()
+    {
+        // On supprime le fichier
+        $this->storage->delete($this->file);
+
+        // si le dosseir est vide, on le supprime
+        if (empty($this->storage->allFiles($this->db->dirname))) {
+            $this->storage->deleteDirectory($this->db->dirname);
+        }
+
+        // On supprime l'entré en base
+        $this->db->delete();
+
+        return $this;
+    }
+
     /**
      *
      *
@@ -93,7 +115,7 @@ class Media
         $copy = $media->db(false);
 
         if (is_null($copy) || $copy->getKey() != $db->getKey()) {
-            throw new \Exception('Erreur sur l\identification du fichier');
+            throw new \Exception('Erreur sur l\'identification du fichier');
         }
 
         return $media;
