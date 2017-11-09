@@ -25,7 +25,7 @@
     "barryvdh/laravel-debugbar": "3.*",
     "almasaeed2010/adminlte": "^2.4.2",
     "webpatser/laravel-uuid": "2.*",
-    "cotcotquedec/frenchfrogs": "dev-1.0-alpha#5377dd62d7ac2e098a0f152cef9a6a445452e64e",
+    "cotcotquedec/frenchfrogs": "dev-1.0-alpha#a6d63a867cf8a3d0c50fcb2e08d4b11a197b577d",
     "roave/better-reflection": "^1.2",
     "jenssegers/date": "^3.2",
     "jenssegers/agent": "^2.3",
@@ -69,9 +69,7 @@
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
       "php artisan ide-helper:generate",
       "php artisan ide-helper:meta",
-      "php artisan optimize",
-      "ln -sf ../vendor/almasaeed2010/adminlte public/adminlte",
-      "ln -sf ../vendor/cotcotquedec/frenchfrogs/assets public/frenchfrogs"
+      "php artisan optimize"
     ]
   },
   "repositories": [
