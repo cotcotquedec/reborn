@@ -19,7 +19,7 @@
             <section class="content">
 
                 <div class="row">
-                    <div class="col-xs-12 col-sm-offset-8 col-sm-4">
+                    <div class="col-md-offset-6 col-md-6 col-lg-offset-8 col-lg-4">
                         <form action="{{url()->current()}}" method="get" style="margin: 15px 0px;">
                             <div class="input-group">
                                 <input type="text" name="q" value="{{$q}}" class="form-control input-lg" placeholder="Search...">
