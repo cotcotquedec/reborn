@@ -164,15 +164,22 @@ class MediaController extends Controller
      *
      *
      */
-    public function tvshows()
+    public function tvshows(Request $request)
     {
 
         $medias = Medias::where('status_rid', \Ref::MEDIA_STATUS_STORED)
             ->where('type_rid', \Ref::MEDIA_TYPE_TVSHOW)
-            ->orderBy('stored_at', 'desc')
-            ->paginate(24);
+            ->orderBy('stored_at', 'desc');
 
-        return view('media.tvshows', compact('medias'));
+        // Traitement de la recherche
+        if ($q = $request->get('q', false)) {
+            $medias->where('data->tvshow->data->name', 'like', '%'.$q.'%');
+        }
+
+        $medias = $medias->paginate(24);
+        !empty($q) && $medias->appends(compact('q'));
+
+        return view('media.tvshows', compact('medias', 'q'));
     }
 
 
@@ -243,14 +250,20 @@ class MediaController extends Controller
      *
      *
      */
-    public function movies()
+    public function movies(Request $request)
     {
         $medias = Medias::where('status_rid', \Ref::MEDIA_STATUS_STORED)
             ->where('type_rid', \Ref::MEDIA_TYPE_MOVIE)
-            ->orderBy('stored_at', 'desc')
-            ->paginate(24);
+            ->orderBy('stored_at', 'desc');
 
-        return view('media.movies', compact('medias'));
+        if ($q = $request->get('q', false)) {
+            $medias->where('data->movie->title', 'like', '%'.$q.'%');
+        }
+
+        $medias = $medias->paginate(24);
+        !empty($q) && $medias->appends(compact('q'));
+
+        return view('media.movies', compact('medias','q'));
     }
 
 

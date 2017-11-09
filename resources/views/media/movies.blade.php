@@ -17,10 +17,23 @@
 
             <!-- Main content -->
             <section class="content">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-offset-8 col-sm-4">
+                        <form action="{{url()->current()}}" method="get" style="margin: 15px 0px;">
+                            <div class="input-group">
+                                <input type="text" name="q" value="{{$q}}" class="form-control input-lg" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button type="submit" id="search-btn" class="btn btn-flat btn-lg">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                  </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
                 <div class="row">
                     @foreach($medias as $media)
-
 
                         @php($info = $media->data)
 
