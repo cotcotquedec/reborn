@@ -120,13 +120,13 @@ class MediaController extends Controller
                         }
                     } else {
 
-                        transaction(function() use ($request, $media) {
+                        transaction(function () use ($request, $media) {
                             // STOCKAGE
                             $movie = $request->get('movie_id');
                             $infos = \Tmdb::getMoviesApi()->getMovie($movie);
 
                             // Synchro avec la base
-                            $media->search_info = [ $movie => ['movie' => $infos]];
+                            $media->search_info = [$movie => ['movie' => $infos]];
                             $media->type_rid = \Ref::MEDIA_TYPE_MOVIE;
                             $media->status_rid = \Ref::MEDIA_STATUS_SCAN;
                             $media->save();
@@ -170,10 +170,7 @@ class MediaController extends Controller
         $medias = Medias::where('status_rid', \Ref::MEDIA_STATUS_STORED)
             ->where('type_rid', \Ref::MEDIA_TYPE_TVSHOW)
             ->orderBy('stored_at', 'desc')
-            ->limit(50)
-            ->get();
-
-//        dd($medias->first()->data);
+            ->paginate(24);
 
         return view('media.tvshows', compact('medias'));
     }
@@ -248,15 +245,11 @@ class MediaController extends Controller
      */
     public function movies()
     {
-
         $medias = Medias::where('status_rid', \Ref::MEDIA_STATUS_STORED)
             ->where('type_rid', \Ref::MEDIA_TYPE_MOVIE)
             ->orderBy('stored_at', 'desc')
-            ->limit(50)
-            ->get();
+            ->paginate(24);
 
-
-//        dd($medias->first()->data['movie']['imdb_id']);
         return view('media.movies', compact('medias'));
     }
 
@@ -266,13 +259,11 @@ class MediaController extends Controller
      */
     public function direct(Request $request)
     {
-
         // FORMULAIRE
         $form = form()->enableRemote();
         $form->setLegend('Ajouter un téléchargement direct');
         $form->addText('url', 'URL')->addAttribute('autofocus', 'autofocus')->addLaravelValidator('url|unique:downloads,url');
         $form->addSubmit('Télécharger');
-
 
         // TRAITEMENT
         if ($request->isMethod('POST')) {

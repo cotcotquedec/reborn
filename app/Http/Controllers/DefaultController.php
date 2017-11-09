@@ -28,7 +28,6 @@ class DefaultController extends Controller
      */
     public function index()
     {
-
         $medias = Medias::where('status_rid', '!=', \Ref::MEDIA_STATUS_STORED)->get();
         return view('files', compact('medias'));
     }

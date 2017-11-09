@@ -31,13 +31,6 @@ class Kernel extends ConsoleKernel
         \FrenchFrogs\App\Console\AclTableCommand::class,
         \FrenchFrogs\App\Console\CreateUserCommand::class,
         \FrenchFrogs\App\Console\ChangeUserPasswordCommand::class,
-//        \FrenchFrogs\App\Console\ScheduleTableCommand::class,
-        \FrenchFrogs\App\Console\ReferenceTableCommand::class,
-        \FrenchFrogs\App\Console\ReferenceBuildCommand::class,
-//        \FrenchFrogs\App\Console\MailTableCommand::class,
-//        \FrenchFrogs\App\Console\MailSendCommand::class,
-        \FrenchFrogs\App\Console\MediaTableCommand::class,
-//        \FrenchFrogs\App\Console\ContentTableCommand::class,
 
 
         // en dev
@@ -47,7 +40,6 @@ class Kernel extends ConsoleKernel
         \FrenchFrogs\App\Console\CodePermissionCommand::class,
         CodeReferenceCommand::class,
         \FrenchFrogs\App\Console\CodeModelCommand::class,
-        \FrenchFrogs\App\Console\ContentBuildCommand::class,
         \FrenchFrogs\App\Console\DevContentCommand::class,
         \FrenchFrogs\App\Console\CodeMigrationCommand::class,
     ];
