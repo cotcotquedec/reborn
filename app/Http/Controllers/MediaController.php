@@ -195,7 +195,7 @@ class MediaController extends Controller
         $button = (new \FrenchFrogs\Form\Element\Button('yes', 'Supprimer !'))
             ->setOptionAsDanger()
             ->enableCallback('get')
-            ->addAttribute('href', action_url(static::class, __FUNCTION__, func_get_args(), ['delete' => true]));
+            ->addAttribute('href', url()->clone()->withQuery(['delete' => true])->current());
         $modal->appendAction($button);
 
         // TRAITEMENT

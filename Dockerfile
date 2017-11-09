@@ -41,10 +41,12 @@ ENV APACHE_SERVERALIAS docker.localhost
 ENV APACHE_DOCUMENTROOT /var/www
 
 
+#PHP CS FIXER
+RUN curl -L http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -o php-cs-fixer \
+  && chmod a+x php-cs-fixer &&  mv php-cs-fixer /usr/local/bin/php-cs-fixer
+
+
+
 EXPOSE 80
 VOLUME ["/var/log/apache2"]
 ENTRYPOINT ["/usr/sbin/apache2", "-D", "FOREGROUND"]
-
-
-#docker build -t jobmaker .
-#docker run -d -P -v /var/www/jobmaker:/var/www/jobmaker jobmaker
