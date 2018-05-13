@@ -4,6 +4,7 @@
 use Carbon\Carbon;
 use FrenchFrogs\Laravel\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Scout\Searchable;
 
 
 /**
@@ -25,6 +26,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Medias extends Model
 {
+    use Searchable;
+
     public $keyType = 'binuuid';
 
 
@@ -111,5 +114,45 @@ class Medias extends Model
     public function isTvShow()
     {
         return $this->type_rid == \Ref::MEDIA_TYPE_TVSHOW;
+    }
+
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+        // REMOVE BAD INFO
+        unset($array['search_info']);
+
+        // FORMAT UUID
+        $array['uuid'] = uuid($this->uuid)->string;
+
+        return $array;
+    }
+
+
+    /**
+     * @return string
+     * @throws \Exception
+     */
+    public function getScoutKey()
+    {
+        return uuid($this->getKey())->string;
+    }
+
+
+    /**
+     * Determine if the model should be searchable.
+     *
+     * @return bool
+     */
+    public function shouldBeSearchable()
+    {
+        return $this->status_rid == \Ref::MEDIA_STATUS_STORED;
     }
 }

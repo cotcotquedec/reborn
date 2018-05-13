@@ -269,38 +269,56 @@ class MediaController extends Controller
 
     /**
      *
+     *
+     * @param $query
+     */
+    public function search(Request $request)
+    {
+
+        $medias = null;
+        if ($request->has('q')) {
+            $query = $request->get('q');
+            $medias = Medias::search($query)->raw();
+        }
+
+        return view('media.search', compact('medias'));
+    }
+
+
+    /**
+     *
      */
     public function direct(Request $request)
     {
         // FORMULAIRE
         $form = form()->enableRemote();
         $form->setLegend('Ajouter un téléchargement direct');
-        $form->addText('url', 'URL')->addAttribute('autofocus', 'autofocus')->validator('url|unique:downloads,url');
-        $form->addSubmit('Télécharger');
+        $form->addText('url', 'URL')
+            ->addAttribute('autofocus', 'autofocus')
+            ->validator('url|unique:downloads,url');
+//        $form->addSubmit('Télécharger');
 
-        // TRAITEMENT
-        if ($request->isMethod('POST')) {
 
-            $form->valid($request->all());
+        try {
+            $form->addSubmit('Télécharger')
+                ->setProcess(function ($values) {
+                    return transaction(function () use ($values) {
 
-            if ($form->isValid()) {
-                try {
+                        // MODEL
+                        Downloads::create([
+                            'url' => $values['url'],
+                            'status_rid' => \Ref::DOWNLOADS_STATUS_CREATED
+                        ]);
 
-                    // MODEL
-                    Downloads::create([
-                        'url' => $request->get('url'),
-                        'status_rid' => \Ref::DOWNLOADS_STATUS_CREATED
-                    ]);
-
-                    js()->success()->closeRemoteModal();
-
-                } catch (\Exception $e) {
-                    js()->error($e->getMessage());
-                }
-            }
+                        js()->closeRemoteModal();
+                        return true;
+                    });
+                });
+        } catch (\Throwable $e) {
+            debugbar()->addThrowable($e);
         }
 
-        return response()->modal($form);
+        return $form;
     }
 
 }
