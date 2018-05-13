@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo -u assessfirst -g www-data php /var/www/app/artisan $@

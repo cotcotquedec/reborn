@@ -3,6 +3,9 @@
 namespace App\Http;
 
 use App\Http\Middleware\DevelopmentMiddleware;
+use FrenchFrogs\App\Http\Middleware\FormMiddleware;
+use FrenchFrogs\App\Http\Middleware\ModalMiddleware;
+use FrenchFrogs\App\Http\Middleware\TableMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -33,7 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
+//            \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
@@ -51,6 +54,9 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'form' => FormMiddleware::class,
+        'modal' => ModalMiddleware::class,
+        'table' => TableMiddleware::class,
         'development' => DevelopmentMiddleware::class,
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

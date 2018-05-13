@@ -8,6 +8,7 @@ use App\Console\Commands\Minify;
 use App\Console\Commands\ScanMedia;
 use App\Console\Commands\Test;
 use FrenchFrogs\App\Console\CodeReferenceCommand;
+use FrenchFrogs\App\Console\ReferenceBuildCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -28,20 +29,16 @@ class Kernel extends ConsoleKernel
 
 
         //FRENCHFROGS
-        \FrenchFrogs\App\Console\AclTableCommand::class,
         \FrenchFrogs\App\Console\CreateUserCommand::class,
         \FrenchFrogs\App\Console\ChangeUserPasswordCommand::class,
 
 
         // en dev
         \FrenchFrogs\App\Console\CodeControllerCommand::class,
-        \FrenchFrogs\App\Console\CodeActionCommand::class,
-        \FrenchFrogs\App\Console\CodeMailCommand::class,
-        \FrenchFrogs\App\Console\CodePermissionCommand::class,
         CodeReferenceCommand::class,
         \FrenchFrogs\App\Console\CodeModelCommand::class,
-        \FrenchFrogs\App\Console\DevContentCommand::class,
         \FrenchFrogs\App\Console\CodeMigrationCommand::class,
+        ReferenceBuildCommand::class,
     ];
 
     /**

@@ -6,7 +6,7 @@
 {!!
 \h()
 ->charset('utf-8')
-->title( configurator()->get('app.name') . ' Login' . (App::environment() != 'production' ? ' | ' . App::environment() : ''))
+->title( config('app.name') . ' Login' . (App::environment() != 'production' ? ' | ' . App::environment() : ''))
 ->meta('viewport', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
 ->meta('ROBOTS', 'NOINDEX, NOFOLLOW')
 ->favicon('/favicon.ico')
@@ -25,7 +25,7 @@
 <body class="hold-transition skin-{{env('ADMINLTE_SKIN', 'black')}} login-page">
 <div class="login-box">
     <div class="login-logo">
-        <b>{{ configurator()->get('app.name') }}</b>
+        <b>{{ config('app.name') }}</b>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

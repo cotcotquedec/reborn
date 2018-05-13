@@ -25,17 +25,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::any('/stock/movie/{media}', 'MediaController@stockMovie')->name('stock.movie');
     Route::get('/stock/{media}/{tmdb?}', 'MediaController@stock')->name('stock');
     Route::get('/delete/{media}', 'MediaController@delete')->name('media.delete');
-    Route::get('/download/{media}', 'MediaController@download')->name('download');
     Route::any('/direct', 'MediaController@direct')->name('direct');
 
+
+    Route::get('/tasks', 'TasksController@index')->name('tasks');
+    Route::match(['get', 'post'], '/tasks/downloads', 'TasksController@downloads')
+        ->middleware('table')
+        ->name('tasks.downloads');
+    Route::get('/download/{media}', 'MediaController@download')->name('download');
+
+
     Route::get('/logout', 'DefaultController@logout')->name('logout');
-    \FrenchFrogs\App\Models\Route::load([
-//    'user' => Controllers\UserController::class,
-//    'schedule' => Controllers\ScheduleController::class,
-//    'reference' => Controllers\ReferenceController::class,
-        'task' => \App\Http\Controllers\TaskController::class
-    ], is_debug()
-    )->register();
+
 // Development routes
     Route::group(['middleware' => 'development'], function () {
         Route::any('/dev-layout', 'DevController@layout')->name('dev-layout');
@@ -44,6 +45,6 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-require_once frenchfrogs_path('/App/Http/routes.php');
+//require_once frenchfrogs_path('/App/Http/routes.php');
 
 

@@ -83,8 +83,8 @@ class MediaController extends Controller
         $form = form()->enableRemote();
         $form->setLegend('Tri manuel de film');
         $form->addLabel('name', 'Fichier')->setValue($media->name);
-        $form->addText('title', 'Titre')->addAttribute('autofocus', 'autofocus')->addLaravelValidator('min:3');
-        $form->addNumber('year', 'Année', false)->addLaravelValidator('size:4');
+        $form->addText('title', 'Titre')->addAttribute('autofocus', 'autofocus')->validator('min:3');
+        $form->addNumber('year', 'Année', false)->validator('size:4');
         $form->addSubmit('Chercher');
 
         // TRAITEMENT
@@ -275,7 +275,7 @@ class MediaController extends Controller
         // FORMULAIRE
         $form = form()->enableRemote();
         $form->setLegend('Ajouter un téléchargement direct');
-        $form->addText('url', 'URL')->addAttribute('autofocus', 'autofocus')->addLaravelValidator('url|unique:downloads,url');
+        $form->addText('url', 'URL')->addAttribute('autofocus', 'autofocus')->validator('url|unique:downloads,url');
         $form->addSubmit('Télécharger');
 
         // TRAITEMENT

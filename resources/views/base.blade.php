@@ -5,7 +5,7 @@
 {!!
 \h()
 ->charset('utf-8')
-->title( configurator()->get('app.name') . (App::environment() != 'production' ? ' | ' . App::environment() : ''))
+->title( config('app.name') . (app()->environment() != 'production' ? ' | ' . app()->environment() : ''))
 ->meta('viewport', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
 !!}
 

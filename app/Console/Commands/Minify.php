@@ -48,10 +48,10 @@ class Minify extends Command
      */
     public function web()
     {
-        $this->info(__FUNCTION__ . ' : CSS');
 
         // CSS
-        $css = \css()
+        $this->info(__FUNCTION__ . ' : CSS');
+        $css = css()
             ->setTargetPath('build')
             ->styleFile('/adminlte/bower_components/bootstrap/dist/css/bootstrap.css')
             ->styleFile('/adminlte/bower_components/bootstrap/dist/css/bootstrap-theme.css')
@@ -67,13 +67,13 @@ class Minify extends Command
             ->styleFile('/frenchfrogs/plugins/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css')
             ->styleFile('/frenchfrogs/dist/css/frenchfrogs.css')
             ->styleFile('/main.css');
+        config('app.minify') && $css->enableMinify();
+        cache()->forever(__FUNCTION__ . '.css', $css->minify());
+        css()->clear();
 
-        is_debug() || $css->enableMinify();
-        Cache::forever(__FUNCTION__ . '.css', $css->minify());
-        \css()->clear();
-
+        // JS
         $this->info(__FUNCTION__ . ' : JS');
-        $js = \js()
+        $js = js()
             ->setTargetPath('build')
             ->file('/adminlte/bower_components/jquery/dist/jquery.js')
             ->file('/adminlte/bower_components/bootstrap/dist/js/bootstrap.js')
@@ -95,8 +95,8 @@ class Minify extends Command
             ->file('/frenchfrogs/dist/js/frenchfrogs.js')
             ->file('/main.js');
 
-        is_debug() || $js->enableMinify();
-        Cache::forever(__FUNCTION__ . '.js', $js->minify());
+        config('app.minify') && $js->enableMinify();
+        cache()->forever(__FUNCTION__ . '.js', $js->minify());
         js()->clear();
     }
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php namespace {
 
 class Ref
 {
@@ -11,4 +11,5 @@ class Ref
     const MEDIA_STATUS_STORED = 'MEDIA_STATUS_STORED';
     const MEDIA_TYPE_MOVIE = 'MEDIA_TYPE_MOVIE';
     const MEDIA_TYPE_TVSHOW = 'MEDIA_TYPE_TVSHOW';
+}
 }

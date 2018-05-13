@@ -41,7 +41,6 @@ class DefaultController extends Controller
      */
     public function auth(Request $request)
     {
-
         // si deja connecter on redirige
         if ($this->guard()->check()) {
             return $this->authenticated($request, $this->guard()->user());
@@ -89,6 +88,7 @@ class DefaultController extends Controller
         if ($request->has('code')) {
             /** @var \Laravel\Socialite\Two\User $user */
             $facebook = \Socialite::driver('facebook')->user();
+
             if ($facebook->user['verified']) {
 
 

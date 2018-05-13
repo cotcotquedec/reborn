@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use FrenchFrogs\Core\FrenchFrogsController;
+use FrenchFrogs\App\Http\Controllers\FrenchFrogsController;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -10,9 +10,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests,FrenchFrogsController {
-        FrenchFrogsController::validate insteadof ValidatesRequests;
-    }
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, FrenchFrogsController;
 
     /**
      * Basic return

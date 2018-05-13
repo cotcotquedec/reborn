@@ -1,5 +1,17 @@
 <?php
 
+
+// Determine la version de l'application dans le fichier VERSION
+$version = 'Deadpool';
+if (file_exists($file = __DIR__ . '/../VERSION')) {
+    $version = file_get_contents($file);
+}
+
+putenv("APP_VERSION=$version");
+
+// REFERENCE
+@include 'Ref.php';
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application
