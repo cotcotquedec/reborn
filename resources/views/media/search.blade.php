@@ -29,11 +29,10 @@
                                 $uuid = uuid(data_get($media, 'uuid'))->hex;
                             @endphp
 
-                            <div class="col-md-6 col-lg-4" id="{{$uuid}}">
-                                <!-- Widget: user widget style 1 -->
-
-                                @if ($media['type_rid'] == \Ref::MEDIA_TYPE_MOVIE)
-                                    @php($info = data_get($info, 'movie'))
+                            @if ($media['type_rid'] == \Ref::MEDIA_TYPE_MOVIE)
+                                @php($info = data_get($info, 'movie'))
+                                <div class="col-md-6 col-lg-4" id="{{$uuid}}">
+                                    <!-- Widget: user widget style 1 -->
                                     <div class="box box-success box-movie">
                                         <div class="box-body"
                                              style="background-size: cover;background-image: url('{{$image->getUrl($info['backdrop_path'], 'w780')}}')">
@@ -95,8 +94,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endif
-                            </div>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                 </section>
