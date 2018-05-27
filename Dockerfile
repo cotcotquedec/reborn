@@ -23,7 +23,7 @@ RUN export LANGUAGE=fr_FR.UTF-8 && \
 
 # INSTALL PHP
 RUN apt-get update; apt-get install -y sudo php7.1 php7.1-cli php7.1-gd php7.1-imap php7.1-mbstring php7.1-xml php7.1-curl \
-    php7.1-mcrypt php7.1-zip php7.1-mysqlnd mysql-client libapache2-mod-php7.1 cron && \
+    php7.1-mcrypt php7.1-zip php7.1-mysqlnd mysql-client libapache2-mod-php7.1 cron libapache2-mod-xsendfile && \
     apt-get -q autoremove  && \
     apt-get -q clean -y  && \
     rm -rf /var/lib/apt/lists/*  && \
