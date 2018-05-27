@@ -132,6 +132,69 @@ class Medias extends Model
         // FORMAT UUID
         $array['uuid'] = uuid($this->uuid)->string;
 
+        $data = [];
+
+
+        if ($this->isMovie()) {
+
+            //
+            $before = data_get($array['data'], 'movie');
+
+            // GENRE
+            if (!empty($before['genres'])) {
+                $data['genres'] = collect($before['genres'])->pluck('name')->toArray();
+            }
+
+            $data['id'] = $before['id'];
+            $data['title'] = $before['title'];
+            $data['imdb_id'] = $before['imdb_id'];
+            $data['tagline'] = $before['tagline'];
+            $data['overview'] = $before['overview'];
+            $data['poster_path'] = $before['poster_path'];
+            $data['release_date'] = $before['release_date'];
+            $data['backdrop_path'] = $before['backdrop_path'];
+            $data['original_title'] = $before['original_title'];
+
+        } elseif ($this->isTvShow()) {
+
+            // TVSHOW
+            $before = data_get($array['data'], 'tvshow');
+            $imdb = data_get($before['ids'], 'imdb_id');
+            $before = data_get($before, 'data');
+            $tvshow = [];
+
+            // GENRE
+            if (!empty($before['genres'])) {
+                $tvshow['genres'] = collect($before['genres'])->pluck('name')->toArray();
+            }
+
+            $tvshow['id'] = $before['id'];
+            $tvshow['imdb_id'] = $imdb;
+            $tvshow['name'] = $before['name'];
+            $tvshow['overview'] = $before['overview'];
+            $tvshow['poster_path'] = $before['poster_path'];
+            $tvshow['backdrop_path'] = $before['backdrop_path'];
+            $tvshow['original_name'] = $before['original_name'];
+
+
+            // EPISODE
+            $before = data_get($array['data'], 'episode');
+            $imdb = data_get($before['ids'], 'imdb_id');
+            $before = data_get($before, 'data');
+            $episode = [];
+
+            $episode['id'] = $before['id'];
+            $episode['name'] = $before['name'];
+            $episode['imdb_id'] = $imdb;
+            $episode['air_date'] = $before['air_date'];
+            $episode['overview'] = $before['overview'];
+
+            $data = compact('tvshow', 'episode');
+        }
+
+
+        $array['data'] = $data;
+
         return $array;
     }
 

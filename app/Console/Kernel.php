@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\BuildSearchCommand;
 use App\Console\Commands\CleanNonExistsFile;
 use App\Console\Commands\Download;
 use App\Console\Commands\Minify;
@@ -26,6 +27,7 @@ class Kernel extends ConsoleKernel
         ScanMedia::class,
         Download::class,
         CleanNonExistsFile::class,
+        BuildSearchCommand::class,
 
 
         //FRENCHFROGS

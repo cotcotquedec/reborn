@@ -46,6 +46,7 @@ class Media
     {
         $this->storage = \Storage::disk('files');
         $this->file = $file;
+
         $this->detectRealPath();
         if (!$this->storage->exists($this->file)) {
             throw new \Exception('Le fichier n\'existe pas : ' . $this->file);
@@ -303,7 +304,7 @@ class Media
 
                         // ON essaie de recuperer les informations
                         try {
-                            $data_episode = \Tmdb::getTvEpisodeApi()->getEpisode($result['id'], $season, $episode);
+                            $data_episode = \Tmdb::getTvEpisodeApi()->getEpisode($result['id'], $season, $episode, compact('language'));
                         } catch (\Exception $e) {
                             return;
                         }
@@ -312,7 +313,7 @@ class Media
                         $data = [
                             'search' => $result,
                             'tvshow' => [
-                                'data' => \Tmdb::getTvApi()->getTvshow($result['id']),
+                                'data' => \Tmdb::getTvApi()->getTvshow($result['id'], compact('language')),
                                 'ids' => \Tmdb::getTvApi()->getExternalIds($result['id']),
                             ],
                             'episode' => [
@@ -343,7 +344,7 @@ class Media
                         // recherche
                         $data = [
                             'search' => $result,
-                            'movie' => \Tmdb::getMoviesApi()->getMovie($result['id']),
+                            'movie' => \Tmdb::getMoviesApi()->getMovie($result['id'], compact('language')),
                         ];
 
                         $movies->put($result['id'], $data);
