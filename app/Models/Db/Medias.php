@@ -185,6 +185,8 @@ class Medias extends Model
 
             $episode['id'] = $before['id'];
             $episode['name'] = $before['name'];
+            $episode['season_number'] = $before['season_number'];
+            $episode['episode_number'] = $before['episode_number'];
             $episode['imdb_id'] = $imdb;
             $episode['air_date'] = $before['air_date'];
             $episode['overview'] = $before['overview'];
