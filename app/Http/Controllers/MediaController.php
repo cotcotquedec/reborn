@@ -90,17 +90,18 @@ class MediaController extends Controller
         // TRAITEMENT
         if ($request->isMethod('POST')) {
 
-            $form->valid($request->all());
+            if ($data = $form->valid($request->all())) {
 
-            if ($form->isValid()) {
+
 
 
                 try {
 
+
                     // Recherche de film
-                    if (!$request->get('movie_id')) {
+                    if (!data_get($data, 'movie_id')) {
                         // recherche
-                        $search = \Tmdb::getSearchApi()->searchMovies($request->get('title'), ['year' => $request->get('year')]);
+                        $search = \Tmdb::getSearchApi()->searchMovies(data_get($data, 'title'), ['year' => data_get($data, 'year')]);
                         $movies = [];
 
                         if (!empty($search['total_results'])) {
@@ -120,9 +121,9 @@ class MediaController extends Controller
                         }
                     } else {
 
-                        transaction(function () use ($request, $media) {
+                        transaction(function () use ($data, $media) {
                             // STOCKAGE
-                            $movie = $request->get('movie_id');
+                            $movie = data_get($data, 'movie_id');
                             $infos = \Tmdb::getMoviesApi()->getMovie($movie);
 
                             // Synchro avec la base
