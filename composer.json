@@ -20,7 +20,7 @@
     "algolia/algoliasearch-client-php": "^1.25",
     "almasaeed2010/adminlte": "^2.4.2",
     "barryvdh/laravel-debugbar": "^3.1",
-    "cotcotquedec/frenchfrogs": "dev-master#e21e187fd4ee4615fe86b73350c6c1cc6fef01b7",
+    "cotcotquedec/frenchfrogs": "dev-master#afd5c5df07e7a9647719ca4c7c01b886fc2d1190",
     "doctrine/dbal": "^2.6",
     "facebook/graph-sdk": "5.6.*",
     "fideloper/proxy": "~4.0",
