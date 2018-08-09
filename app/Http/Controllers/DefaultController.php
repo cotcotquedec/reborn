@@ -89,7 +89,7 @@ class DefaultController extends Controller
             /** @var \Laravel\Socialite\Two\User $user */
             $facebook = \Socialite::driver('facebook')->user();
 
-            if ($facebook->user['verified']) {
+            if ($facebook->id) {
 
 
                 $user = Users::where('facebook_id', $facebook->id)->first() ?: user();
