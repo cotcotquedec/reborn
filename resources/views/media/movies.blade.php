@@ -71,7 +71,7 @@
                                                               data-style="p1">
                                                         <a href="http://www.imdb.com/title/{{$info['movie']['imdb_id']}}/?ref_=plg_rt_1"
                                                            target="_blank">
-                                                            <img src="http://g-ecx.images-amazon.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png"/>
+                                                            <img src="/imdb_46x22.png"/>
                                                         </a>
                                                         </span>
                                                     @endif

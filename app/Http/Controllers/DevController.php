@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use Tmdb\Helper\ImageHelper;
 
 /**
@@ -28,6 +29,8 @@ class DevController extends Controller
     public function script(ImageHelper $helper)
     {
 
+        Log::warn('WESH');
+        dd('coucou');
 
         $name = "Le.Bureau.Des.Legendes.S03E10.FiNAL.FRENCH.HDTV.x264-AMB3R.mkv";
 
