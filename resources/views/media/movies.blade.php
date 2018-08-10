@@ -21,7 +21,8 @@
                     <div class="col-md-offset-6 col-md-6 col-lg-offset-8 col-lg-4">
                         <form action="{{url()->current()}}" method="get" style="margin: 15px 0px;">
                             <div class="input-group">
-                                <input type="text" name="q" value="{{$q}}" class="form-control input-lg" placeholder="Search...">
+                                <input type="text" name="q" value="{{$q}}" class="form-control input-lg"
+                                       placeholder="Search...">
                                 <span class="input-group-btn">
                                     <button type="submit" id="search-btn" class="btn btn-flat btn-lg">
                                         <i class="fa fa-search"></i>
@@ -69,9 +70,9 @@
                                                         <span class="imdbRatingPlugin"
                                                               data-title="{{$info['movie']['imdb_id']}}"
                                                               data-style="p1">
-                                                        <a href="http://www.imdb.com/title/{{$info['movie']['imdb_id']}}/?ref_=plg_rt_1"
+                                                        <a href="https://www.imdb.com/title/{{$info['movie']['imdb_id']}}/?ref_=plg_rt_1"
                                                            target="_blank">
-                                                            <img src="/imdb_46x22.png"/>
+                                                            <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png"/>
                                                         </a>
                                                         </span>
                                                     @endif

@@ -60,9 +60,10 @@
                                                                 <span class="imdbRatingPlugin"
                                                                       data-title="{{$info['imdb_id']}}"
                                                                       data-style="p1">
-                                                        <a href="http://www.imdb.com/title/{{$info['imdb_id']}}/?ref_=plg_rt_1"
+                                                        <a href="https://www.imdb.com/title/{{$info['imdb_id']}}/?ref_=plg_rt_1"
                                                            target="_blank">
-                                                            <img src="http://g-ecx.images-amazon.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png"/>
+
+                                                            <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png"/>
                                                         </a>
                                                         </span>
                                                             @endif
@@ -134,9 +135,10 @@
                                                                 <span class="imdbRatingPlugin"
                                                                       data-title="{{$info['episode']['imdb_id']}}"
                                                                       data-style="p1">
-                                                        <a href="http://www.imdb.com/title/{{$info['episode']['imdb_id']}}/?ref_=plg_rt_1"
+                                                        <a href="https://www.imdb.com/title/{{$info['episode']['imdb_id']}}/?ref_=plg_rt_1"
                                                            target="_blank">
-                                                            <img src="http://g-ecx.images-amazon.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png"/>
+
+                                                            <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png"/>
                                                         </a>
                                                         </span>
                                                             @endif
